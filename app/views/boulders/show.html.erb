@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @boulder.name %>
+</p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @boulder.grade %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= image_tag(@boulder.picture_url, :width => 600) if @boulder.picture.present? %>
+</p>
+
+<%= link_to 'Edit', edit_boulder_path(@boulder) %> |
+<%= link_to 'Back', boulders_path %>

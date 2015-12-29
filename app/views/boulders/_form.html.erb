@@ -1,0 +1,29 @@
+<%= form_for(@boulder) do |f| %>
+  <% if @boulder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@boulder.errors.count, "error") %> prohibited this boulder from being saved:</h2>
+
+      <ul>
+      <% @boulder.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :grade %><br>
+    <%= f.select :grade, Boulder.grades.keys %>
+  </div>
+  <div class="field">
+    <%= f.label :picture %><br>
+    <%= f.file_field :picture %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

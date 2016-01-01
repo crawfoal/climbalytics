@@ -1,0 +1,20 @@
+<div class="field">
+  <%= address_form.label :line1, 'Line 1' %>
+  <%= address_form.text_field :line1 %>
+</div>
+<div class="field">
+  <%= address_form.label :line2, 'Line 2' %>
+  <%= address_form.text_field :line2 %>
+</div>
+<div class="field">
+  <%= address_form.label :city %>
+  <%= address_form.text_field :city %>
+</div>
+<div class="field">
+  <%= address_form.label :state %>
+  <%= address_form.collection_select :state_id, State.all.order(:full_name), :id, :full_name %>
+</div>
+<div class="field">
+  <%= address_form.label :zip %>
+  <%= address_form.number_field :zip %>
+</div>

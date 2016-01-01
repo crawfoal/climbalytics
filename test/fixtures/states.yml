@@ -204,26 +204,26 @@ DC:
   postal_abbreviation: DC
   full_name: District of Columbia
 
-AS:
-  postal_abbreviation: AS
-  full_name: American Samoa
-
-GU:
-  postal_abbreviation: GU
-  full_name: Guam
-
-MP:
-  postal_abbreviation: MP
-  full_name: Northern Mariana Islands
+# AS:
+#   postal_abbreviation: AS
+#   full_name: American Samoa
+#
+# GU:
+#   postal_abbreviation: GU
+#   full_name: Guam
+#
+# MP:
+#   postal_abbreviation: MP
+#   full_name: Northern Mariana Islands
 
 PR:
   postal_abbreviation: PR
   full_name: Puerto Rico
-
-UM:
-  postal_abbreviation: UM
-  full_name: United States Minor Outlying Islands
-
-VI:
-  postal_abbreviation: VI
-  full_name: Virgin Islands
+#
+# UM:
+#   postal_abbreviation: UM
+#   full_name: United States Minor Outlying Islands
+#
+# VI:
+#   postal_abbreviation: VI
+#   full_name: Virgin Islands

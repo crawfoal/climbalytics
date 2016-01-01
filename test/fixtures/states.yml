@@ -1,0 +1,229 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+AL:
+  postal_abbreviation: AL
+  full_name: Alabama
+
+AK:
+  postal_abbreviation: AK
+  full_name: Alaska
+
+AZ:
+  postal_abbreviation: AZ
+  full_name: Arizona
+
+AR:
+  postal_abbreviation: AR
+  full_name: Arkansas
+
+CA:
+  postal_abbreviation: CA
+  full_name: California
+
+CO:
+  postal_abbreviation: CO
+  full_name: Colorado
+
+CT:
+  postal_abbreviation: CT
+  full_name: Connecticut
+
+DE:
+  postal_abbreviation: DE
+  full_name: Delaware
+
+FL:
+  postal_abbreviation: FL
+  full_name: Florida
+
+GA:
+  postal_abbreviation: GA
+  full_name: Georgia
+
+HI:
+  postal_abbreviation: HI
+  full_name: Hawaii
+
+ID:
+  postal_abbreviation: ID
+  full_name: Idaho
+
+IL:
+  postal_abbreviation: IL
+  full_name: Illinois
+
+IN:
+  postal_abbreviation: IN
+  full_name: Indiana
+
+IA:
+  postal_abbreviation: IA
+  full_name: Iowa
+
+KS:
+  postal_abbreviation: KS
+  full_name: Kansas
+
+KY:
+  postal_abbreviation: KY
+  full_name: Kentucky
+
+LA:
+  postal_abbreviation: LA
+  full_name: Louisiana
+
+ME:
+  postal_abbreviation: ME
+  full_name: Maine
+
+MD:
+  postal_abbreviation: MD
+  full_name: Maryland
+
+MA:
+  postal_abbreviation: MA
+  full_name: Massachusetts
+
+MI:
+  postal_abbreviation: MI
+  full_name: Michigan
+
+MN:
+  postal_abbreviation: MN
+  full_name: Minnesota
+
+MS:
+  postal_abbreviation: MS
+  full_name: Mississippi
+
+MO:
+  postal_abbreviation: MO
+  full_name: Missouri
+
+MT:
+  postal_abbreviation: MT
+  full_name: Montana
+
+NE:
+  postal_abbreviation: NE
+  full_name: Nebraska
+
+NV:
+  postal_abbreviation: NV
+  full_name: Nevada
+
+NH:
+  postal_abbreviation: NH
+  full_name: New Hampshire
+
+NJ:
+  postal_abbreviation: NJ
+  full_name: New Jersey
+
+NM:
+  postal_abbreviation: NM
+  full_name: New Mexico
+
+NY:
+  postal_abbreviation: NY
+  full_name: New York
+
+NC:
+  postal_abbreviation: NC
+  full_name: North Carolina
+
+ND:
+  postal_abbreviation: ND
+  full_name:  North Dakota
+
+OH:
+  postal_abbreviation: OH
+  full_name: Ohio
+
+OK:
+  postal_abbreviation: OK
+  full_name: Oklahoma
+
+OR:
+  postal_abbreviation: OR
+  full_name: Oregon
+
+PA:
+  postal_abbreviation: PA
+  full_name: Pennsylvania
+
+RI:
+  postal_abbreviation: RI
+  full_name: Rhode Island
+
+SC:
+  postal_abbreviation: SC
+  full_name: South Carolina
+
+SD:
+  postal_abbreviation: SD
+  full_name: South Dakota
+
+TN:
+  postal_abbreviation: TN
+  full_name: Tennessee
+
+TX:
+  postal_abbreviation: TX
+  full_name: Texas
+
+UT:
+  postal_abbreviation: UT
+  full_name: Utah
+
+VT:
+  postal_abbreviation: VT
+  full_name: Vermont
+
+VA:
+  postal_abbreviation: VA
+  full_name: Virginia
+
+WA:
+  postal_abbreviation: WA
+  full_name: Washington
+
+WV:
+  postal_abbreviation: WV
+  full_name: West Virginia
+
+WI:
+  postal_abbreviation: WI
+  full_name: Wisconsin
+
+WY:
+  postal_abbreviation: WY
+  full_name: Wyoming
+
+DC:
+  postal_abbreviation: DC
+  full_name: District of Columbia
+
+# AS:
+#   postal_abbreviation: AS
+#   full_name: American Samoa
+#
+# GU:
+#   postal_abbreviation: GU
+#   full_name: Guam
+#
+# MP:
+#   postal_abbreviation: MP
+#   full_name: Northern Mariana Islands
+
+PR:
+  postal_abbreviation: PR
+  full_name: Puerto Rico
+#
+# UM:
+#   postal_abbreviation: UM
+#   full_name: United States Minor Outlying Islands
+#
+# VI:
+#   postal_abbreviation: VI
+#   full_name: Virgin Islands

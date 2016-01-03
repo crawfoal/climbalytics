@@ -11,8 +11,8 @@
   <%= address_form.text_field :city %>
 </div>
 <div class="field">
-  <%= address_form.label :state %>
-  <%= address_form.collection_select :state_id, State.all.order(:full_name), :id, :full_name %>
+  <%= address_form.label :state_id, 'State' %>
+  <%= address_form.collection_select :state_id, State.all.order(:full_name), :id, :full_name, prompt: true %>
 </div>
 <div class="field">
   <%= address_form.label :zip %>

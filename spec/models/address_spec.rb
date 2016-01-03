@@ -22,4 +22,7 @@ describe Address do
   it 'is invalid if the zip code is not 5 characters' do
     expect(build(:address, zip: '803020')).to_not be_valid
   end
+  it 'skips validation if all fields are blank' do
+    expect(Address.create).to be_valid
+  end
 end

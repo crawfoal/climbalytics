@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :name
 
   class Name < ActiveRecord::Base
+
     belongs_to :user
+
   end
 
   has_one :address, as: :addressable, dependent: :destroy

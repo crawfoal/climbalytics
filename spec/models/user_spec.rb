@@ -6,12 +6,12 @@ describe User do
     expect(build(:user)).to be_valid
   end
   it 'accepts nested attributes for a name' do
-    user = build(:user)
+    user = create(:user)
     user.update(name_attributes: attributes_for(:name))
     expect(user.name).to be_persisted
   end
   it 'accepts nested attributes for an address' do
-    user = build(:user)
+    user = create(:user)
     user.update(address_attributes: attributes_for(:address).merge(state_id: create(:state).id))
     expect(user.address).to be_persisted
   end

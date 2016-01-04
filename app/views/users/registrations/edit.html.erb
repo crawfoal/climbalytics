@@ -40,7 +40,7 @@
 
   <h4>Address</h4>
   <%= form.fields_for :address do |address_form| %>
-    <%= render partial: 'shared/address', locals: {address_form: address_form} %>
+    <%= render partial: 'addresses/form', locals: {address_form: address_form} %>
   <% end %>
 
   <div class="field">

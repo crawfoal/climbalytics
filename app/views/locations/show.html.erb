@@ -1,0 +1,9 @@
+<p>
+  <strong>Name:</strong>
+  <%= @location.name %>
+</p>
+
+<%= render partial: 'addresses/show', locals: {address: @location.address} if @location.address and not @location.address.blank? %>
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

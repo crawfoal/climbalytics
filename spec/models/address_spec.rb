@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Address do
+
   it 'has a valid factory' do
     expect(build(:address)).to be_valid
   end
@@ -25,4 +26,14 @@ describe Address do
   it 'skips validation if all fields are blank' do
     expect(Address.create).to be_valid
   end
+
+  it '#format' do
+    address = create(:address)
+    full_address =
+      "#{address.line1}\n"\
+      "#{address.line2}\n"\
+      "#{address.city}, #{address.state.postal_abbreviation} #{address.zip}"
+    expect(address.format).to eq full_address
+  end
+
 end

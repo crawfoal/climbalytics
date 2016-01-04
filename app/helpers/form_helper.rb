@@ -1,7 +1,7 @@
 module FormHelper
   def setup_user(user)
-    user.build_name unless user.name
-    user.build_address unless user.address
+    user.name ||= User::Name.new
+    user.address ||= Address.new
     user
   end
 end

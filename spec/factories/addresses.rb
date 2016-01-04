@@ -7,5 +7,8 @@ FactoryGirl.define do
     factory :user_address do
       association :addressable, factory: :user
     end
+    factory :location_address do
+      association :addressable, factory: :location
+    end
   end
 end

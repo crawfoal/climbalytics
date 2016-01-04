@@ -28,7 +28,7 @@ feature 'User edits profile' do
   scenario 'address can be changed' do
     fill_in 'Line 1', with: 'line 1'
     fill_in 'Line 2', with: 'line 2'
-    fill_in 'City', with: 'city'
+    fill_in 'City', with: 'City'
     select @state.full_name, from: 'State'
     fill_in 'Zip', with: '80302'
     fill_in 'Current password', with: @user.password

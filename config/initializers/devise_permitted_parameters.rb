@@ -14,6 +14,8 @@ module DevisePermittedParameters
                          :password,
                          :password_confirmation,
                          :current_password,
+                         :current_role,
+                         '_roles': [],
                          name_attributes: [:first, :last],
                          address_attributes: [:line1, :line2, :city, :state_id, :zip])
     end

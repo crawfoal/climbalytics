@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :locations
+  root :to => redirect('/boulders')
+
   devise_for :users, skip: :registrations
   devise_scope :user do
     resource :registration,
@@ -11,10 +12,13 @@ Rails.application.routes.draw do
                   as: :user_registration do
                     get :cancel
                   end
+      put 'users/role' => 'users/registrations#update_current_role'
   end
-  root :to => redirect('/boulders')
+
+  resources :locations
 
   resources :boulders
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -19,9 +19,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    params['user']['_roles'] ||= []
+    roles = account_update_params[:'_roles'] ? account_update_params[:'_roles'] : []
     super do |resource|
-      params['user']['_roles'].each do |role|
+      roles.each do |role|
         resource.add_role role unless resource.has_role? role
       end
     end
@@ -40,6 +40,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+
+  # PUT /users/role
+  def update_current_role
+    current_user.update(current_role: secure_params[:user][:current_role])
+    redirect_to root_path
+  end
 
   # protected
 

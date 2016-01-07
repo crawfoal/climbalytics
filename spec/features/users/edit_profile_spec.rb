@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User edits profile' do
+feature 'User edits profile:' do
   before :each do
     @user = create(:user)
     @state = create(:state)
@@ -40,5 +40,16 @@ feature 'User edits profile' do
     fill_in 'Last', with: 'last'
     click_on 'Update'
     expect(page).to have_content("Current password can't be blank")
+  end
+  scenario 'user can select roles' do
+    Role.defined_roles.each do |role|
+      check role
+    end
+    fill_in 'Current password', with: @user.password
+    click_on 'Update'
+    expect(page).to have_content('Your account has been updated successfully.')
+    Role.defined_roles.each do |role|
+      expect(@user).to have_role role
+    end
   end
 end

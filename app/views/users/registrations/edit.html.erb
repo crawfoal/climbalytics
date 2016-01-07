@@ -24,6 +24,17 @@
     <%= form.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <% Role.defined_roles.each do |role|%>
+    <%= form.label(role) do %>
+      <%# Giving the checkboxes a name of user[_roles][] causes the selected
+          roles to be submitted as an array under the user hash, with a key of
+          _roles. For example, if athlete and setter are selected, we will have
+          params = {... "user"=>{... "_roles"=>["athlete", "setter"] ...} ...} %>
+      <%= check_box_tag 'user[_roles][]', role, resource.has_role?(role) %>
+      <%= role %>
+    <% end %>
+  <% end %>
+
   <h3>Personal Details</h3>
 
   <h4>Name</h4>

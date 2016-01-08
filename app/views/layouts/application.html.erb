@@ -10,22 +10,7 @@
 
 <%= render partial: '/layouts/navbar/navbar' %>
 
-<% if notice %>
-  <p class="alert alert-success alert-dismissible">
-    <%= notice %>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger alert-dismissible">
-    <%= alert %>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </p>
-<% end %>
+<%= render_flash %>
 
 <div class="container">
   <%= yield %>

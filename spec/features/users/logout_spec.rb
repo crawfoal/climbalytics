@@ -8,6 +8,6 @@ feature 'User signs out' do
     fill_in 'Password', with: user.password
     click_on 'Log in'
     click_on 'Logout'
-    expect(page).to have_content('You need to sign in or sign up before continuing.')
+    expect(page).to have_content('Signed out successfully.')
   end
 end

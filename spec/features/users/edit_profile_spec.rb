@@ -4,6 +4,7 @@ feature 'User edits profile:' do
   before :each do
     @user = create(:user)
     @state = create(:state)
+    define_roles(:athlete,:setter)
     visit new_user_session_path
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password
@@ -24,6 +25,9 @@ feature 'User edits profile:' do
     fill_in 'Current password', with: @user.password
     click_on 'Update'
     expect(page).to have_content('Your account has been updated successfully.')
+    @user.reload
+    expect(@user.name.first).to eq 'first'
+    expect(@user.name.last).to eq 'last'
   end
   scenario 'address can be changed' do
     fill_in 'Line 1', with: 'line 1'
@@ -42,6 +46,7 @@ feature 'User edits profile:' do
     expect(page).to have_content("Current password can't be blank")
   end
   scenario 'user can select roles' do
+    expect(Role.defined_roles.size).to be >= 1
     Role.defined_roles.each do |role|
       check role
     end

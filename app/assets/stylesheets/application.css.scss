@@ -44,7 +44,7 @@ th {
   }
 }
 
-@media only screen and (max-width: $screen-sm) {
+@media (max-width: $screen-sm) {
   .navbar-collapse .dropdown.open .dropdown-menu {
     padding: 5px 15px 5px 25px;
     li {

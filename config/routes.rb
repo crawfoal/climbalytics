@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root :to => redirect('/boulders')
+  root 'application#home'
 
   devise_for :users, skip: :registrations
   devise_scope :user do

@@ -5,11 +5,17 @@ FactoryGirl.define do
     password_confirmation { |u| u.password }
     factory :athlete_user do
       email 'athlete@example.com'
-      after(:create) {|user| user.add_role(:athlete)}
+      after(:create) do |user|
+        err_msg = user.add_role(:athlete)
+        puts err_msg.red unless err_msg.blank? if err_msg
+      end
     end
     factory :setter_user do
       email 'setter@example.com'
-      after(:create) {|user| user.add_role(:setter)}
+      after(:create) do |user|
+        err_msg = user.add_role(:setter)
+        puts err_msg.red unless err_msg.blank? if err_msg
+      end
     end
   end
   factory :name, class: User::Name do

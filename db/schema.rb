@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109194058) do
+ActiveRecord::Schema.define(version: 20160109211028) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "line1"
@@ -32,9 +32,12 @@ ActiveRecord::Schema.define(version: 20160109194058) do
     t.string   "name"
     t.integer  "grade"
     t.string   "picture"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "setter_story_id"
   end
+
+  add_index "boulders", ["setter_story_id"], name: "index_boulders_on_setter_story_id"
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"

@@ -17,12 +17,9 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'role_helper.rb'
 # require 'pundit/rspec'
 
 RSpec.configure do |config|
-
-  config.include RoleHelper
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

@@ -1,9 +1,10 @@
 class BoulderPolicy < ApplicationPolicy
+  alias_method :boulder, :record
   def create?
-    user.has_role? :setter and record.setter == user
+    user.has_role? :setter and boulder.setter == user
   end
   def update?
-    record.setter == user
+    boulder.setter == user
   end
   def destroy?
     update?

@@ -18,6 +18,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'role_helper.rb'
+# require 'pundit/rspec'
 
 RSpec.configure do |config|
 

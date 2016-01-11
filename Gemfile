@@ -29,6 +29,7 @@ gem 'devise'
 gem 'rolify'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'pundit'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

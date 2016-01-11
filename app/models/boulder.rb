@@ -15,4 +15,8 @@ class Boulder < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   belongs_to :setter_story
 
+  def setter
+    setter_story.user if setter_story
+  end
+
 end

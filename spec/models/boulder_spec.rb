@@ -11,7 +11,7 @@ describe Boulder do
 
     context 'valid boulder, valid setter' do
 
-      before :all do
+      before :each do
         define_roles(:setter)
       end
 

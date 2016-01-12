@@ -17,8 +17,8 @@
         <td><%= boulder.grade %></td>
         <td><%= boulder.picture %></td>
         <td><%= link_to 'Show', boulder %></td>
-        <td><%= link_to 'Edit', edit_boulder_path(boulder) %></td>
-        <td><%= link_to 'Destroy', boulder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_boulder_path(boulder) if policy(boulder).update? %></td>
+        <td><%= link_to 'Destroy', boulder, method: :delete, data: { confirm: 'Are you sure?' } if policy(boulder).update? %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Boulder', new_boulder_path %>
+<%= link_to 'New Boulder', new_boulder_path if policy(Boulder).new? %>

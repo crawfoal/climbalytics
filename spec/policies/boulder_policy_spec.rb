@@ -18,7 +18,7 @@ describe BoulderPolicy do
   end
 
   context 'for a setter' do
-    before :all do
+    before :each do
       define_roles(:setter)
     end
     let(:user) { create(:setter_user) }

@@ -30,13 +30,11 @@ feature 'User views a boulder problem' do
   end
 
   context 'when user has a role of setter' do
-    before :all do
-      define_roles(:setter)
-    end
 
     let(:setter_user) { create(:setter_user) }
 
     before :each do
+      define_roles(:setter)
       visit new_user_session_path
       fill_in 'Email', with: setter_user.email
       fill_in 'Password', with: setter_user.password

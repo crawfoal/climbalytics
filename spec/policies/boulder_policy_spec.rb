@@ -13,6 +13,7 @@ describe BoulderPolicy do
 
   context 'for a non-setter user' do
     it { should_not permit(:create) }
+    it { should_not permit(:edit) }
     it { should_not permit(:update) }
     it { should_not permit(:destroy) }
   end
@@ -27,12 +28,14 @@ describe BoulderPolicy do
       let(:boulder) { user.setter_story.boulders.create }
 
       it { should permit(:create) }
+      it { should permit(:edit) }
       it { should permit(:update) }
       it { should permit(:destroy) }
     end
 
     context "who does not own the boulder problem" do
       it { should_not permit(:create) }
+      it { should_not permit(:edit) }
       it { should_not permit(:update) }
       it { should_not permit(:destroy) }
     end

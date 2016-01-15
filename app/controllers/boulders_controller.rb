@@ -14,18 +14,21 @@ class BouldersController < ApplicationController
 
   # GET /boulders/new
   def new
+    authorize Boulder
     @boulder = Boulder.new
   end
 
   # GET /boulders/1/edit
   def edit
+    authorize @boulder
   end
 
   # POST /boulders
   # POST /boulders.json
   def create
-    @boulder = Boulder.new(boulder_params)
-
+    authorize Boulder, :new?
+    @boulder = current_user.setter_story.boulders.build(boulder_params)
+    authorize @boulder
     respond_to do |format|
       if @boulder.save
         format.html { redirect_to @boulder, notice: 'Boulder was successfully created.' }
@@ -40,6 +43,7 @@ class BouldersController < ApplicationController
   # PATCH/PUT /boulders/1
   # PATCH/PUT /boulders/1.json
   def update
+    authorize @boulder
     respond_to do |format|
       if @boulder.update(boulder_params)
         format.html { redirect_to @boulder, notice: 'Boulder was successfully updated.' }
@@ -54,6 +58,7 @@ class BouldersController < ApplicationController
   # DELETE /boulders/1
   # DELETE /boulders/1.json
   def destroy
+    authorize @boulder
     @boulder.destroy
     respond_to do |format|
       format.html { redirect_to boulders_url, notice: 'Boulder was successfully destroyed.' }

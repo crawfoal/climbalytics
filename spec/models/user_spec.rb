@@ -11,6 +11,12 @@ describe User do
     expect(athlete).to be_valid
     expect(athlete).to have_role :athlete
   end
+  it 'has a valid setter factory' do
+    define_roles(:setter)
+    setter = create(:setter_user)
+    expect(setter).to be_valid
+    expect(setter).to have_role :setter
+  end
   it 'accepts nested attributes for a name' do
     user = create(:user)
     user.update(name_attributes: attributes_for(:name))
@@ -54,14 +60,14 @@ describe User do
     user.add_role :defined_role
     expect(user).to have_role :defined_role
   end
-  context 'user has a first name defined' do
+  context 'when user has a first name defined' do
     it '#address_me_as' do
       name = create(:name)
       user = name.user
       expect(user.address_me_as).to eq name.first
     end
   end
-  context 'user does not has a first name defined' do
+  context 'when user does not has a first name defined' do
     it '#address_me_as' do
       user = create(:user)
       expect(user.address_me_as).to eq user.email

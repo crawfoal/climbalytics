@@ -27,13 +27,15 @@ describe Address do
     expect(Address.create).to be_valid
   end
 
-  it '#format' do
-    address = create(:address)
-    full_address =
-      "#{address.line1}\n"\
-      "#{address.line2}\n"\
-      "#{address.city}, #{address.state.postal_abbreviation} #{address.zip}"
-    expect(address.format).to eq full_address
+  describe '#format' do
+    it 'formats the address in the standard US way' do
+      address = create(:address)
+      full_address =
+        "#{address.line1}\n"\
+        "#{address.line2}\n"\
+        "#{address.city}, #{address.state.postal_abbreviation} #{address.zip}"
+      expect(address.format).to eq full_address
+    end
   end
 
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'user edits a location' do
 
-  scenario 'any valid user can create a new location' do
+  scenario 'any valid user can edit a new location' do
 
     user = create(:user)
     address = create(:location_address)

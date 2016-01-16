@@ -5,3 +5,7 @@ module RoleHelper
     end
   end
 end
+
+RSpec.configure do |config|
+  config.include RoleHelper
+end

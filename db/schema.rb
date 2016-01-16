@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160105223209) do
+ActiveRecord::Schema.define(version: 20160109211028) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "line1"
@@ -32,9 +32,12 @@ ActiveRecord::Schema.define(version: 20160105223209) do
     t.string   "name"
     t.integer  "grade"
     t.string   "picture"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "setter_story_id"
   end
+
+  add_index "boulders", ["setter_story_id"], name: "index_boulders_on_setter_story_id"
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"
@@ -52,6 +55,14 @@ ActiveRecord::Schema.define(version: 20160105223209) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "setter_stories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "setter_stories", ["user_id"], name: "index_setter_stories_on_user_id"
 
   create_table "states", force: :cascade do |t|
     t.string   "postal_abbreviation", limit: 2

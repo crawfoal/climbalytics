@@ -13,5 +13,6 @@
   <%= image_tag(@boulder.picture_url, :width => 600) if @boulder.picture.present? %>
 </p>
 
-<%= link_to 'Edit', edit_boulder_path(@boulder) %> |
+<%= link_to 'Edit', edit_boulder_path(@boulder) if policy(@boulder).update? %>
+<%= link_to 'Delete', boulder_path(@boulder) if policy(@boulder).destroy? %>
 <%= link_to 'Back', boulders_path %>

@@ -6,13 +6,11 @@ describe User do
     expect(build(:user)).to be_valid
   end
   it 'has a valid athlete factory' do
-    define_roles(:athlete)
     athlete = create(:athlete_user)
     expect(athlete).to be_valid
     expect(athlete).to have_role :athlete
   end
   it 'has a valid setter factory' do
-    define_roles(:setter)
     setter = create(:setter_user)
     expect(setter).to be_valid
     expect(setter).to have_role :setter

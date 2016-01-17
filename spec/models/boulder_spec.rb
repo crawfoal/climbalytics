@@ -11,10 +11,6 @@ describe Boulder do
 
     context 'valid boulder, valid setter' do
 
-      before :each do
-        define_roles(:setter)
-      end
-
       let(:user) { create(:setter_user) }
       subject(:boulder) { user.setter_story.boulders.create }
 

@@ -20,7 +20,6 @@ describe BouldersController do
       end
 
       context 'and the user is a setter' do
-        define_roles(:setter)
         login_user(:setter_user)
 
         it_behaves_like 'a request for a unauthorized action' do
@@ -30,7 +29,6 @@ describe BouldersController do
     end
 
     context 'when the user owns the boulder problem' do
-      define_roles(:setter)
       login_user(:setter_user)
       let(:boulder) { current_user.setter_story.boulders.create(attributes_for(:boulder)) }
 

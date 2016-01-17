@@ -43,7 +43,6 @@ feature 'When user views the boulder problem index' do
     let(:boulder) { setter_user.setter_story.boulders.create(name: "Sam's Boulder Problem", grade: 'V5') }
 
     before :each do
-      define_roles(:setter)
       visit new_user_session_path
       fill_in 'Email', with: setter_user.email
       fill_in 'Password', with: setter_user.password

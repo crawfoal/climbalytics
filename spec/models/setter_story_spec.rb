@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe SetterStory, type: :model do
   before :each do
-    define_roles(:setter)
     @user = create(:setter_user)
   end
   it 'is created for a user after a role of setter is added' do

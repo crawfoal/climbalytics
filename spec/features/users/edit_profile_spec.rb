@@ -4,7 +4,6 @@ feature 'User edits profile:' do
   before :each do
     @user = create(:user)
     @state = create(:state)
-    define_roles(:athlete,:setter)
     visit new_user_session_path
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password

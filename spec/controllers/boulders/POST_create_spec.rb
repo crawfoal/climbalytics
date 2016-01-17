@@ -15,7 +15,6 @@ describe BouldersController do
     end
 
     context 'for a logged in setter' do
-      define_roles(:setter)
       login_user(:setter_user)
 
       context 'and with valid boulder problem attributes' do

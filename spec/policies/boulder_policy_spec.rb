@@ -19,9 +19,6 @@ describe BoulderPolicy do
   end
 
   context 'for a setter' do
-    before :each do
-      define_roles(:setter)
-    end
     let(:user) { create(:setter_user) }
 
     context 'who owns the boulder problem' do

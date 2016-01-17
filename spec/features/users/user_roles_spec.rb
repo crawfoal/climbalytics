@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature 'User Roles:' do
   scenario 'user switches current role', js: true do
-    define_roles(:athlete,:setter)
     @user = create(:athlete_user)
     @user.add_role :setter
     visit new_user_session_path

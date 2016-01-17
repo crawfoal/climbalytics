@@ -1,20 +1,28 @@
-<div class="field">
-  <%= address_form.label :line1, 'Line 1' %>
-  <%= address_form.text_field :line1 %>
+<div class="field form-group row">
+  <div class="col-xs-12 col-md-6">  
+    <%= address_form.label :line1, 'Line 1' %>
+    <%= address_form.text_field( :line1, { class: 'form-control', placeholder: 'Line 1'}) %>
+  </div>  
 </div>
-<div class="field">
-  <%= address_form.label :line2, 'Line 2' %>
-  <%= address_form.text_field :line2 %>
+<div class="field form-group row">
+  <div class="col-xs-12 col-md-6">
+    <%= address_form.label :line2, 'Line 2' %>
+    <%= address_form.text_field( :line2, { class: 'form-control', placeholder: 'Line 2'}) %>
+  </div>  
 </div>
-<div class="field">
-  <%= address_form.label :city %>
-  <%= address_form.text_field :city %>
+<div class="field form-group row">
+  <div class="col-xs-12 col-md-6">
+    <%= address_form.label :city %>
+    <%= address_form.text_field( :city, { class: 'form-control', placeholder: 'City'}) %>
+  </div>  
 </div>
-<div class="field">
+<div class="field form-group">
   <%= address_form.label :state_id, 'State' %>
   <%= address_form.collection_select :state_id, State.all.order(:full_name), :id, :full_name, prompt: true %>
 </div>
-<div class="field">
-  <%= address_form.label :zip %>
-  <%= address_form.number_field :zip %>
+<div class="field form-group row">
+  <div class="col-xs-12 col-md-6">
+    <%= address_form.label :zip %>
+    <%= address_form.number_field( :zip, { class: 'form-control', placeholder: 'Zip Code'}) %>
+  </div>
 </div>

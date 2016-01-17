@@ -5,23 +5,29 @@
 
   <h3>Account Information</h3>
 
-  <div class="field">
-    <%= form.label :email %><br />
-    <%= form.email_field :email, autofocus: true %>
+  <div class="field form-group row">
+    <div class="col-xs-12 col-md-6">
+      <%= form.label :email %><br />
+      <%= form.email_field( :email, { autofocus: true, class: 'form-control', placeholder: 'Email address'}) %>
+    </div>  
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :password, 'New password' %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= form.password_field :password, autocomplete: "off" %>
+  <div class="field form-group row">
+    <div class="col-xs-12 col-md-6">
+      <%= form.label :password, 'New password' %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= form.password_field( :password, { autocomplete: "off", class: 'form-control', placeholder: 'New Password' }) %>
+    </div>  
   </div>
 
-  <div class="field">
-    <%= form.label :password_confirmation, 'New password confirmation' %><br />
-    <%= form.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="field form-group row">
+    <div class="col-xs-12 col-md-6">
+      <%= form.label :password_confirmation, 'New password confirmation' %><br />
+      <%= form.password_field( :password_confirmation, { autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password'}) %>
+    </div>
   </div>
 
   <% Role.defined_roles.each do |role|%>
@@ -39,13 +45,17 @@
 
   <h4>Name</h4>
   <%= form.fields_for :name do |name_form| %>
-    <div class="field">
-      <%= name_form.label :first %>
-      <%= name_form.text_field :first %>
+    <div class="field form-group row">
+      <div class="col-xs-12 col-md-6">  
+        <%= name_form.label :first %>
+        <%= name_form.text_field( :first, { class: 'form-control', placeholder: 'First Name'}) %>
+      </div>
     </div>
-    <div class="field">
-      <%= name_form.label :last %>
-      <%= name_form.text_field :last %>
+    <div class="field form-group row">
+      <div class="col-xs-12 col-md-6">
+        <%= name_form.label :last %>
+        <%= name_form.text_field( :last, { class: 'form-control', placeholder: 'Last Name'}) %>
+      </div>
     </div>
   <% end %>
 
@@ -54,13 +64,15 @@
     <%= render partial: 'addresses/form', locals: {address_form: address_form} %>
   <% end %>
 
-  <div class="field">
-    <%= form.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= form.password_field :current_password, autocomplete: "off" %>
+  <div class="field form-group row">
+    <div class="col-xs-12 col-md-6">
+      <%= form.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= form.password_field( :current_password, { autocomplete: "off", class: 'form-control', placeholder:'Current Password' }) %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit "Update" %>
+  <div class="actions form-group">
+    <%= form.submit "Update", class: "btn btn-default" %>
   </div>
 <% end %>
 

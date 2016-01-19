@@ -14,19 +14,6 @@ class ApplicationController < ActionController::Base
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  #-----------------------------------------------------------------------------
-  # Climbalytics
-  #-----------------------------------------------------------------------------
-  def home
-    if current_user.current_role
-      render "users/dashboards/#{current_user.current_role}"
-    else
-      flash.keep
-      flash[:warning] = 'Select a role to start using the site.'
-      redirect_to edit_user_registration_path
-    end
-  end
-
   private
 
   #-----------------------------------------------------------------------------

@@ -22,7 +22,7 @@ describe BouldersController do
           expect { post :create, {boulder: boulder_attribs} }.to change {Boulder.count}.by(1)
         end
         it 'associates the boulder with the setter' do
-          expect { post :create, {boulder: boulder_attribs} }.to change {User.last.setter_story.boulders.count}.by(1)
+          expect { post :create, {boulder: boulder_attribs} }.to change {current_user.setter_story.boulders.count}.by(1)
         end
         it 'redirects to :show' do
           post :create, {boulder: boulder_attribs}

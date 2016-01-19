@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 describe Boulder do
-  subject(:boulder) { build(:boulder) }
+  subject(:boulder) { create(:boulder) }
 
   it 'has a valid factory' do
     expect(boulder).to be_valid
+    expect(boulder.grade).to_not be_blank
   end
 
-  context '#setter' do
+  describe '#setter' do
 
     context 'valid boulder, valid setter' do
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118044014) do
+ActiveRecord::Schema.define(version: 20160118083626) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "line1"
@@ -35,6 +35,20 @@ ActiveRecord::Schema.define(version: 20160118044014) do
   end
 
   add_index "athlete_stories", ["user_id"], name: "index_athlete_stories_on_user_id"
+
+  create_table "boulder_logs", force: :cascade do |t|
+    t.integer  "grade"
+    t.integer  "quality_rating"
+    t.text     "note"
+    t.boolean  "project"
+    t.integer  "athlete_story_id"
+    t.integer  "boulder_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "boulder_logs", ["athlete_story_id"], name: "index_boulder_logs_on_athlete_story_id"
+  add_index "boulder_logs", ["boulder_id"], name: "index_boulder_logs_on_boulder_id"
 
   create_table "boulders", force: :cascade do |t|
     t.string   "name"

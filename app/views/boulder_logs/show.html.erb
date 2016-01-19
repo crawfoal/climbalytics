@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @boulder_log.grade %>
+</p>
+
+<p>
+  <strong>Quality rating:</strong>
+  <%= @boulder_log.quality_rating %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @boulder_log.note %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @boulder_log.project %>
+</p>
+
+<p>
+  <strong>Athlete story:</strong>
+  <%= @boulder_log.athlete_story %>
+</p>
+
+<p>
+  <strong>Boulder:</strong>
+  <%= @boulder_log.boulder %>
+</p>
+
+<%= link_to 'Edit', edit_boulder_log_path(@boulder_log) %> |
+<%= link_to 'Back', boulder_logs_path %>

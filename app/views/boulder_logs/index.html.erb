@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Boulder Logs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Grade</th>
+      <th>Quality rating</th>
+      <th>Note</th>
+      <th>Project</th>
+      <th>Athlete story</th>
+      <th>Boulder</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @boulder_logs.each do |boulder_log| %>
+      <tr>
+        <td><%= boulder_log.grade %></td>
+        <td><%= boulder_log.quality_rating %></td>
+        <td><%= boulder_log.note %></td>
+        <td><%= boulder_log.project %></td>
+        <td><%= boulder_log.athlete_story %></td>
+        <td><%= boulder_log.boulder %></td>
+        <td><%= link_to 'Show', boulder_log %></td>
+        <td><%= link_to 'Edit', edit_boulder_log_path(boulder_log) %></td>
+        <td><%= link_to 'Destroy', boulder_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Boulder log', new_boulder_log_path %>

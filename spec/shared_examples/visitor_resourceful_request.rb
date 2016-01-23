@@ -4,8 +4,8 @@ shared_examples_for 'a controller that has resourceful routes that requires user
   let(:resources) { build_stubbed_list(resource_name, 3) }
 
   before :each do
-    allow(Boulder).to receive(:all) { resources }
-    allow(Boulder).to receive(:find) { resource }
+    allow(SetterClimbLog).to receive(:all) { resources }
+    allow(SetterClimbLog).to receive(:find) { resource }
   end
 
   {show: :get, index: :get, create: :post, new: :get, edit: :get, update: :patch, destroy: :delete}.each do |action, http_method|

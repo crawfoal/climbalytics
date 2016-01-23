@@ -22,5 +22,9 @@ module Climbalytics
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Have the sqlite3 database automatically switch schema when the branch changes.
+    require "development_database_switch"
+    include DevelopmentDatabaseSwitch
   end
 end

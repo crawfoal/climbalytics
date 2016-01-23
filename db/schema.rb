@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123050306) do
+ActiveRecord::Schema.define(version: 20160123064059) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "line1"
@@ -48,6 +48,19 @@ ActiveRecord::Schema.define(version: 20160123050306) do
   end
 
   add_index "athlete_stories", ["user_id"], name: "index_athlete_stories_on_user_id"
+
+  create_table "climbs", force: :cascade do |t|
+    t.integer  "grade"
+    t.string   "name"
+    t.integer  "moves_count"
+    t.string   "type"
+    t.integer  "loggable_id"
+    t.string   "loggable_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "climbs", ["loggable_type", "loggable_id"], name: "index_climbs_on_loggable_type_and_loggable_id"
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"

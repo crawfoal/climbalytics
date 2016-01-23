@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User creates a boulder problem' do
+feature 'User creates a setter_climb_log' do
   let(:user) { create(:setter_user) }
 
   context 'when user has role of setter' do
@@ -13,10 +13,10 @@ feature 'User creates a boulder problem' do
 
     scenario 'from setter dashboard' do
       within(".panel.create") do
-        click_on 'boulder problem'
+        click_on 'setter climb log'
       end
-      expect(page).to have_content 'New Boulder'
-      expect(page).to have_button 'Create Boulder'
+      expect(page).to have_content 'New SetterClimbLog'
+      expect(page).to have_button 'Create Setter climb log'
     end
 
   end

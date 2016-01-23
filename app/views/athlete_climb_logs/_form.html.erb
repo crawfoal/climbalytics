@@ -1,0 +1,37 @@
+<%= form_for(@athlete_climb_log) do |f| %>
+  <% if @athlete_climb_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@athlete_climb_log.errors.count, "error") %> prohibited this athlete_climb_log from being saved:</h2>
+
+      <ul>
+      <% @athlete_climb_log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :quality_rating %><br>
+    <%= f.number_field :quality_rating %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br>
+    <%= f.text_area :note %>
+  </div>
+  <div class="field">
+    <%= f.label :project %><br>
+    <%= f.check_box :project %>
+  </div>
+  <div class="field">
+    <%= f.label :athlete_story_id %><br>
+    <%= f.text_field :athlete_story_id %>
+  </div>
+  <div class="field">
+    <%= f.label :setter_climb_log_id %><br>
+    <%= f.text_field :setter_climb_log_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

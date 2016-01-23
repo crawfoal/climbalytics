@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Quality rating:</strong>
+  <%= @athlete_climb_log.quality_rating %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @athlete_climb_log.note %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @athlete_climb_log.project %>
+</p>
+
+<p>
+  <strong>Athlete story:</strong>
+  <%= @athlete_climb_log.athlete_story %>
+</p>
+
+<p>
+  <strong>Setter climb log:</strong>
+  <%= @athlete_climb_log.setter_climb_log %>
+</p>
+
+<%= link_to 'Edit', edit_athlete_climb_log_path(@athlete_climb_log) %> |
+<%= link_to 'Back', athlete_climb_logs_path %>

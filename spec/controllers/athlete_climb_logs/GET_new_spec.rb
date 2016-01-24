@@ -25,6 +25,10 @@ describe AthleteClimbLogsController do
           expect(assigns(:athlete_climb_log)).to be_a_new(AthleteClimbLog)
         end
 
+        it 'builds a new climb attached to the athlete_climb_log' do
+          expect(assigns(:athlete_climb_log).climb).to be_a_new(Climb)
+        end
+
         it 'renders the :new template' do
           expect(response).to render_template :new
         end

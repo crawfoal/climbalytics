@@ -5,6 +5,8 @@ RSpec.describe AthleteClimbLog, type: :model do
   subject(:athlete_climb_log) { user.athlete_story.athlete_climb_logs.create(attributes_for(:athlete_climb_log)) }
 
   it { should have_one :climb }
+  it { should accept_nested_attributes_for :climb }
+  it { should validate_presence_of :athlete_story }
 
   it 'has a valid factory' do
     expect(athlete_climb_log).to be_valid

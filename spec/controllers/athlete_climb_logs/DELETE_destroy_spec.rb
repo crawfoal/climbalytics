@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'shared_examples/action_not_authorized'
+require 'shared_examples/delete_request'
 
 describe AthleteClimbLogsController do
   describe 'DELETE #destroy' do
@@ -21,20 +22,8 @@ describe AthleteClimbLogsController do
         login_user(:athlete_user)
 
         context 'who owns the athlete_climb_log' do
-
-          let(:athlete_climb_log) { current_user.athlete_story.athlete_climb_logs.create(attributes_for(:athlete_climb_log)) }
-
-          it 'deletes the athlete_climb_log from the database' do
-            athlete_climb_log
-            expect { delete :destroy, id: athlete_climb_log.id }.to change(AthleteClimbLog, :count).by(-1)
-          end
-          it 'redirects to the athlete_climb_logs index' do
-            delete :destroy, id: athlete_climb_log.id
-            expect(response).to redirect_to athlete_climb_logs_path
-          end
-          it 'displays a flash message' do
-            delete :destroy, id: athlete_climb_log.id
-            expect(flash[:notice]).to eq 'Athlete climb log was successfully destroyed.'
+          it_behaves_like 'a basic delete request', {redirect_to: {action: :index}}, {notice: 'Athlete climb log was successfully destroyed.'} do
+            let(:record) { current_user.athlete_story.athlete_climb_logs.create(attributes_for(:athlete_climb_log)) }
           end
         end
 

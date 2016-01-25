@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'shared_examples/action_not_authorized'
+require 'shared_examples/delete_request'
 
 describe SetterClimbLogsController do
   describe "DELETE #destroy" do
@@ -31,19 +32,9 @@ describe SetterClimbLogsController do
 
     context 'when the user owns the setter_climb_log' do
       login_user(:setter_user)
-      let(:setter_climb_log) { current_user.setter_story.setter_climb_logs.create(attributes_for(:setter_climb_log)) }
 
-      it 'deletes the setter_climb_log from the database' do
-        setter_climb_log # lazy evaluation causes this test to fail if the setter_climb_log isn't created before the proc below is evaluated
-        expect { delete :destroy, id: setter_climb_log.id }.to change(SetterClimbLog, :count).by(-1)
-      end
-      it 'redirects to the setter_climb_logs index' do
-        delete :destroy, id: setter_climb_log.id
-        expect(response).to redirect_to setter_climb_logs_path
-      end
-      it 'displays a flash message' do
-        delete :destroy, id: setter_climb_log.id
-        expect(flash[:notice]).to eq 'SetterClimbLog was successfully destroyed.'
+      it_behaves_like 'a basic delete request', {redirect_to: {action: :index}}, {notice: 'SetterClimbLog was successfully destroyed.'} do
+        let(:record) { current_user.setter_story.setter_climb_logs.create(attributes_for(:setter_climb_log)) }
       end
     end
 

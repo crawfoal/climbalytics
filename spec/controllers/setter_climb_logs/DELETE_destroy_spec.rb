@@ -6,26 +6,19 @@ describe SetterClimbLogsController do
   describe "DELETE #destroy" do
 
     context 'when the user does not own the setter_climb_log' do
-      let(:setter_climb_log) { build_stubbed(:setter_climb_log) }
-
-      before :each do
-        allow(SetterClimbLog).to receive(:find) { setter_climb_log }
-      end
+      let(:setter_climb_log) { create(:setter_climb_log) }
+      let(:http_request_proc) { Proc.new { delete :destroy, id: setter_climb_log.id } }
 
       context 'and the user is a setter' do
         login_user(:setter_user)
 
-        it_behaves_like "a request for a unauthorized action" do
-          let(:http_request_proc) { Proc.new { delete :destroy, id: setter_climb_log.id } }
-        end
+        it_behaves_like "a request for a unauthorized action"
       end
 
       context 'and the user is not a setter' do
         login_user
 
-        it_behaves_like "a request for a unauthorized action" do
-          let(:http_request_proc) { Proc.new { delete :destroy, id: setter_climb_log.id } }
-        end
+        it_behaves_like "a request for a unauthorized action"
       end
 
     end

@@ -5,17 +5,12 @@ require 'shared_examples/delete_request'
 describe AthleteClimbLogsController do
   describe 'DELETE #destroy' do
     context 'for a logged in user' do
-      let(:athlete_climb_log) { build_stubbed(:athlete_climb_log) }
+      let(:athlete_climb_log) { create(:athlete_climb_log) }
+      let(:http_request_proc) { Proc.new { delete :destroy, id: athlete_climb_log.id } }
 
       context 'without a role of athlete' do
         login_user
-        before :each do
-          allow(AthleteClimbLog).to receive(:find).and_return(athlete_climb_log)
-        end
-
-        it_behaves_like 'a request for a unauthorized action' do
-          let(:http_request_proc) { Proc.new { delete :destroy, id: athlete_climb_log.id } }
-        end
+        it_behaves_like 'a request for a unauthorized action'
       end
 
       context 'with a role of athlete' do
@@ -28,13 +23,7 @@ describe AthleteClimbLogsController do
         end
 
         context 'who does not own the athlete_climb_log' do
-          before :each do
-            allow(AthleteClimbLog).to receive(:find).and_return(athlete_climb_log)
-          end
-
-          it_behaves_like 'a request for a unauthorized action' do
-            let(:http_request_proc) { Proc.new { delete :destroy, id: athlete_climb_log.id } }
-          end
+          it_behaves_like 'a request for a unauthorized action'
         end
 
       end

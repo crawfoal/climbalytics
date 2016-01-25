@@ -23,7 +23,9 @@ shared_examples_for 'a basic delete request' do |response_hash = nil, flash_mess
 
       if flash_message_hash
         it 'displays a flash message' do
-          expect(flash[flash_message_hash.keys.first]).to eq flash_message_hash.values.first
+          flash_message_hash.each do |type, message|
+            expect(flash[type]).to eq message
+          end
         end
       end
     end

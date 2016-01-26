@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124214316) do
+ActiveRecord::Schema.define(version: 20160126002023) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "line1"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160124214316) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "setter_story_id"
+    t.text     "note"
   end
 
   add_index "setter_climb_logs", ["setter_story_id"], name: "index_setter_climb_logs_on_setter_story_id"

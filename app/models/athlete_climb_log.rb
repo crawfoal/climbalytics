@@ -8,7 +8,7 @@ class AthleteClimbLog < ActiveRecord::Base
     athlete_story.user if athlete_story
   end
 
-  has_one :climb, as: :loggable
+  has_one :climb, as: :loggable, dependent: :destroy
   accepts_nested_attributes_for :climb
 
 end

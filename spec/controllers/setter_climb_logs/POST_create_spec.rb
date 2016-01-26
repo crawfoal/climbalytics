@@ -20,7 +20,7 @@ describe SetterClimbLogsController do
         it_behaves_like 'a basic create request', :setter_climb_log, :setter_climb_log_attribs, {redirect_to: -> {SetterClimbLog.last}}, {notice: 'SetterClimbLog was successfully created.'}
 
         it 'associates the setter_climb_log with the setter' do
-          expect { post :create, {setter_climb_log: setter_climb_log_attribs} }.to change {current_user.setter_story.setter_climb_logs.count}.by(1)
+          expect { http_request_proc.call }.to change {current_user.setter_story.setter_climb_logs.count}.by(1)
         end
 
       end

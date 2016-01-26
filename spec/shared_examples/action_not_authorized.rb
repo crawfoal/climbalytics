@@ -1,5 +1,3 @@
-# you must set up the http_request_proc to use this
-
 shared_examples_for 'a request for a unauthorized action' do |http_request_method_name|
 
   alias_method :http_request_proc, http_request_method_name

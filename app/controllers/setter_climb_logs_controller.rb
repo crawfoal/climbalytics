@@ -74,6 +74,6 @@ class SetterClimbLogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def setter_climb_log_params
-      params.require(:setter_climb_log).permit(:picture)
+      params.require(:setter_climb_log).permit(:picture, :note)
     end
 end

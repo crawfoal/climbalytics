@@ -11,13 +11,13 @@ describe AthleteClimbLogsController do
 
       context 'without a role of athlete' do
         login_user
-        it_behaves_like 'a request for a unauthorized action'
+        it_behaves_like 'a request for a unauthorized action', :http_request_proc
       end
 
       context 'with a role of athlete' do
         login_user(:athlete_user)
 
-        it_behaves_like 'a basic create request', :athlete_climb_log, {redirect_to: -> {AthleteClimbLog.last}}, {notice: 'Athlete climb log was successfully created.'}
+        it_behaves_like 'a basic create request', :athlete_climb_log, :athlete_climb_log_attribs, {redirect_to: -> {AthleteClimbLog.last}}, {notice: 'Athlete climb log was successfully created.'}
 
         it 'associates the log with the athlete' do
           expect { post :create, {athlete_climb_log: athlete_climb_log_attribs} }.to change {current_user.athlete_story.athlete_climb_logs.count}.by(1)

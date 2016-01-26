@@ -11,7 +11,7 @@ describe AthleteClimbLogsController do
       context 'without a role of athlete' do
         login_user
 
-        it_behaves_like 'a request for a unauthorized action'
+        it_behaves_like 'a request for a unauthorized action', :http_request_proc
       end
 
       context 'with a role of athlete' do
@@ -25,7 +25,7 @@ describe AthleteClimbLogsController do
         end
 
         context 'who does not own the athlete_climb_log' do
-          it_behaves_like 'a request for a unauthorized action'
+          it_behaves_like 'a request for a unauthorized action', :http_request_proc
         end
 
       end

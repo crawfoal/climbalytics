@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'shared_examples/request_that_sets_instance_var_and_renders_template.rb'
+require 'shared_examples/show_request'
 
 describe SetterClimbLogsController do
   describe "GET #show" do
@@ -9,7 +9,7 @@ describe SetterClimbLogsController do
     context 'for a logged in user' do
       login_user
 
-      it_behaves_like 'a request that sets an instance variable and renders a template', :setter_climb_log, :show
+      it_behaves_like 'a basic show request', :setter_climb_log
     end
 
   end

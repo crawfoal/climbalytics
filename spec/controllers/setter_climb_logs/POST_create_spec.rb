@@ -9,7 +9,7 @@ describe SetterClimbLogsController do
 
     context 'for a logged in non-setter user' do
       login_user
-      it_behaves_like 'a request for a unauthorized action'
+      it_behaves_like 'a request for a unauthorized action', :http_request_proc
     end
 
     context 'for a logged in setter' do
@@ -17,12 +17,12 @@ describe SetterClimbLogsController do
 
       context 'and with valid setter_climb_log attributes' do
 
-        it_behaves_like 'a basic create request', :setter_climb_log, {redirect_to: -> {SetterClimbLog.last}}, {notice: 'SetterClimbLog was successfully created.'}
+        it_behaves_like 'a basic create request', :setter_climb_log, :setter_climb_log_attribs, {redirect_to: -> {SetterClimbLog.last}}, {notice: 'SetterClimbLog was successfully created.'}
 
         it 'associates the setter_climb_log with the setter' do
           expect { post :create, {setter_climb_log: setter_climb_log_attribs} }.to change {current_user.setter_story.setter_climb_logs.count}.by(1)
         end
-        
+
       end
     end
 

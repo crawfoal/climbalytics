@@ -8,7 +8,7 @@ describe SetterClimbLogsController do
 
     context 'for a logged in non-setter' do
       login_user
-      it_behaves_like 'a request for a unauthorized action'
+      it_behaves_like 'a request for a unauthorized action', :http_request_proc
     end
 
     context 'for a logged in setter' do

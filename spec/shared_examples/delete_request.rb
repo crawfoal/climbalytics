@@ -1,34 +1,16 @@
-shared_examples_for 'a basic delete request' do |response_hash = nil, flash_message_hash = nil|
+require 'shared_examples/http_response'
+
+shared_examples_for 'a basic delete request' do |record_method_name, response_hash = nil, flash_hash = nil|
+  alias_method :record, record_method_name
   let(:klass) { record.class }
+  let(:http_request_proc) { proc { delete :destroy, id: record.id } }
 
   it "deletes the record from the database" do
-    expect { delete :destroy, id: record.id }.to change { klass.count }.by(-1)
+    expect { http_request_proc.call }.to change { klass.count }.by(-1)
   end
 
-  if response_hash or flash_message_hash
-    describe 'response' do
-      before :each do
-        delete :destroy, id: record.id
-      end
-
-      if (template = response_hash[:render])
-        it "renders #{template}" do
-          expect(response).to render template
-        end
-      elsif (action = response_hash[:redirect_to])
-        it "redirects to #{action}" do
-          expect(response).to redirect_to action
-        end
-      end
-
-      if flash_message_hash
-        it 'displays a flash message' do
-          flash_message_hash.each do |type, message|
-            expect(flash[type]).to eq message
-          end
-        end
-      end
-    end
+  if response_hash or flash_hash
+    it_has 'a http response', response_hash, flash_hash, :http_request_proc
   end
 
 end

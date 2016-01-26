@@ -1,5 +1,9 @@
-shared_examples_for 'a basic update request' do |record_method_name, update_attributes, flash_message_hash = nil|
-  let(:record) { method(record_method_name).call }
+require 'shared_examples/http_response'
+
+shared_examples_for 'a basic update request' do |record_method_name, update_attributes, flash_hash = nil|
+
+  alias_method :record, record_method_name
+
   before :each do
     patch :update, id: record.id, record_method_name => update_attributes
   end
@@ -11,15 +15,5 @@ shared_examples_for 'a basic update request' do |record_method_name, update_attr
     end
   end
 
-  it 'redirects to the show template' do
-    expect(response).to redirect_to(assigns(record_method_name))
-  end
-
-  if flash_message_hash
-    it 'displays a flash message' do
-      flash_message_hash.each do |type, message|
-        expect(flash[type]).to eq message
-      end
-    end
-  end
+  it_has 'a http response', {redirect_to: record_method_name}, flash_hash
 end

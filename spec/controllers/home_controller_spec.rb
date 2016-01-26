@@ -5,19 +5,16 @@ describe HomeController do
 
     context 'when the user is logged in' do
 
-      context 'when the user has a current role defined' do
+      context 'and the user has a current role defined' do
         login_user(:athlete_user)
 
-        before :each do
-          get :home
-        end
-
         it 'renders their dashboard view' do
+          get :home
           expect(response).to render_template "home/dashboards/#{current_user.current_role}"
         end
       end
 
-      context 'when the user does not have a current role defined' do
+      context 'and the user does not have a current role defined' do
         login_user
 
         before :each do

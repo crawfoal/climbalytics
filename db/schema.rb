@@ -49,6 +49,29 @@ ActiveRecord::Schema.define(version: 20160126002023) do
 
   add_index "athlete_stories", ["user_id"], name: "index_athlete_stories_on_user_id"
 
+  create_table "climb_seshes", force: :cascade do |t|
+    t.integer  "high_hold"
+    t.text     "note"
+    t.integer  "athlete_climb_log_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "climb_seshes", ["athlete_climb_log_id"], name: "index_climb_seshes_on_athlete_climb_log_id"
+
+  create_table "climbs", force: :cascade do |t|
+    t.integer  "grade"
+    t.string   "name"
+    t.integer  "moves_count"
+    t.string   "type"
+    t.integer  "loggable_id"
+    t.string   "loggable_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "climbs", ["loggable_type", "loggable_id"], name: "index_climbs_on_loggable_type_and_loggable_id"
+
   create_table "locations", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false

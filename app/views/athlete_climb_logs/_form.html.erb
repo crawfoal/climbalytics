@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :quality_rating %><br>
-    <%= f.number_field :quality_rating %>
+    <%= f.number_field :quality_rating, min: 1, max: 5, step: 1 %>
   </div>
   <div class="field">
     <%= f.label :note %><br>
@@ -23,15 +23,12 @@
     <%= f.label :project %><br>
     <%= f.check_box :project %>
   </div>
-  <div class="field">
-    <%= f.label :athlete_story_id %><br>
-    <%= f.text_field :athlete_story_id %>
-  </div>
-  <div class="field">
-    <%= f.label :setter_climb_log_id %><br>
-    <%= f.text_field :setter_climb_log_id %>
-  </div>
+
+  <%= f.fields_for :climb do |ff| %>
+    <%= render partial: 'climbs/form', locals: { climb_form: ff } %>
+  <% end %>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag 'Save' %>
   </div>
 <% end %>

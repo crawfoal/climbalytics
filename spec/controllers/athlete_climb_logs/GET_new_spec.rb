@@ -4,7 +4,7 @@ require 'shared_examples/new_request'
 
 describe AthleteClimbLogsController do
   describe 'GET #new' do
-    let(:http_request_proc) { Proc.new { get :new } }
+    let(:http_request_proc) { proc { get :new } }
 
     context 'for a logged in user' do
 
@@ -17,6 +17,17 @@ describe AthleteClimbLogsController do
       context 'with a role of athlete' do
         login_user(:athlete_user)
         it_behaves_like 'a basic new request', :athlete_climb_log
+        describe 'associated models' do
+          before :each do
+            http_request_proc.call
+          end
+          it 'builds a new associated climb model' do
+            expect(assigns(:athlete_climb_log).climb).to be_a_new(Climb)
+          end
+          it 'builds a new associated climb_sesh model' do
+            expect(assigns(:athlete_climb_log).climb_seshes.size).to be 1
+          end
+        end
       end
 
     end

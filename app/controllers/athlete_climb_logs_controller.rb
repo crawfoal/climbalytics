@@ -17,6 +17,8 @@ class AthleteClimbLogsController < ApplicationController
   def new
     authorize AthleteClimbLog
     @athlete_climb_log = AthleteClimbLog.new
+    @athlete_climb_log.build_climb
+    @athlete_climb_log.climb_seshes.build
   end
 
   # GET /athlete_climb_logs/1/edit
@@ -75,6 +77,6 @@ class AthleteClimbLogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def athlete_climb_log_params
-      params.require(:athlete_climb_log).permit(:quality_rating, :note, :project, :athlete_story_id, :setter_climb_log_id)
+      params.require(:athlete_climb_log).permit(:quality_rating, :note, :project, :athlete_story_id, :setter_climb_log_id, climb_attributes: [:name, :moves_count, :type, :grade])
     end
 end

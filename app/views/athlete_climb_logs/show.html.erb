@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= render partial: 'climbs/show', locals: {climb: @athlete_climb_log.climb} %>
+
 <p>
   <strong>Quality rating:</strong>
   <%= @athlete_climb_log.quality_rating %>
@@ -11,19 +13,8 @@
 </p>
 
 <p>
-  <strong>Project:</strong>
-  <%= @athlete_climb_log.project %>
+  <strong>Project?</strong>
+  <%= @athlete_climb_log.project ? 'yes' : 'no' %>
 </p>
 
-<p>
-  <strong>Athlete story:</strong>
-  <%= @athlete_climb_log.athlete_story %>
-</p>
-
-<p>
-  <strong>Setter climb log:</strong>
-  <%= @athlete_climb_log.setter_climb_log %>
-</p>
-
-<%= link_to 'Edit', edit_athlete_climb_log_path(@athlete_climb_log) %> |
-<%= link_to 'Back', athlete_climb_logs_path %>
+<%= link_to 'Edit', edit_athlete_climb_log_path(@athlete_climb_log) %>

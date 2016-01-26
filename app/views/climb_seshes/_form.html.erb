@@ -1,0 +1,25 @@
+<%= form_for(@climb_sesh) do |f| %>
+  <% if @climb_sesh.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@climb_sesh.errors.count, "error") %> prohibited this climb_sesh from being saved:</h2>
+
+      <ul>
+      <% @climb_sesh.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :high_hold %><br>
+    <%= f.number_field :high_hold %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br>
+    <%= f.text_area :note %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

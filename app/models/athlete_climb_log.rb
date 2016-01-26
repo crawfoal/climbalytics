@@ -11,4 +11,6 @@ class AthleteClimbLog < ActiveRecord::Base
   has_one :climb, as: :loggable, dependent: :destroy
   accepts_nested_attributes_for :climb
 
+  has_many :climb_seshes, dependent: :destroy
+
 end

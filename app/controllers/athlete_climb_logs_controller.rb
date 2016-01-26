@@ -18,6 +18,7 @@ class AthleteClimbLogsController < ApplicationController
     authorize AthleteClimbLog
     @athlete_climb_log = AthleteClimbLog.new
     @athlete_climb_log.build_climb
+    @athlete_climb_log.climb_seshes.build
   end
 
   # GET /athlete_climb_logs/1/edit

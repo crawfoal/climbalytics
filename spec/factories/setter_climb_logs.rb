@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :setter_climb_log do
-    picture 'path/to/picture'
+    note 'Tried to replicate The Pearl.'
   end
 end

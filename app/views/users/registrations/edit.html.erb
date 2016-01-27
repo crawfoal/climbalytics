@@ -3,77 +3,105 @@
 <%= form_for(setup_user(resource), as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |form| %>
   <%= devise_error_messages! %>
 
-  <h3>Account Information</h3>
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <h3>Account Information</h3>
 
-  <div class="field form-group row">
-    <div class="col-xs-12 col-sm-6">
-      <%= form.label :email %><br />
-      <%= form.email_field( :email, { autofocus: true, class: 'form-control', placeholder: 'Email address'}) %>
-    </div>  
-  </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" href="#login-credentials">Login Credentials <span class="caret"></span></a>
+          </h4>
+        </div>
+        <div id="login-credentials" class="panel-collapse collapse" role="tabpanel">
+          <div class="panel-body">
+            <div class="field form-group">
+              <%= form.label :email %><br />
+              <%= form.email_field( :email, { autofocus: true, class: 'form-control', placeholder: 'Email address'}) %>
+            </div>
+            <div class="field form-group">
+              <%= form.label :password, 'New password' %>
+              <%= form.password_field( :password, { autocomplete: "off", class: 'form-control', placeholder: 'New Password' }) %>
+            </div>
+            <div class="field form-group">
+              <%= form.label :password_confirmation, 'New password confirmation' %><br />
+              <%= form.password_field( :password_confirmation, { autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password'}) %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field form-group row">
-    <div class="col-xs-12 col-sm-6">
-      <%= form.label :password, 'New password' %> <i>(leave blank if you don't want to change it)</i><br />
-      <%= form.password_field( :password, { autocomplete: "off", class: 'form-control', placeholder: 'New Password' }) %>
-    </div>  
-  </div>
-
-  <div class="field form-group row">
-    <div class="col-xs-12 col-sm-6">
-      <%= form.label :password_confirmation, 'New password confirmation' %><br />
-      <%= form.password_field( :password_confirmation, { autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password'}) %>
-    </div>
-  </div>
-
-  <% Role.defined_roles.each do |role|%>
-    <%= form.label(role) do %>
-      <%# Giving the checkboxes a name of user[_roles][] causes the selected
-          roles to be submitted as an array under the user hash, with a key of
-          _roles. For example, if athlete and setter are selected, we will have
-          params = {... "user"=>{... "_roles"=>["athlete", "setter"] ...} ...} %>
-      <%= check_box_tag 'user[_roles][]', role, resource.has_role?(role), class: 'check_box_tag_inline' %>
-      <%= role %>
-    <% end %>
-  <% end %>
-
-  <h3>Personal Details</h3>
-
-  <h4>Name</h4>
-  <%= form.fields_for :name do |name_form| %>
-    <div class="field form-group row">
-      <div class="col-xs-12 col-sm-6">  
-        <%= name_form.label :first %>
-        <%= name_form.text_field( :first, { class: 'form-control', placeholder: 'First Name'}) %>
+      <div class="panel <%= resource.roles.empty? ? 'panel-warning' : 'panel-default' %>">
+        <div class="panel-heading" role="tab">
+          <h4 class="panel-title">
+            <a href="#roles" data-toggle="collapse">Roles <span class="caret"></span></a>
+          </h4>
+        </div>
+        <div id="roles" class="panel-collapse collapse<%= ' in' if resource.roles.empty? %>" role="tabpanel">
+          <div class="panel-body">
+            <% if resource.roles.empty? %>
+              <p>
+                To start using the site, you need to select one or more roles. This will you give you access to the corresponding features. You will be able to switch roles at any time via a dropdown in the navigation bar.
+              </p>
+            <% end %>
+            <% Role.defined_roles.each do |role|%>
+              <%= form.label(role) do %>
+                <%# Giving the checkboxes a name of user[_roles][] causes the selected
+                    roles to be submitted as an array under the user hash, with a key of
+                    _roles. For example, if athlete and setter are selected, we will have
+                    params = {... "user"=>{... "_roles"=>["athlete", "setter"] ...} ...} %>
+                <%= check_box_tag 'user[_roles][]', role, resource.has_role?(role), class: 'check_box_tag_inline' %>
+                <%= role %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="field form-group row">
-      <div class="col-xs-12 col-sm-6">
-        <%= name_form.label :last %>
-        <%= name_form.text_field( :last, { class: 'form-control', placeholder: 'Last Name'}) %>
+
+    <div class="col-sm-12 col-md-6">
+      <h3>Personal Details</h3>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab">
+          <h4 class="panel-title">
+            <a href="#name" data-toggle="collapse">Name <span class="caret"></span></a>
+          </h4>
+        </div>
+        <div id="name" class="panel-collapse collapse<%= ' in' if resource.name.first.blank? %>" role="tabpanel">
+          <div class="panel-body">
+            <% if resource.name.first.blank? %>
+              <p>
+                If you provide a first name, we can refer to you using this instead of your email. For example, if your name is 'Amanda' in the navigation bar, you'll see 'Amanda' instead of your email.
+              </p>
+            <% end %>
+            <%= form.fields_for :name do |name_form| %>
+              <div class="field form-group">
+                <%= name_form.label :first %>
+                <%= name_form.text_field( :first, { class: 'form-control', placeholder: 'First Name'}) %>
+              </div>
+              <div class="field form-group">
+                <%= name_form.label :last %>
+                <%= name_form.text_field( :last, { class: 'form-control', placeholder: 'Last Name'}) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-  <% end %>
+  </div>
 
-  <h4>Address</h4>
-  <%= form.fields_for :address do |address_form| %>
-    <%= render partial: 'addresses/form', locals: {address_form: address_form} %>
-  <% end %>
-
-  <div class="field form-group row">
-    <div class="col-xs-12 col-sm-6">
-      <%= form.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= form.password_field( :current_password, { autocomplete: "off", class: 'form-control', placeholder:'Current Password' }) %>
+  <div class="row submit-fields">
+    <div class="col-sm-12 col-md-6 col-md-offset-3">
+      <div class="input-group">
+        <%= form.password_field( :current_password, { autocomplete: "off", class: 'form-control', placeholder: 'Current Password' }) %>
+        <span class="input-group-btn">
+          <%= form.submit "Update", class: "btn btn-default" %>
+        </span>
+      </div>
     </div>
   </div>
 
-  <div class="actions form-group">
-    <%= form.submit "Update", class: "btn btn-default" %>
-  </div>
 <% end %>
 
 <%# Include this once I've implemented soft-deleting of user accounts, and have

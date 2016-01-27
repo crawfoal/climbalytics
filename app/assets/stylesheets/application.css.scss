@@ -42,7 +42,7 @@ th {
   select.form-control {
     width: 100%;
   }
-  
+
 }
 
 @media (max-width: $screen-sm) {
@@ -58,7 +58,6 @@ th {
   }
 }
 
-.text_inline_with_label {
-  margin-left: 10px;
-  font-style: italic;
-} 
+.help-block:last-child {
+  margin-bottom: 0px;
+}

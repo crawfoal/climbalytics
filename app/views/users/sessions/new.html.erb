@@ -10,8 +10,9 @@
 
   <div class="field form-group row">
     <div class="col-xs-12 col-md-6">
-      <%= f.label :password %><%= link_to "Forgot your password?", new_password_path(resource_name), class: "label_inline_with_text" %><br />
+      <%= f.label :password %>
       <%= f.password_field( :password, { autocomplete: "off", class: 'form-control', placeholder: "Password"}) %>
+      <span class="help-block"><%= link_to "Forgot your password?", new_password_path(resource_name)%></span>
     </div>
   </div>
 

@@ -7,7 +7,7 @@
     <div class="col-xs-12 col-md-6">
       <%= f.label :email %><br />
       <%= f.email_field( :email, { autofocus: true, class: "form-control", placeholder: "Email Address"}) %>
-    </div>  
+    </div>
   </div>
 
   <div class="field form-group row">
@@ -17,14 +17,14 @@
       <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br />
       <%= f.password_field( :password, { autocomplete: "off", class: "form-control", placeholder: "Password"}) %>
-    </div>  
+    </div>
   </div>
 
   <div class="field form-group row">
     <div class="col-xs-12 col-md-6">
       <%= f.label :password_confirmation %><br />
       <%= f.password_field( :password_confirmation, { autocomplete: "off", class: "form-control", placeholder: "Confirm Password"}) %>
-    </div>  
+    </div>
   </div>
 
   <div class="actions form-group">
@@ -32,4 +32,4 @@
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<%# render "users/shared/links" %>

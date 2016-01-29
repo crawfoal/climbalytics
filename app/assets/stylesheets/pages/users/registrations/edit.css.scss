@@ -1,0 +1,45 @@
+@import "application";
+
+.user-profile-fields {
+  @include make-row();
+}
+
+.account-information, .personal-details {
+  @include make-sm-column(12);
+  @include make-md-column(6);
+}
+
+$panel-sections: login-credentials roles name;
+
+@each $section in $panel-sections {
+  .#{$section} {
+    @extend .panel;
+    &.warning {
+      @extend .panel-warning;
+    }
+    &:not(.warning) {
+      @extend .panel-default;
+    }
+    .section-header {
+      @extend .panel-heading;
+      .section-title {
+        @extend .panel-title;
+      }
+    }
+    .section-body {
+      @extend .panel-body;
+    }
+  }
+}
+
+.submit-fields {
+  @include make-row();
+  .input-group {
+    @include make-sm-column(12);
+    @include make-md-column(6);
+    @include make-md-column-offset(3);
+    .btn {
+      @extend .btn-default;
+    }
+  }
+}

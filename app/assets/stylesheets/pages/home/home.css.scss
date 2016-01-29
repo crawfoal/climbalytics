@@ -1,0 +1,10 @@
+@import 'application';
+
+.signup, .signin {
+  @include make-xs-column(12);
+  @include make-sm-column(6);
+  [class*="-fields"] {
+    @include make-xs-column(12);
+    @include make-md-column(8);
+  }
+}

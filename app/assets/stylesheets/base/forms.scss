@@ -1,0 +1,12 @@
+input:not(.btn):not([type=checkbox]):not([type=submit]), textarea, select {
+  @extend .form-control;
+}
+
+.help-block:last-child {
+  margin-bottom: 0px;
+}
+
+.submit-fields {
+  margin-top: $line-height-computed;
+  margin-bottom: $line-height-computed;
+}

@@ -1,8 +1,11 @@
-<div class="row">
-  <div class="col-xs-12 col-sm-6">
-    <%= render template: 'users/registrations/new' %>
-  </div>
-  <div class="col-xs-12 col-sm-6">
-    <%= render template: 'users/sessions/new' %>
-  </div>
-</div>
+<section class="row">
+  <section class="signup">
+    <h2>Sign up</h2>
+    <%= render 'users/registrations/form_new' %>
+  </section>
+
+  <section class="signin">
+    <h2>Log in</h2>
+    <%= render 'users/sessions/form_new' %>
+  </section>
+</section>

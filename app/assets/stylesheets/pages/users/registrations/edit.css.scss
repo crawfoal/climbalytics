@@ -38,8 +38,5 @@ $panel-sections: login-credentials roles name;
     @include make-sm-column(12);
     @include make-md-column(6);
     @include make-md-column-offset(3);
-    .btn {
-      @extend .btn-default;
-    }
   }
 }

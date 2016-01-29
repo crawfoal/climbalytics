@@ -1,0 +1,3 @@
+.btn:not([class*="btn-"]) {
+  @extend .btn-default;
+}

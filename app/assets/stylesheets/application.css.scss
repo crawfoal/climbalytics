@@ -10,55 +10,14 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
+ * I removed the require self and require tree statements so that I can use bootstrap variables and mixins. Instead, I'm using the special sass-rails notation at the bottom of this file.
+ *
  */
 
 
 @import "bootstrap-sprockets";
+@import "bootstrap/variables";
 @import "bootstrap";
 @import "bootstrap/theme";
 
-body {
-  padding-top: 100px;
-}
-
-footer {
-  margin-top: 100px;
-}
-
-table, td, th {
-  vertical-align: middle;
-  border: none;
-}
-
-th {
-  border-bottom: 1px solid #DDD;
-}
-
-.navbar-form {
-  border: none;
-  box-shadow: none;
-  select.form-control {
-    width: 100%;
-  }
-  
-}
-
-@media (max-width: $screen-sm) {
-  .navbar-collapse .dropdown.open .dropdown-menu {
-    padding: 5px 15px 5px 25px;
-    li {
-      padding: 5px;
-      > * {
-        padding: 0px;
-        margin: 0px;
-      }
-    }
-  }
-}
-
-.text_inline_with_label {
-  margin-left: 10px;
-  font-style: italic;
-} 
+@import "./base/*";

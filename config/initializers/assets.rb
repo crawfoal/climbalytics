@@ -11,3 +11,11 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( bootstrap.css )
 Rails.application.config.assets.precompile += %w( bootstrap-theme.css )
 Rails.application.config.assets.precompile += %w( bootstrap.js )
+
+# Page specific assets
+page_assets_folder = Rails.root.join(*%w(app assets stylesheets pages)).to_s
+Dir.glob("#{page_assets_folder}/**/*") do |file|
+  next unless file['.css'] or file['.scss'] or file['.sass']
+  file[page_assets_folder] = 'pages'
+  Rails.application.config.assets.precompile += [ file ]
+end

@@ -81,6 +81,15 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.before(:all, :transaction_group) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+
+  config.after(:all, :transaction_group) do
+    DatabaseCleaner.clean
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -103,6 +112,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.filter_run_excluding :rake_helper
 end
 
 # Configurations for ShouldaMatchers

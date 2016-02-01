@@ -14,4 +14,9 @@ class SetterClimbLog < ActiveRecord::Base
     setter_story.user if setter_story
   end
 
+  #-----------------------------------------------------------------------------
+  # Athlete Climb Logs
+  #-----------------------------------------------------------------------------
+  has_many :athlete_climb_logs
+
 end

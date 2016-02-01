@@ -26,5 +26,9 @@ module Climbalytics
     # Have the sqlite3 database automatically switch schema when the branch changes.
     require "development_database_switch"
     include DevelopmentDatabaseSwitch
+
+    config.generators do |g|
+      g.assets false
+    end
   end
 end

@@ -30,6 +30,10 @@ describe MakeAthleteLogs, :rake_helper do
       it 'has a note' do
         expect(alog.note).to_not be_nil
       end
+
+      it 'has an associated climb' do
+        expect(alog.climb).to_not be_nil
+      end
     end
   end
 end

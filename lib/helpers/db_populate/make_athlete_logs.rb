@@ -6,6 +6,7 @@ module MakeAthleteLogs
                                                    project: project,
                                                    quality_rating: quality_rating)
       log.setter_climb_log = setter_climb_log if setter_climb_log
+      MakeClimbs.send("make_#{climb_type}", log)
       log.save!
     end
 
@@ -30,7 +31,9 @@ module MakeAthleteLogs
     def quality_rating
       rand(6) + 1
     end
-
+    def climb_type
+      [:boulder, :route].sample
+    end
     def associate_with_setter_log?
       rand(4) == 0
     end

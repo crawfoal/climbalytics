@@ -5,6 +5,7 @@
 # this is tested in athlete_climb_log_spec, but the tests are coupled to my application.
 
 module StiChooseable
+
   def sti_chooseable(base_class, *child_classes)
     child_classes.each do |class_name|
       type = class_name.to_s.capitalize

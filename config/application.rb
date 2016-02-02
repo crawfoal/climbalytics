@@ -27,8 +27,6 @@ module Climbalytics
     require "development_database_switch"
     include DevelopmentDatabaseSwitch
 
-    require "#{Rails.root}/lib/helpers/sti_chooseable"
-
     config.generators do |g|
       g.assets false
     end

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   rolify after_add: :rolify_after_add
   def rolify_after_add(role)
     self.update(current_role: role.name) if self.current_role.blank?
-    self.send_if_defined "create_#{role.name}_story"
+    self.try "create_#{role.name}_story"
   end
 
   # For an explaination, see

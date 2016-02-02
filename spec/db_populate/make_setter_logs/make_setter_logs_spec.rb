@@ -1,5 +1,5 @@
 require 'rails_helper'
-require "helpers/make_setter_logs"
+require "rake_helper"
 
 describe MakeSetterLogs, :rake_helper do
   describe '.make_setter_logs', :transaction_group do

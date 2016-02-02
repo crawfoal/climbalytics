@@ -1,5 +1,5 @@
 require 'rails_helper'
-require "helpers/make_athlete_logs"
+require "rake_helper"
 
 describe MakeAthleteLogs, :rake_helper do
   describe '.make_athlete_logs', :transaction_group do
@@ -18,7 +18,8 @@ describe MakeAthleteLogs, :rake_helper do
 
     before :each do
       @alog_initial_count = AthleteClimbLog.count
-      allow(RandomRecord).to receive(:random_record).with(SetterClimbLog, 1, MakeAthleteLogs::SET_TO_NOT_SET_RATIO).and_return(SetterClimbLog.last)
+      allow(MakeAthleteLogs).to receive(:associate_with_setter_log?).and_return(true)
+      allow(SetterClimbLog).to receive(:random) { SetterClimbLog.last }
       MakeAthleteLogs.make_athlete_logs(@user.athlete_story)
     end
 

@@ -1,5 +1,5 @@
 require 'rails_helper'
-require "helpers/make_users"
+require "rake_helper"
 
 describe MakeUsers, :rake_helper do
   [[:athlete, :setter], [:setter, :athlete]].each do |role1, role2|

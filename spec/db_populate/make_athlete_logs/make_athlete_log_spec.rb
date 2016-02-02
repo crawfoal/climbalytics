@@ -1,5 +1,5 @@
 require 'rails_helper'
-require "helpers/make_athlete_logs"
+require "rake_helper"
 
 describe MakeAthleteLogs, :rake_helper do
   describe '.make_athlete_log', :transaction_group do

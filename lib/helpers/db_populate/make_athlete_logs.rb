@@ -1,10 +1,5 @@
 module MakeAthleteLogs
 
-  MAX_ATHLETE_CLIMB_LOGS = 10
-  MIN_ATHLETE_CLIMB_LOGS = 1
-
-  SET_TO_NOT_SET_RATIO = (3 + 1) # going straight to Random.rand, so need to add 1
-
   class << self
     def make_athlete_log(athlete_story, setter_climb_log = nil)
       log = athlete_story.athlete_climb_logs.build(note: note,
@@ -16,8 +11,10 @@ module MakeAthleteLogs
 
     def make_athlete_logs(athlete_story)
       setter_climb_logs_count = SetterClimbLog.count
-      Random.random(MIN_ATHLETE_CLIMB_LOGS, MAX_ATHLETE_CLIMB_LOGS).times do
-        setter_climb_log = SetterClimbLog.random(setter_climb_logs_count) if setter_climb_logs_count > 0 and associate_with_setter_log?
+      num_logs_per_athlete_story.times do
+        if setter_climb_logs_count > 0 and associate_with_setter_log?
+          setter_climb_log = SetterClimbLog.random(setter_climb_logs_count)
+        end
         MakeAthleteLogs.make_athlete_log(athlete_story, setter_climb_log)
       end
     end
@@ -36,6 +33,9 @@ module MakeAthleteLogs
 
     def associate_with_setter_log?
       rand(4) == 0
+    end
+    def num_logs_per_athlete_story
+      Random.random(1, 10)
     end
   end
 end

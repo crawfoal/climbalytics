@@ -4,23 +4,11 @@ require "rake_helper"
 describe MakeAthleteLogs, :rake_helper do
   describe '.make_athlete_logs', :transaction_group do
     before :all do
-      @user = User.create!(email: 'setter@example.com',
-                           password: 'password',
-                           password_confirmation: 'password')
-      @user.add_role :setter
-      @user.setter_story.setter_climb_logs.create!(note: 'Competition style run-up start.')
+      create(:setter_user).setter_story.setter_climb_logs.create!(note: 'Competition style run-up start.')
 
-      @user = User.create!(email: 'athlete@example.com',
-                           password: 'password',
-                           password_confirmation: 'password')
-      @user.add_role :athlete
-    end
-
-    before :each do
+      user = create(:athlete_user)
       @alog_initial_count = AthleteClimbLog.count
-      allow(MakeAthleteLogs).to receive(:associate_with_setter_log?).and_return(true)
-      allow(SetterClimbLog).to receive(:random) { SetterClimbLog.last }
-      MakeAthleteLogs.make_athlete_logs(@user.athlete_story)
+      MakeAthleteLogs.make_athlete_logs(user.athlete_story)
     end
 
     it 'creates one or more athlete climb log' do

@@ -15,19 +15,19 @@ module MakeClimbs
     private
 
     def moves_count
-      Random.random(5, 20)
+      a_third_of_the_time { random_between(5, 20) }
     end
 
     def boulder_grade
-      Boulder.grades.keys.sample
+      four_fifths_of_the_time { Boulder.grades.keys.sample }
     end
 
     def route_grade
-      Route.grades.keys.sample
+      four_fifths_of_the_time { Route.grades.keys.sample }
     end
 
     def climb_name
-      Faker::Hipster.words(rand(4)+1).join
+      a_fifth_of_the_time { Faker::Hipster.words(rand(4)+1).join }
     end
   end
 end

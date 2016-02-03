@@ -1,5 +1,12 @@
-require_relative "make_setter_logs"
-require_relative "make_athlete_logs"
+Dir[Rails.root.join('lib/helpers/db_populate/*.rb')].each { |f| require f }
+
+# This should be moved out of object, e.g. to the top level as is described in http://stackoverflow.com/questions/18964016/how-can-i-add-a-method-to-the-global-scope-in-ruby (joews's answer), but when I tried I couldn't get it to work. I'm planning on coming back to this later. As is, you can't call the methods on arbitrary objects because they are private methods, but they are still added to every object. When this is modified, you'll need to make sure that the specs that stub out the Sometimes methods are modified to grab the method list appropriately.
+require_relative "../random_extensions"
+require_relative "../sometimes"
+class Object
+  include Sometimes
+  include RandomExtensions
+end
 
 module MakeUsers
 
@@ -70,23 +77,23 @@ module MakeUsers
     end
 
     def num_new_users
-      Random.random(5, 15)
+      random_between(5, 15)
     end
 
     def num_setters
-      Random.random(10, 20)
+      random_between(10, 20)
     end
 
     def num_athletes
-      Random.random(20, 50)
+      random_between(20, 50)
     end
 
     def num_athlete_setters
-      Random.random(5, 10)
+      random_between(5, 10)
     end
 
     def num_setter_athletes
-      Random.random(5, 10)
+      random_between(5, 10)
     end
 
   end

@@ -2,26 +2,17 @@ require 'rails_helper'
 require "rake_helper"
 
 describe MakeSetterLogs, :rake_helper do
-  describe '.make_setter_log', :transaction_group do
-    before :all do
-      @user = User.create!(email: 'user@example.com',
-                           password: 'password',
-                           password_confirmation: 'password')
-      @user.add_role :setter
-    end
+  describe '.make_setter_log' do
+    let(:user) { create(:setter_user) }
 
-    subject(:make_setter_log) { MakeSetterLogs.make_setter_log(@user.setter_story) }
+    subject(:make_setter_log) { MakeSetterLogs.make_setter_log(user.setter_story) }
 
     it 'creates one setter climb log' do
       expect { make_setter_log }.to change { SetterClimbLog.count }.from(0).to(1)
     end
 
     describe 'the setter climb log' do
-      before :all do
-        MakeSetterLogs.make_setter_log(@user.setter_story)
-      end
-
-      subject(:slog) { SetterClimbLog.last }
+      subject(:slog) { make_setter_log }
 
       it 'is associated with the user' do
         expect(slog.setter_story.user).to_not be_nil

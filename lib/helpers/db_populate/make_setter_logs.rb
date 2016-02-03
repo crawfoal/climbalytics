@@ -13,7 +13,7 @@ module MakeSetterLogs
     private
 
     def num_logs_per_setter_story
-      Random.random(1, 5)
+      random_between(1, 5)
     end
   end
 end

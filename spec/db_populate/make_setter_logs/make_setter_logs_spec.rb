@@ -4,12 +4,9 @@ require "rake_helper"
 describe MakeSetterLogs, :rake_helper do
   describe '.make_setter_logs', :transaction_group do
     before :all do
-      @user = User.create!(email: 'user@example.com',
-                           password: 'password',
-                           password_confirmation: 'password')
-      @user.add_role :setter
+      user = create(:setter_user)
       @slog_initial_count = SetterClimbLog.count
-      MakeSetterLogs.make_setter_logs(@user.setter_story)
+      MakeSetterLogs.make_setter_logs(user.setter_story)
     end
 
     it 'creates one or more setter climb log' do

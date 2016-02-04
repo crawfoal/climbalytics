@@ -4,6 +4,7 @@ FactoryGirl.define do
     note "I love this boulder problem!"
     project false
     athlete_story
+    association :climb, factory: :boulder
   end
 
 end

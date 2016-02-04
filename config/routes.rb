@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'home#show'
+  root 'home#show', via: [:get]
 
   devise_for :users, skip: :registrations
   devise_scope :user do

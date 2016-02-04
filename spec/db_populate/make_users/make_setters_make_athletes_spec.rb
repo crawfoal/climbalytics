@@ -1,5 +1,5 @@
 require 'rails_helper'
-require "helpers/make_users"
+require "rake_helper"
 
 describe MakeUsers, :rake_helper do
   [:setter, :athlete].each do |role|
@@ -14,7 +14,6 @@ describe MakeUsers, :rake_helper do
         expect( User.count ).to be > 0
       end
 
-      # this test could legitimately fail, and it is more likely to fail if not that many users are created
       it 'gives some users a name' do
         expect( User::Name.count ).to be > 0
         User::Name.all.each do |name|

@@ -1,4 +1,4 @@
-require_relative "../helpers/make_users.rb"
+require_relative "../helpers/db_populate/make_users.rb"
 
 namespace :db do
   desc "Fill database with sample data"

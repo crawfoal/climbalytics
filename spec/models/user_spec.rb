@@ -2,6 +2,24 @@
 require 'rails_helper'
 
 describe User do
+  subject { build(:user) }
+
+  #-----------------------------------------------------------------------------
+  # Validations defined by Devise
+  it { should validate_presence_of :email }
+  it { should validate_presence_of :password }
+  it { should validate_uniqueness_of(:email).case_insensitive }
+  it { should allow_value('email@example.com').for(:email) }
+  it { should_not allow_value('foo').for(:email) }
+  it { should validate_confirmation_of :password }
+  it { should validate_length_of(:password).is_at_least(8).is_at_most(72) }
+  #-----------------------------------------------------------------------------
+
+  #-----------------------------------------------------------------------------
+  # Validations generated from databsase constraints and associations
+
+  #-----------------------------------------------------------------------------
+
   context 'with valid attributes' do
     subject(:user) { create(:user) }
     it { should be_valid }
@@ -69,4 +87,14 @@ describe User do
     end
   end
 
+end
+
+describe User::Name do
+
+  #-----------------------------------------------------------------------------
+  # Validations generated from databsase constraints and associations
+  it { should validate_length_of(:first).is_at_most(255) }
+  it { should validate_length_of(:last).is_at_most(255) }
+  #-----------------------------------------------------------------------------
+  
 end

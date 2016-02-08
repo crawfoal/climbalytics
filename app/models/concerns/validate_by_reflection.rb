@@ -9,62 +9,33 @@ module ValidateByReflection
 
   module ClassMethods
     # this method is tested in the models using shoulda validation matchers
-    def create_validators
-      build_args_for_validate.each do |args|
+    def create_validators(options = {})
+      build_args_for_validate(options).each do |args|
         validates(*args)
       end
     end
 
-    def build_args_for_validate
-      @@validator_digest = validator_digest
+    def build_args_for_validate(options = {})
+      columns_to_skip = Array(options[:skip]).collect(&:to_s) << primary_key << 'created_at' << 'updated_at'
 
-      args_for_each_validation = []
-      columns.each do |column|
-        next if column.name == primary_key
-        args_for_each_validation <<
-          length_validation_args(column) <<
-          numericality_validation_args(column) <<
-          presence_validation_args(column) <<
-          uniqueness_validation_args(column)
+      if options[:only]
+        _columns = options[:only].collect { |column_name| columns_hash[column_name.to_s] }
       end
 
-      return args_for_each_validation.compact
-    end
+      args_arrays = []
+      (_columns || columns).each do |column|
+        next if columns_to_skip.include? column.name
+        types_to_skip = validation_types_for(column.name)
+        types_to_skip << :uniqueness unless index_exists?(column.name, unique: true)
 
-    def length_validation_args(column)
-      return nil if foreign_key_columns[column.name] or @@validator_digest[:length].include? column.name.to_sym
-
-      if ( options = column.validate_length_options )
-        [column.name.to_sym, length: options ]
-      end
-    end
-    def numericality_validation_args(column)
-      return nil if foreign_key_columns[column.name] or @@validator_digest[:numericality].include? column.name.to_sym
-
-      if ( options = column.validate_numericality_options )
-        [column.name.to_sym, numericality: options]
-      end
-    end
-
-    def presence_validation_args(column)
-      return nil unless column.validate_presence? or @@validator_digest[:presence].include? column.name.to_sym
-
-      if ( reflection = foreign_key_columns[column.name] ) and ( options = reflection.validate_presence_options )
-        [reflection.name.to_sym, presence: options]
-      else
-        [column.name.to_sym, presence: true]
-      end
-    end
-    def uniqueness_validation_args(column)
-      return nil if @@validator_digest[:uniqueness].include? column.name.to_sym
-
-      if ( reflection = foreign_key_columns[column.name] )
-        options = reflection.validate_uniqueness_options if index_exists?([reflection.foreign_key, reflection.foreign_type], unique: true)
-      elsif index_exists?(column.name.to_sym, unique: true)
-        options = true
+        if has_fk?(column.name)
+          args_arrays += get_reflection_via_fk(column.name).validation_args(types_to_skip)
+        else
+          args_arrays += column.validation_args(types_to_skip)
+        end
       end
 
-      return [column.name.to_sym, uniqueness: options] if options
+      return args_arrays.compact
     end
   end
 end

@@ -1,12 +1,13 @@
 module ValidatorInspector
-  def validator_digest
-    validator_digest = {length: [],
-                        numericality: [],
-                        presence: [],
-                        uniqueness: []}
-    validators.each do |validator|
-      validator_digest[validator.kind] += validator.attributes if validator_digest.keys.include? validator.kind
+  def validation_types_for(column_name)
+    validators_for(column_name).collect do |validator|
+      validator.kind
     end
-    return validator_digest
+  end
+  def validators_for(column_name)
+    _column_name = column_name.to_sym
+    validators.each.select do |validator|
+      validator.attributes.include? _column_name
+    end
   end
 end

@@ -41,6 +41,9 @@ gem 'pundit'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'awesome_print'
+  gem 'pry'
+
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'

@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 describe ValidatorInspector do
-  describe '#validator_digest' do
-    context 'for a model that has some validations defined' do
-      it 'returns a hash with the validator kinds as keys' do
-        expect(User.validator_digest.keys).to include :presence
-      end
-      it 'returns a hash with an array of attributes for the values' do
-        expect(User.validator_digest[:presence]).to include :email
+  describe '#validation_types_for' do
+    context 'a column with no validations' do
+      subject { Climb.validation_types_for(:project) }
+      it { should be_empty }
+    end
+    context 'a column with some validations' do
+      it 'should be an array of the corresponding validation types' do
+        expect(User.validation_types_for(:email)).to include :presence, :uniqueness
       end
     end
   end

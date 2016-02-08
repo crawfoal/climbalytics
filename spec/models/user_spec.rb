@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 describe User do
@@ -7,17 +6,18 @@ describe User do
   #-----------------------------------------------------------------------------
   # Validations defined by Devise
   it { should validate_presence_of :email }
-  it { should validate_presence_of :password }
   it { should validate_uniqueness_of(:email).case_insensitive }
   it { should allow_value('email@example.com').for(:email) }
   it { should_not allow_value('foo').for(:email) }
+  it { should validate_presence_of :password }
   it { should validate_confirmation_of :password }
   it { should validate_length_of(:password).is_at_least(8).is_at_most(72) }
   #-----------------------------------------------------------------------------
 
   #-----------------------------------------------------------------------------
   # Validations generated from databsase constraints and associations
-
+  it { should validate_length_of(:email).is_at_most(255) }
+  it { should validate_length_of(:current_role).is_at_most(255) }
   #-----------------------------------------------------------------------------
 
   context 'with valid attributes' do
@@ -96,5 +96,5 @@ describe User::Name do
   it { should validate_length_of(:first).is_at_most(255) }
   it { should validate_length_of(:last).is_at_most(255) }
   #-----------------------------------------------------------------------------
-  
+
 end

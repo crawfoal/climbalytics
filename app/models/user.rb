@@ -64,5 +64,7 @@ class User < ActiveRecord::Base
   # Athlete Story
   # ----------------------------------------------------------------------------
   has_one :athlete_story
-  
+
+  create_validators(only: [:email, :current_role])
+
 end

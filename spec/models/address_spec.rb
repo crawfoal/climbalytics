@@ -1,12 +1,33 @@
 require 'rails_helper'
 
 describe Address do
+  describe "validations" do
+    before { allow(subject).to receive(:blank?).and_return(false) }
+
+    #-----------------------------------------------------------------------------
+    # Validations defined by Devise
+    it { should validate_presence_of :line1 }
+    it { should validate_presence_of :city }
+    it { should validate_presence_of :state_id }
+    it { should validate_length_of(:zip).is_equal_to(5) }
+    it { should validate_numericality_of(:zip).only_integer }
+    #-----------------------------------------------------------------------------
+
+    #-----------------------------------------------------------------------------
+    # Validations generated from databsase constraints and associations
+    xit { should validate_length_of(:line1).is_at_most(255) }
+    xit { should validate_length_of(:city).is_at_most(255) }
+    xit { should validate_length_of(:line2).is_at_most(255) }
+    #-----------------------------------------------------------------------------
+  end
+
   context 'with valid attributes' do
     subject(:address) { build(:address) }
-    it { should be_valid }
 
-    it 'skips validation if all fields are blank' do
-      expect(Address.create).to be_valid
+    context 'that are all blank' do
+      it 'skips validation' do
+        expect(Address.create).to be_valid
+      end
     end
 
     describe '#format' do

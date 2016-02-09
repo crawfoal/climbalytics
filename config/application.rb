@@ -30,5 +30,11 @@ module Climbalytics
     config.generators do |g|
       g.assets false
     end
+
+    console do
+      require 'ap'
+      require 'pry'
+      config.console = Pry
+    end
   end
 end

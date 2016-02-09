@@ -18,6 +18,6 @@ class Address < ActiveRecord::Base
     [:line1, :line2, :city, :state, :zip].all? { |attrib| self.send(attrib).blank? }
   end
 
-  # create_validators
-
+  generate_validations_for :line1, :line2, :city, :zip, :state_id, :addressable_id
+  
 end

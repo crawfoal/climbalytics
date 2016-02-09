@@ -2,11 +2,11 @@ class ActiveRecord::Base
   # Concerns
   include Randomable
   include IndexInspector
-  include ValidateByReflection
 
   # Regular Modules
   extend KeyInspector
   extend ValidatorInspector
+  extend ValidateByReflection
 end
 
 class ActiveRecord::ConnectionAdapters::Column

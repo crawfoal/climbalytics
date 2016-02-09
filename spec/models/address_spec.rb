@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe Address do
   describe 'Validations' do
-    before { allow(subject).to receive(:blank?).and_return(false) }
+    subject(:address) { build(:address) }
+    
     #---------------------------------------------------------------------------
     # Validations defined in model
     it { should validate_presence_of :line1 }
@@ -14,13 +15,14 @@ describe Address do
 
     #-----------------------------------------------------------------------------
     # Validations generated from databsase constraints and associations
-    xit { should validate_length_of(:line1).is_at_most(255) }
-    xit { should validate_length_of(:city).is_at_most(255) }
-    xit { should validate_length_of(:line2).is_at_most(255) }
+    it { should validate_length_of(:line1).is_at_most(255) }
+    it { should validate_length_of(:city).is_at_most(255) }
+    it { should validate_length_of(:line2).is_at_most(255) }
+    it { should validate_uniqueness_of(:addressable_id).scoped_to(:addressable_type) }
     #-----------------------------------------------------------------------------
 
-    it 'should have 3 validators' do
-      expect(Address.validators.size).to be 3
+    it 'should have 7 validators' do
+      expect(Address.validators.size).to be 7
     end
   end
 

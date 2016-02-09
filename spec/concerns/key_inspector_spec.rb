@@ -11,15 +11,15 @@ describe KeyInspector do
       it { should be false }
     end
   end
-  describe "#get_reflection_via_fk" do
+  describe "#association_for" do
     context "when the foreign key is in this model's table" do
       it "should return the association's reflection" do
-        expect(SetterStory.get_reflection_via_fk('user_id')).to be == SetterStory.reflections['user']
+        expect(SetterStory.association_for('user_id')).to be == SetterStory.reflections['user']
       end
     end
     context "when the foreign key is not in this model's table" do
       it "should return nil" do
-        expect(SetterStory.get_reflection_via_fk('setter_story_id')).to be nil
+        expect(SetterStory.association_for('setter_story_id')).to be nil
       end
     end
   end

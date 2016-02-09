@@ -2,13 +2,29 @@
 module KeyInspector
 
   def has_fk?(column_name)
-    get_reflection_via_fk(column_name) ? true : false
+    fk_hash[column_name.to_s] ? true : false
   end
 
-  def get_reflection_via_fk(column_name)
-    _column_name = column_name.to_s
-    return nil unless column_names.include? _column_name
-    reflections.values.find { |reflection| reflection.foreign_key == _column_name }
+  def association_for(column_name)
+    reflect_on_association(fk_hash[column_name.to_s])
+  end
+
+  private
+
+  def fk_hash
+    cache_fk_hash
+    @@fk_hash
+  end
+
+  def cache_fk_hash
+    @@fk_hash ||= {}
+    belongs_to_associations = reflect_on_all_associations(:belongs_to)
+    if @@fk_hash.size != belongs_to_associations.size
+      @@fk_hash = belongs_to_associations.inject({}) do |hash, association|
+        hash[association.foreign_key] = association.name if column_names.include? association.foreign_key
+        hash
+      end
+    end
   end
 
 end

@@ -45,15 +45,19 @@ group :development, :test do
   gem 'pry'
 
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'launchy'
+
+  gem 'guard-rspec'
+
   gem 'colorize'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'shoulda-matchers'
+
   gem 'faker'
 end
 

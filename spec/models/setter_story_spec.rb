@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe SetterStory, type: :model do
+  describe 'Validations' do
+    #---------------------------------------------------------------------------
+    # Validations defined in model
+
+    #---------------------------------------------------------------------------
+
+    it 'should have no validators' do
+      expect(SetterStory.validators.size).to be 0
+    end
+  end
+
   let(:user) { create(:setter_user) }
 
   it 'is created for a user after a role of setter is added' do

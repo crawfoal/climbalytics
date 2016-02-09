@@ -1,6 +1,22 @@
 require 'rails_helper'
 
 describe Address do
+  describe 'Validations' do
+    before { allow(subject).to receive(:blank?).and_return(false) }
+    #---------------------------------------------------------------------------
+    # Validations defined in model
+    it { should validate_presence_of :line1 }
+    it { should validate_presence_of :city }
+    it { should validate_presence_of :state }
+    it { should validate_length_of(:zip).is_equal_to(5) }
+    it { should validate_numericality_of(:zip).only_integer }
+    #---------------------------------------------------------------------------
+
+    it 'should have 3 validators' do
+      expect(Address.validators.size).to be 3
+    end
+  end
+
   context 'with valid attributes' do
     subject(:address) { build(:address) }
     it { should be_valid }

@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe AthleteClimbLog, type: :model do
+  describe 'Validations' do
+    #---------------------------------------------------------------------------
+    # Validations defined in model
+    it { should validate_presence_of :athlete_story }
+    it { should validate_presence_of :climb }
+    #---------------------------------------------------------------------------
+
+    it 'should have 2 validators' do
+      expect(AthleteClimbLog.validators.size).to be 2
+    end
+  end
+
   let(:user) { create(:athlete_user) }
   subject(:athlete_climb_log) { create(:athlete_climb_log, athlete_story: user.athlete_story) }
 

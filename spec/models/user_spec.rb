@@ -1,7 +1,20 @@
-
 require 'rails_helper'
 
 describe User do
+  describe 'Validations' do
+    subject { build(:user) }
+    #-----------------------------------------------------------------------------
+    # Validations from Devise
+    it { should validate_presence_of :email }
+    it { should validate_uniqueness_of(:email).case_insensitive }
+    it { should allow_value('amanda@example.com').for(:email) }
+    it { should_not allow_value('foo').for(:email) }
+    it { should validate_presence_of :password }
+    it { should validate_confirmation_of :password }
+    it { should validate_length_of(:password).is_at_least(8).is_at_most(72) }
+    #-----------------------------------------------------------------------------
+  end
+
   context 'with valid attributes' do
     subject(:user) { create(:user) }
     it { should be_valid }

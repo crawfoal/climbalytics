@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 describe Location do
+  describe 'Validations' do
+    #---------------------------------------------------------------------------
+    # Validations defined in model
+
+    #---------------------------------------------------------------------------
+
+    it 'should have no validators' do
+      expect(Location.validators.size).to be 0
+    end
+  end
+
   context 'with valid attributes' do
     subject(:location) { build(:location) }
     it { should be_valid }

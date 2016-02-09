@@ -1,6 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe Route, type: :model do
+  describe 'Validations' do
+    #---------------------------------------------------------------------------
+    # Validations defined in model
+
+    #---------------------------------------------------------------------------
+
+    #---------------------------------------------------------------------------
+    # Validations defined in parent model (Climb)
+    it { should validate_presence_of :type }
+    #---------------------------------------------------------------------------
+
+    it 'should have 1 validator' do
+      expect(Route.validators.size).to be 1
+    end
+  end
+
   subject(:route) { build(:route) }
 
   it { is_expected.to be_valid }

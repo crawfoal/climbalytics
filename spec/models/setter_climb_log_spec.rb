@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 describe SetterClimbLog do
+  describe 'Validations' do
+    #---------------------------------------------------------------------------
+    # Validations defined in model
+    
+    #---------------------------------------------------------------------------
+
+    it 'should have 3 validators' do
+      expect(SetterClimbLog.validators.size).to be 3 # include CarrierWave validators
+    end
+  end
+
   context 'with valid attributes' do
     subject(:setter_climb_log) { create(:setter_climb_log) }
 

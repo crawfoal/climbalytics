@@ -1,7 +1,7 @@
 class Address < ActiveRecord::Base
 
   with_options unless: :blank? do |address|
-    address.validates_presence_of :line1, :city, :state_id
+    address.validates_presence_of :line1, :city, :state
     address.validates :zip, length: { is: 5 }, numericality: { only_integer: true }
   end
 

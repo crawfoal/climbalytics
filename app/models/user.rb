@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
 
   class Name < ActiveRecord::Base
     belongs_to :user
+    create_validators
   end
 
   def address_me_as
@@ -63,5 +64,7 @@ class User < ActiveRecord::Base
   # Athlete Story
   # ----------------------------------------------------------------------------
   has_one :athlete_story
+
+  create_validators(only: [:email, :current_role])
 
 end

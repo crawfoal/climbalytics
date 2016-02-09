@@ -13,6 +13,12 @@ describe User do
     it { should validate_confirmation_of :password }
     it { should validate_length_of(:password).is_at_least(8).is_at_most(72) }
     #-----------------------------------------------------------------------------
+
+    #-----------------------------------------------------------------------------
+    # Validations generated from databsase constraints and associations
+    it { should validate_length_of(:email).is_at_most(255) }
+    it { should validate_length_of(:current_role).is_at_most(255) }
+    #-----------------------------------------------------------------------------
   end
 
   context 'with valid attributes' do
@@ -81,5 +87,15 @@ describe User do
       end
     end
   end
+
+end
+
+describe User::Name do
+
+  #-----------------------------------------------------------------------------
+  # Validations generated from databsase constraints and associations
+  it { should validate_length_of(:first).is_at_most(255) }
+  it { should validate_length_of(:last).is_at_most(255) }
+  #-----------------------------------------------------------------------------
 
 end

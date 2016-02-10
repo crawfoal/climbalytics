@@ -3,7 +3,7 @@ require 'rails_helper'
 describe User do
   describe 'Validations' do
     subject { build(:user) }
-    #-----------------------------------------------------------------------------
+    #---------------------------------------------------------------------------
     # Validations from Devise
     it { should validate_presence_of :email }
     it { should validate_uniqueness_of(:email).case_insensitive }
@@ -12,13 +12,17 @@ describe User do
     it { should validate_presence_of :password }
     it { should validate_confirmation_of :password }
     it { should validate_length_of(:password).is_at_least(8).is_at_most(72) }
-    #-----------------------------------------------------------------------------
+    #---------------------------------------------------------------------------
 
-    #-----------------------------------------------------------------------------
+    #---------------------------------------------------------------------------
     # Validations generated from databsase constraints and associations
     it { should validate_length_of(:email).is_at_most(255) }
     it { should validate_length_of(:current_role).is_at_most(255) }
-    #-----------------------------------------------------------------------------
+    #---------------------------------------------------------------------------
+
+    it 'should have 8 validators' do
+      expect(User.validators.size).to be 8
+    end
   end
 
   context 'with valid attributes' do

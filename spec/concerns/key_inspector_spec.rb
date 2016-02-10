@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe KeyInspector do
   describe "#has_fk?" do
-    context 'foreign key exists' do
+    context 'when foreign key exists' do
       subject { SetterStory.has_fk?(:user_id) }
       it { should be true }
     end
-    context 'foreign key does not exist' do
+    context 'when foreign key does not exist' do
       subject { User.has_fk?(:user_id) }
       it { should be false }
     end

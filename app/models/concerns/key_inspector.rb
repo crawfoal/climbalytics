@@ -13,14 +13,14 @@ module KeyInspector
 
   def fk_hash
     cache_fk_hash
-    @@fk_hash
+    @fk_hash
   end
 
   def cache_fk_hash
-    @@fk_hash ||= {}
+    @fk_hash ||= {}
     belongs_to_associations = reflect_on_all_associations(:belongs_to)
-    if @@fk_hash.size != belongs_to_associations.size
-      @@fk_hash = belongs_to_associations.inject({}) do |hash, association|
+    if @fk_hash.size != belongs_to_associations.size
+      @fk_hash = belongs_to_associations.inject({}) do |hash, association|
         hash[association.foreign_key] = association.name if column_names.include? association.foreign_key
         hash
       end

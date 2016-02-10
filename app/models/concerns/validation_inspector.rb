@@ -19,7 +19,16 @@ module ValidationInspector
       elsif [:decimal, :float].include? type
         true
       end
-      [name.to_sym, numericality: options] if options
+
+      if options
+        if null == false
+          [name.to_sym, numericality: options]
+        else
+          [name.to_sym, numericality: options, allow_nil: true]
+        end
+      else
+        return nil
+      end
     end
 
     def validate_presence_args

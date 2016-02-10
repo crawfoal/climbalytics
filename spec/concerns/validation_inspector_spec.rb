@@ -28,7 +28,7 @@ describe ValidationInspector do
     describe '#validate_numericality_args' do
       context 'the column type is integer' do
         it 'specifies only_integer: true' do
-          expect(Climb.columns_hash['moves_count'].validate_numericality_args).to be == [:moves_count, numericality: { only_integer: true }]
+          expect(Climb.columns_hash['moves_count'].validate_numericality_args).to be == [:moves_count, numericality: { only_integer: true }, allow_nil: true]
         end
       end
       context 'the column type is decimal or float' do

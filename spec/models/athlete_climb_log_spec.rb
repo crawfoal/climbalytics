@@ -10,7 +10,7 @@ RSpec.describe AthleteClimbLog, type: :model do
 
     #---------------------------------------------------------------------------
     # Generated validations based on db constraints
-    it { should validate_numericality_of(:quality_rating).only_integer }
+    it { should validate_numericality_of(:quality_rating).only_integer.allow_nil }
     it { should validate_length_of(:note).is_at_most(20000) }
     #---------------------------------------------------------------------------
 

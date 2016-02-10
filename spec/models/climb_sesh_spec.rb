@@ -9,7 +9,7 @@ RSpec.describe ClimbSesh, type: :model do
 
     #---------------------------------------------------------------------------
     # Generated validations
-    it { should validate_numericality_of(:high_hold).only_integer }
+    it { should validate_numericality_of(:high_hold).only_integer.allow_nil }
     it { should validate_length_of(:note).is_at_most(20000) }
     #---------------------------------------------------------------------------
 

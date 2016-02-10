@@ -10,7 +10,7 @@ RSpec.describe Climb, type: :model do
     #---------------------------------------------------------------------------
     # Generated validations
     it { should validate_length_of(:name).is_at_most(255) }
-    it { should validate_numericality_of(:moves_count).only_integer }
+    it { should validate_numericality_of(:moves_count).only_integer.allow_nil }
     #---------------------------------------------------------------------------
 
     it 'should have 3 validators' do

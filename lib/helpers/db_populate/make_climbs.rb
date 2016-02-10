@@ -12,6 +12,20 @@ module MakeClimbs
                             name: climb_name)
     end
 
+    def boulder_attributes
+      { grade: boulder_grade,
+        moves_count: moves_count,
+        name: climb_name,
+        type: 'Boulder' }
+    end
+
+    def route_attributes
+      { grade: route_grade,
+        moves_count: moves_count,
+        name: climb_name,
+        type: 'Route' }
+    end
+
     private
 
     def moves_count

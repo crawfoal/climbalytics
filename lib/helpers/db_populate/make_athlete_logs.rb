@@ -2,11 +2,11 @@ module MakeAthleteLogs
 
   class << self
     def make_athlete_log(athlete_story, setter_climb_log = nil)
-      log = athlete_story.athlete_climb_logs.create(note: note,
-                                                    project: project,
-                                                    quality_rating: quality_rating)
+      log = athlete_story.athlete_climb_logs.create!(note: note,
+                                                     project: project,
+                                                     quality_rating: quality_rating,
+                                                     climb_attributes: MakeClimbs.send("#{climb_type}_attributes"))
       log.setter_climb_log = setter_climb_log if setter_climb_log
-      MakeClimbs.send("make_#{climb_type}", log)
       MakeClimbSeshes.make_climb_sesh(log)
       log.save!
       log

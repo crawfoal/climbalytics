@@ -17,4 +17,6 @@ class AthleteClimbLog < ActiveRecord::Base
 
   has_many :climb_seshes, dependent: :destroy
 
+  generate_validations_for :quality_rating, :note, :project
+
 end

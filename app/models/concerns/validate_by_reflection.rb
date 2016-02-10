@@ -19,7 +19,7 @@ module ValidateByReflection
       types_to_skip = validation_types_for(column.name)
       types_to_skip << :uniqueness unless index_exists?(column.name, unique: true)
 
-      if has_fk?(column.name)
+      if self.has_fk?(column.name)
         association = association_for(column.name)
 
         if association.polymorphic? and index_exists?([column.name, association.foreign_type], unique: true)

@@ -19,4 +19,5 @@ class SetterClimbLog < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   has_many :athlete_climb_logs
 
+  generate_validations_for :note
 end

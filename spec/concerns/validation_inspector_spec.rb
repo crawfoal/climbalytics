@@ -22,12 +22,6 @@ describe ValidationInspector do
             expect(ClimbSesh.columns_hash['note'].validate_length_args).to be == [:note, length: { maximum: 20000 }]
           end
         end
-
-        context 'and the column type is integer' do
-          it 'defines a maximum of 11' do
-            expect(Climb.columns_hash['moves_count'].validate_length_args).to be == [:moves_count, length: { maximum: 11 }]
-          end
-        end
       end
     end
 

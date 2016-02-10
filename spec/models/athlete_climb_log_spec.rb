@@ -8,8 +8,14 @@ RSpec.describe AthleteClimbLog, type: :model do
     it { should validate_presence_of :climb }
     #---------------------------------------------------------------------------
 
-    it 'should have 2 validators' do
-      expect(AthleteClimbLog.validators.size).to be 2
+    #---------------------------------------------------------------------------
+    # Generated validations based on db constraints
+    it { should validate_numericality_of(:quality_rating).only_integer }
+    it { should validate_length_of(:note).is_at_most(20000) }
+    #---------------------------------------------------------------------------
+
+    it 'should have 4 validators' do
+      expect(AthleteClimbLog.validators.size).to be 4
     end
   end
 

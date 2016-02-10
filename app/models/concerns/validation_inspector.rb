@@ -9,8 +9,6 @@ module ValidationInspector
         { maximum: 255 }
       elsif type == :text
         { maximum: 20000 } # this should be configurable
-      elsif type == :integer
-        { maximum: 11 }
       end
       [name.to_sym, length: options] if options
     end

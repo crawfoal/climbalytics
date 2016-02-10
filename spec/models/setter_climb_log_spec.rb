@@ -4,11 +4,16 @@ describe SetterClimbLog do
   describe 'Validations' do
     #---------------------------------------------------------------------------
     # Validations defined in model
-    
+
     #---------------------------------------------------------------------------
 
-    it 'should have 3 validators' do
-      expect(SetterClimbLog.validators.size).to be 3 # include CarrierWave validators
+    #---------------------------------------------------------------------------
+    # Generated validations
+    it { should validate_length_of(:note).is_at_most(20000) }
+    #---------------------------------------------------------------------------
+
+    it 'should have 4 validator' do
+      expect(SetterClimbLog.validators.size).to be 4 # include CarrierWave validators
     end
   end
 

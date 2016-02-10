@@ -7,8 +7,14 @@ RSpec.describe Climb, type: :model do
     it { should validate_presence_of :type }
     #---------------------------------------------------------------------------
 
-    it 'should have 1 validator' do
-      expect(Climb.validators.size).to be 1
+    #---------------------------------------------------------------------------
+    # Generated validations
+    it { should validate_length_of(:name).is_at_most(255) }
+    it { should validate_numericality_of(:moves_count).only_integer }
+    #---------------------------------------------------------------------------
+
+    it 'should have 3 validators' do
+      expect(Climb.validators.size).to be 3
     end
   end
 

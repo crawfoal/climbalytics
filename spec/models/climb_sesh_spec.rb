@@ -7,8 +7,14 @@ RSpec.describe ClimbSesh, type: :model do
     it { should validate_presence_of :athlete_climb_log }
     #---------------------------------------------------------------------------
 
-    it 'should have 1 validator' do
-      expect(ClimbSesh.validators.size).to be 1
+    #---------------------------------------------------------------------------
+    # Generated validations
+    it { should validate_numericality_of(:high_hold).only_integer }
+    it { should validate_length_of(:note).is_at_most(20000) }
+    #---------------------------------------------------------------------------
+
+    it 'should have 3 validators' do
+      expect(ClimbSesh.validators.size).to be 3
     end
   end
 

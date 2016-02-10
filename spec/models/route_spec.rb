@@ -3,17 +3,14 @@ require 'rails_helper'
 RSpec.describe Route, type: :model do
   describe 'Validations' do
     #---------------------------------------------------------------------------
-    # Validations defined in model
-
-    #---------------------------------------------------------------------------
-
-    #---------------------------------------------------------------------------
     # Validations defined in parent model (Climb)
     it { should validate_presence_of :type }
+    it { should validate_length_of(:name).is_at_most(255) }
+    it { should validate_numericality_of(:moves_count).only_integer }
     #---------------------------------------------------------------------------
-
-    it 'should have 1 validator' do
-      expect(Route.validators.size).to be 1
+    
+    it 'should have 3 validators' do
+      expect(Route.validators.size).to be 3
     end
   end
 
@@ -30,6 +27,16 @@ RSpec.describe Route, type: :model do
 The ID for one or more Route grades was modified. This change will modify the grade that the end users see on their logs. E.g. if the ID of 5.10a is changed from 6 to 7, and the ID of 5.10b is changed from 7 to 8, and so on, any log that had a grade of 5.10b and above will now show one grade lower than what the user had origianlly entered. Do not make this change!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       )
+    end
+  end
+
+  context 'invalid boulder' do
+    it 'raises an error when an integer outside of the enum range is given' do
+      value = Route.grades.values.last + 1
+      expect { Route.create(grade: value) }.to raise_error ArgumentError
+    end
+    it 'raises an error when an invalid string is given' do
+      expect { Route.create(grade: '5.50b') }.to raise_error ArgumentError
     end
   end
 end

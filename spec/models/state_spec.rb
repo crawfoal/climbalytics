@@ -7,8 +7,14 @@ describe State do
 
     #---------------------------------------------------------------------------
 
-    it 'should have no validators' do
-      expect(State.validators.size).to be 0
+    #---------------------------------------------------------------------------
+    # Generated validations
+    it { should validate_length_of(:postal_abbreviation).is_at_most(2) }
+    it { should validate_length_of(:full_name).is_at_most(50) }
+    #---------------------------------------------------------------------------
+
+    it 'should have 2 validator' do
+      expect(State.validators.size).to be 2
     end
   end
 

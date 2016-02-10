@@ -3,23 +3,16 @@ require 'rails_helper'
 RSpec.describe Boulder, type: :model do
   describe 'Validations' do
     #---------------------------------------------------------------------------
-    # Validations defined in model
-
-    #---------------------------------------------------------------------------
-
-    #---------------------------------------------------------------------------
     # Validations defined in parent model (Climb)
     it { should validate_presence_of :type }
+    it { should validate_length_of(:name).is_at_most(255) }
+    it { should validate_numericality_of(:moves_count).only_integer }
     #---------------------------------------------------------------------------
-
-    it 'should have 1 validator' do
-      expect(Boulder.validators.size).to be 1
+    
+    it 'should have 3 validators' do
+      expect(Boulder.validators.size).to be 3
     end
   end
-
-  subject(:boulder) { build(:boulder) }
-
-  it { should be_valid }
 
   it 'maintains the original enum integer ids for Hueco bouldering grades' do
     # if you add to the Boulder.grades enum, make sure to maintain the ids below
@@ -30,6 +23,22 @@ RSpec.describe Boulder, type: :model do
 The ID for one or more Route grades was modified. This change will modify the grade that the end users see on their logs. E.g. if the ID of V5 is changed from 6 to 7, and the ID of V6 is changed from 7 to 8, and so on, any log that had a grade of V6 and above will now show one grade lower than what the user had origianlly entered. Do not make this change!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       )
+    end
+  end
+
+  context 'valid boulder' do
+    subject(:boulder) { build(:boulder) }
+
+    it { should be_valid }
+  end
+
+  context 'invalid boulder' do
+    let(:invalid_grade) { Boulder.grades.values.last + 1 }
+    it 'raises an error when an integer outside of the enum range is given' do
+      expect { Boulder.create(grade: invalid_grade) }.to raise_error ArgumentError
+    end
+    it 'raises an error when an invalid string is given' do
+      expect { Boulder.create(grade: 'V50') }.to raise_error ArgumentError
     end
   end
 end

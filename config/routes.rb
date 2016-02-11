@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :gyms
   root 'home#show', via: [:get]
 
   devise_for :users, skip: :registrations

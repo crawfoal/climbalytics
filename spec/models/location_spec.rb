@@ -16,6 +16,10 @@ describe Location do
       expect(Location.validators.size).to be 1
     end
   end
+  
+  describe 'Associations' do
+    it { should belong_to :locateable }
+  end
 
   context 'with valid attributes' do
     subject(:location) { build(:location) }

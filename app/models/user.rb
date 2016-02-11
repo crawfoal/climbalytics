@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
 
   class Name < ActiveRecord::Base
     belongs_to :user
+    generate_validations_for :first, :last
   end
 
   def address_me_as
@@ -63,5 +64,8 @@ class User < ActiveRecord::Base
   # Athlete Story
   # ----------------------------------------------------------------------------
   has_one :athlete_story
+
+
+  generate_validations_for :email, :current_role
 
 end

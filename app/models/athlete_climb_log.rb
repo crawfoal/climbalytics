@@ -13,7 +13,10 @@ class AthleteClimbLog < ActiveRecord::Base
   has_one :climb, as: :loggable, dependent: :destroy
   accepts_nested_attributes_for :climb
   sti_chooseable :climb, :boulder, :route
+  validates_presence_of :climb
 
   has_many :climb_seshes, dependent: :destroy
+
+  generate_validations_for :quality_rating, :note, :project
 
 end

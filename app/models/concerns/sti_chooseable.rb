@@ -21,7 +21,7 @@ module StiChooseable
       end
 
       define_method "build_#{class_name}" do |attributes|
-        self.send("#{base_class}=", klass.build(attributes))
+        self.send("#{base_class}=", klass.new(attributes))
       end
 
       define_method "create_#{class_name}" do |attributes|

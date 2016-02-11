@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'home#home'
+  root 'home#show', via: [:get]
 
   devise_for :users, skip: :registrations
   devise_scope :user do
@@ -12,8 +12,9 @@ Rails.application.routes.draw do
                   as: :user_registration do
                     get :cancel
                   end
-      put 'users/role' => 'users/registrations#update_current_role'
   end
+
+  resource :current_role, only: [:update]
 
   resources :locations
 

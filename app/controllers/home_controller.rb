@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   skip_before_action :authenticate_user!
 
-  def home
+  def show
     if not user_signed_in?
       render 'homepage'
     elsif current_user.current_role

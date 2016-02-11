@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe HomeController do
-  describe 'GET #home' do
+  describe 'GET #show' do
 
     context 'when the user is logged in' do
 
@@ -9,7 +9,7 @@ describe HomeController do
         login_user(:athlete_user)
 
         it 'renders their dashboard view' do
-          get :home
+          get :show
           expect(response).to render_template "home/dashboards/#{current_user.current_role}"
         end
       end
@@ -18,7 +18,7 @@ describe HomeController do
         login_user
 
         before :each do
-          get :home
+          get :show
         end
 
         it 'redirects to their edit profile page' do
@@ -34,7 +34,7 @@ describe HomeController do
     context 'when the user is not logged in' do
 
       before :each do
-        get :home
+        get :show
       end
 
       it 'renders the homepage view' do

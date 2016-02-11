@@ -19,7 +19,7 @@ describe AthleteClimbLogsController do
 
         context 'who owns the athlete_climb_log' do
 
-          let(:athlete_climb_log) { current_user.athlete_story.athlete_climb_logs.create(attributes_for(:athlete_climb_log)) }
+          let(:athlete_climb_log) { create(:athlete_climb_log, athlete_story: current_user.athlete_story) }
 
           it_behaves_like 'a basic update request', :athlete_climb_log, {quality_rating: 5, note: 'Updated note.'}, {notice: 'Athlete climb log was successfully updated.'}
         end

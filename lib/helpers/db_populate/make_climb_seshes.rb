@@ -1,7 +1,7 @@
 module MakeClimbSeshes
   class << self
     def make_climb_sesh(athlete_climb_log)
-      athlete_climb_log.climb_seshes.create(high_hold: high_hold(athlete_climb_log.climb.moves_count),
+      athlete_climb_log.climb_seshes.create!(high_hold: high_hold(athlete_climb_log.climb.moves_count),
                                             note: note)
     end
 

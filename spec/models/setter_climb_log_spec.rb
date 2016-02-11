@@ -1,6 +1,22 @@
 require 'rails_helper'
 
 describe SetterClimbLog do
+  describe 'Validations' do
+    #---------------------------------------------------------------------------
+    # Validations defined in model
+
+    #---------------------------------------------------------------------------
+
+    #---------------------------------------------------------------------------
+    # Generated validations
+    it { should validate_length_of(:note).is_at_most(20000) }
+    #---------------------------------------------------------------------------
+
+    it 'should have 4 validator' do
+      expect(SetterClimbLog.validators.size).to be 4 # include CarrierWave validators
+    end
+  end
+
   context 'with valid attributes' do
     subject(:setter_climb_log) { create(:setter_climb_log) }
 

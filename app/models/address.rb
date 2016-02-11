@@ -1,7 +1,7 @@
 class Address < ActiveRecord::Base
 
   with_options unless: :blank? do |address|
-    address.validates_presence_of :line1, :city, :state_id
+    address.validates_presence_of :line1, :city, :state
     address.validates :zip, length: { is: 5 }, numericality: { only_integer: true }
   end
 
@@ -18,4 +18,6 @@ class Address < ActiveRecord::Base
     [:line1, :line2, :city, :state, :zip].all? { |attrib| self.send(attrib).blank? }
   end
 
+  generate_validations_for :line1, :line2, :city, :zip, :state_id, :addressable_id
+  
 end

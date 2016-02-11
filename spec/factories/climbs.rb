@@ -2,7 +2,6 @@ FactoryGirl.define do
   factory :climb do
     name        "bad climb - no type"
     moves_count 1
-    association :loggable, factory: :athlete_climb_log
     factory :boulder do
       name  'The Pearl'
       type  'Boulder'

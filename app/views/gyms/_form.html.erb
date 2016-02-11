@@ -1,4 +1,4 @@
-<%= form_for(@gym) do |f| %>
+<%= form_for(@gym, html: {multipart: true}) do |f| %>
   <% if @gym.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@gym.errors.count, "error") %> prohibited this gym from being saved:</h2>
@@ -17,8 +17,9 @@
   </div>
   <div class="field">
     <%= f.label :topo %><br>
-    <%= f.text_field :topo %>
+    <%= f.file_field :topo %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -23,7 +23,8 @@ RSpec.describe GymsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Gym. As you add validations to Gym, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { attributes_for(:gym) }
+  let(:location_attribs) { attributes_for(:location) }
+  let(:valid_attributes) { attributes_for(:gym, location_attributes: location_attribs) }
 
   let(:invalid_attributes) { attributes_for(:gym, :no_name, :no_topo) }
 
@@ -68,6 +69,7 @@ RSpec.describe GymsController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Gym" do
+        puts valid_attributes
         expect {
           post :create, {:gym => valid_attributes}, valid_session
         }.to change(Gym, :count).by(1)

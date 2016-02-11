@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore files created when testing photo uploads
+/public/uploads/**/*

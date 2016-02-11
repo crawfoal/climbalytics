@@ -1,6 +1,10 @@
 class Gym < ActiveRecord::Base
   has_one :location, as: :locateable, dependent: :destroy
-  validates :location, presence: true
+  accepts_nested_attributes_for :location
+  validates_presence_of :location
 
-  generate_validations_for :name, :topo
+  mount_uploader :topo, TopoUploader
+  validates :topo, presence: true
+
+  generate_validations_for :name
 end

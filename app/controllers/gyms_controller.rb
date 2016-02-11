@@ -15,6 +15,7 @@ class GymsController < ApplicationController
   # GET /gyms/new
   def new
     @gym = Gym.new
+    @location = @gym.build_location
   end
 
   # GET /gyms/1/edit

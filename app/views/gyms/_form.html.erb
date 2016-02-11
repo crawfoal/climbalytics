@@ -20,6 +20,10 @@
     <%= f.file_field :topo %>
   </div>
 
+  <%= f.fields_for :location do |location_form| %>
+    <%= render partial: 'locations/form', locals: {f: location_form} %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

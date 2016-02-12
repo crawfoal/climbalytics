@@ -1,0 +1,13 @@
+@import 'application';
+
+.gym-details {
+  @include make-row();
+}
+
+.business-details {
+  @include make-sm-column(4);
+}
+
+.setting-details {
+  @include make-sm-column(8);
+}

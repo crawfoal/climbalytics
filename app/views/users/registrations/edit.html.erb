@@ -93,12 +93,14 @@
     </section>
   </section>
 
-  <section class="submit-fields">
-    <div class="input-group">
-      <%= form.password_field( :current_password, { autocomplete: "off", placeholder: 'Current Password' }) %>
-      <span class="input-group-btn">
-        <%= form.submit "Update", class: 'btn' %>
-      </span>
+  <section class="form-footer">
+    <div class="submit-fields">
+      <div class="input-group">
+        <%= form.password_field( :current_password, { autocomplete: "off", placeholder: 'Current Password' }) %>
+        <span class="input-group-btn">
+          <%= form.submit "Update", class: 'btn' %>
+        </span>
+      </div>
     </div>
   </section>
 

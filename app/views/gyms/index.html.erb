@@ -1,13 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Gyms</h1>
+<h1>Climbing Gyms</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Topo</th>
-      <th colspan="3"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -15,7 +13,6 @@
     <% @gyms.each do |gym| %>
       <tr>
         <td><%= gym.name %></td>
-        <td><%= gym.topo %></td>
         <td><%= link_to 'Show', gym %></td>
         <td><%= link_to 'Edit', edit_gym_path(gym) %></td>
         <td><%= link_to 'Destroy', gym, method: :delete, data: { confirm: 'Are you sure?' } %></td>

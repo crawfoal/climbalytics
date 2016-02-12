@@ -1,0 +1,29 @@
+@import "application";
+
+.gym-profile-fields {
+  @include make-row();
+}
+
+.business-details, .setting-details {
+  @include make-sm-column(12);
+  @include make-md-column(6);
+}
+
+$panel-sections: basic-info address gym-layout;
+
+@import "helpers/panel_sections";
+
+.form-footer {
+  @include make-row();
+  .submit-fields {
+    @include make-xs-column(6);
+    @include make-xs-column-offset(3);
+    @include make-sm-column(4);
+    @include make-sm-column-offset(4);
+    @include make-md-column(2);
+    @include make-md-column-offset(5);
+    .btn {
+      @extend .btn-block;
+    }
+  }
+}

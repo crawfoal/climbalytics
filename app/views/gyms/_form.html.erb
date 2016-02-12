@@ -10,21 +10,70 @@
       </ul>
     </div>
   <% end %>
+  <section class="gym-profile-fields">
+    <section class="business-details">
+      <section class="basic-info">
+        <div class="section-header" role="tab">
+          <h2 class="section-title">
+            <a role="button" data-toggle="collapse" href="#basic-info-collapse">
+              Baisc Info <span class="caret"></span>
+            </a>
+          </h2>
+        </div>
+        <div id="basic-info-collapse" class="panel-collapse collapse <%= 'in' if  expand_basic_info? %>" role="tabpanel">
+          <div class="section-body">
+            <div class="form-group">
+              <%= f.label :name %><br>
+              <%= f.text_field(:name, autofocus: true) %>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :topo %><br>
-    <%= f.file_field :topo %>
-  </div>
+      <section class="address">
+        <div class="section-header" role="tab">
+          <h2 class="section-title">
+            <a role="button" data-toggle="collapse" href="#address-collapse">
+              Address <span class="caret"></span>
+            </a>
+          </h2>
+        </div>
+        <div id="address-collapse" class="panel-collapse collapse <%= 'in' if  expand_address? %>" role="tabpanel">
+          <div class="section-body">
+            <%= f.fields_for('location_attributes][address_attributes', @gym.location.address) do |address_form| %>
+              <%= render partial: 'addresses/form', locals: {address_form: address_form} %>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    </section>
 
-  <%= f.fields_for('location_attributes][address_attributes', @gym.location.address) do |address_form| %>
-    <%= render partial: 'addresses/form', locals: {address_form: address_form} %>
-  <% end %>
+    <section class="setting-details">
+      <section class="gym-layout">
+        <div class="section-header" role="tab">
+          <h2 class="section-title">
+            <a role="button" data-toggle="collapse" href="#gym-layout-collapse">
+              Gym Layout <span class="caret"></span>
+            </a>
+          </h2>
+        </div>
+        <div id="gym-layout-collapse" class="panel-collapse collapse <%= 'in' if  expand_gym_layout? %>" role="tabpanel">
+          <div class="section-body">
+            <div class="form-group">
+              <%= image_tag @gym.topo_url.to_s %>
+              <%= f.label :topo, 'Upload a new topo image:' %><br>
+              <%= f.file_field :topo %>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </section>
+
+  <section class="form-footer">
+    <div class="submit-fields">
+      <%= f.submit 'Save', class: 'btn' %>
+    </div>
+  </section>
 <% end %>

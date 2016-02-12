@@ -11,30 +11,11 @@
 
 $panel-sections: login-credentials roles name;
 
-@each $section in $panel-sections {
-  .#{$section} {
-    @extend .panel;
-    &.warning {
-      @extend .panel-warning;
-    }
-    &:not(.warning) {
-      @extend .panel-default;
-    }
-    .section-header {
-      @extend .panel-heading;
-      .section-title {
-        @extend .panel-title;
-      }
-    }
-    .section-body {
-      @extend .panel-body;
-    }
-  }
-}
+@import "helpers/panel_sections";
 
-.submit-fields {
+.form-footer {
   @include make-row();
-  .input-group {
+  .submit-fields {
     @include make-sm-column(12);
     @include make-md-column(6);
     @include make-md-column-offset(3);

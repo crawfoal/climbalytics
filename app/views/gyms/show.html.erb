@@ -1,0 +1,13 @@
+<div class="page-header">
+  <h1><%= @gym.name %></h1>
+</div>
+
+<section class="gym-details">
+  <section class="business-details">
+    <%= render partial: 'addresses/show', locals: {address: @gym.location.address} %>
+  </section>
+
+  <section class="setting-details">
+    <%= image_tag @gym.topo_url.to_s %>
+  </section>
+</section>

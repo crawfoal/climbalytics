@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126002023) do
+ActiveRecord::Schema.define(version: 20160211071901) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "line1"
@@ -72,11 +72,21 @@ ActiveRecord::Schema.define(version: 20160126002023) do
 
   add_index "climbs", ["loggable_type", "loggable_id"], name: "index_climbs_on_loggable_type_and_loggable_id"
 
-  create_table "locations", force: :cascade do |t|
-    t.string   "name"
+  create_table "gyms", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "topo",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "locations", force: :cascade do |t|
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "locateable_id"
+    t.string   "locateable_type"
+  end
+
+  add_index "locations", ["locateable_type", "locateable_id"], name: "index_locations_on_locateable_type_and_locateable_id"
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

@@ -1,4 +1,4 @@
-<%= form_for(@gym, html: {multipart: true}) do |f| %>
+<%= form_for(@gym) do |f| %>
   <% if @gym.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@gym.errors.count, "error") %> prohibited this gym from being saved:</h2>
@@ -20,8 +20,8 @@
     <%= f.file_field :topo %>
   </div>
 
-  <%= f.fields_for :location do |location_form| %>
-    <%= render partial: 'locations/form', locals: {f: location_form} %>
+  <%= f.fields_for(:location_attributes, @location) do |location_form| %>
+    <%= render partial: 'locations/form', locals: {location_form: location_form} %>
   <% end %>
 
   <div class="actions">

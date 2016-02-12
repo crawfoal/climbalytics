@@ -7,7 +7,7 @@
 
 <p>
   <strong>Topo:</strong>
-  <%= @gym.topo %>
+  <%= image_tag @gym.topo_url.to_s %>
 </p>
 
 <%= link_to 'Edit', edit_gym_path(@gym) %> |

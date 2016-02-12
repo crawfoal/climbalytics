@@ -17,8 +17,6 @@ Rails.application.routes.draw do
 
   resource :current_role, only: [:update]
 
-  resources :locations
-
   resources :setter_climb_logs
 
   resources :athlete_climb_logs

@@ -1,5 +1,5 @@
 class GymsController < ApplicationController
-  before_action :set_variables, only: [:show, :edit, :update, :destroy]
+  before_action :set_gym, only: [:show, :edit, :update, :destroy]
 
   # GET /gyms
   # GET /gyms.json
@@ -15,8 +15,7 @@ class GymsController < ApplicationController
   # GET /gyms/new
   def new
     @gym = Gym.new
-    @location = @gym.build_location
-    @address = @location.build_address
+    @gym.build_location.build_address
   end
 
   # GET /gyms/1/edit
@@ -65,10 +64,8 @@ class GymsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_variables
+    def set_gym
       @gym = Gym.find(params[:id])
-      @location = @gym.location
-      @address = @location.address
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

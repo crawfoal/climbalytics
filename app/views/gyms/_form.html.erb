@@ -20,8 +20,8 @@
     <%= f.file_field :topo %>
   </div>
 
-  <%= f.fields_for(:location_attributes, @location) do |location_form| %>
-    <%= render partial: 'locations/form', locals: {location_form: location_form} %>
+  <%= f.fields_for('location_attributes][address_attributes', @gym.location.address) do |address_form| %>
+    <%= render partial: 'addresses/form', locals: {address_form: address_form} %>
   <% end %>
 
   <div class="actions">

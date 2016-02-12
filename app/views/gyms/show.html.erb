@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @gym.name %>
@@ -9,6 +7,8 @@
   <strong>Topo:</strong>
   <%= image_tag @gym.topo_url.to_s %>
 </p>
+
+<%= render partial: 'addresses/show', locals: {address: @gym.location.address} %>
 
 <%= link_to 'Edit', edit_gym_path(@gym) %> |
 <%= link_to 'Back', gyms_path %>

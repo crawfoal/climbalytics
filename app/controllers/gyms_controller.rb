@@ -16,6 +16,7 @@ class GymsController < ApplicationController
   def new
     @gym = Gym.new
     @gym.build_location.build_address
+    @gym.gym_sections.build
   end
 
   # GET /gyms/1/edit
@@ -26,7 +27,6 @@ class GymsController < ApplicationController
   # POST /gyms.json
   def create
     @gym = Gym.new(gym_params)
-
     respond_to do |format|
       if @gym.save
         format.html { redirect_to @gym, notice: 'Gym was successfully created.' }
@@ -70,6 +70,25 @@ class GymsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gym_params
-      params.require(:gym).permit(:name, :topo, location_attributes: [address_attributes: [:line1, :line2, :city, :state_id, :zip]] )
+      params.require(:gym).permit(
+        :name,
+        :topo,
+        location_attributes: [
+          :id,
+          address_attributes: [
+            :id,
+            :line1,
+            :line2,
+            :city,
+            :state_id,
+            :zip
+          ]
+        ],
+        gym_sections_attributes: [
+          :id,
+          :name,
+          :_destroy
+        ]
+      )
     end
 end

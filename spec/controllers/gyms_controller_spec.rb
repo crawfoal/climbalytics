@@ -24,7 +24,8 @@ RSpec.describe GymsController, type: :controller do
   # Gym. As you add validations to Gym, be sure to
   # adjust the attributes here as well.
   let(:location_attribs) { attributes_for(:location) }
-  let(:valid_attributes) { attributes_for(:gym, location_attributes: location_attribs) }
+  let(:section_attribs) { attributes_for(:gym_section) }
+  let(:valid_attributes) { attributes_for(:gym, location_attributes: location_attribs, gym_sections_attributes: [section_attribs]) }
 
   let(:invalid_attributes) { attributes_for(:gym, :no_name, :no_topo) }
 
@@ -52,9 +53,18 @@ RSpec.describe GymsController, type: :controller do
   end
 
   describe "GET #new" do
+    let(:http_request) { -> { get :new, {}, valid_session } }
     it "assigns a new gym as @gym" do
-      get :new, {}, valid_session
+      http_request.call
       expect(assigns(:gym)).to be_a_new(Gym)
+    end
+    it "builds a new location" do
+      http_request.call
+      expect(assigns(:gym).location).to be_a_new(Location)
+    end
+    it "builds a new gym section" do
+      http_request.call
+      expect(assigns(:gym).gym_sections.first).to be_a_new(GymSection)
     end
   end
 
@@ -68,21 +78,35 @@ RSpec.describe GymsController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
+      let(:http_request) { -> { post :create, {:gym => valid_attributes}, valid_session } }
       it "creates a new Gym" do
-        puts valid_attributes
-        expect {
-          post :create, {:gym => valid_attributes}, valid_session
-        }.to change(Gym, :count).by(1)
+        expect { http_request.call }.to change(Gym, :count).by(1)
+      end
+      it "creates a new Location" do
+        expect { http_request.call }.to change { Location.count }.by(1)
+      end
+      it "creates a new GymSection" do
+        expect { http_request.call }.to change { GymSection.count }.by(1)
       end
 
       it "assigns a newly created gym as @gym" do
-        post :create, {:gym => valid_attributes}, valid_session
+        http_request.call
         expect(assigns(:gym)).to be_a(Gym)
         expect(assigns(:gym)).to be_persisted
       end
+      it "associates the new location with the gym" do
+        http_request.call
+        expect(assigns(:gym).location).to be_a(Location)
+        expect(assigns(:gym).location).to be_persisted
+      end
+      it "associates the new gym section with the gym" do
+        http_request.call
+        expect(assigns(:gym).gym_sections.first).to be_a(GymSection)
+        expect(assigns(:gym).gym_sections.first).to be_persisted
+      end
 
       it "redirects to the created gym" do
-        post :create, {:gym => valid_attributes}, valid_session
+        http_request.call
         expect(response).to redirect_to(Gym.last)
       end
     end

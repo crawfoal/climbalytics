@@ -4,7 +4,7 @@ class Gym < ActiveRecord::Base
   validates_presence_of :location
 
   has_many :gym_sections, dependent: :destroy
-  accepts_nested_attributes_for :gym_sections, allow_destroy: true
+  accepts_nested_attributes_for :gym_sections, reject_if: :all_blank, allow_destroy: true
 
   mount_uploader :topo, TopoUploader
   validates :topo, presence: true

@@ -1,14 +1,13 @@
-<p>
-  <strong>Name:</strong>
-  <%= @gym.name %>
-</p>
+<div class="page-header">
+  <h1><%= @gym.name %></h1>
+</div>
 
-<p>
-  <strong>Topo:</strong>
-  <%= image_tag @gym.topo_url.to_s %>
-</p>
+<section class="gym-details">
+  <section class="business-details">
+    <%= render partial: 'addresses/show', locals: {address: @gym.location.address} %>
+  </section>
 
-<%= render partial: 'addresses/show', locals: {address: @gym.location.address} %>
-
-<%= link_to 'Edit', edit_gym_path(@gym) %> |
-<%= link_to 'Back', gyms_path %>
+  <section class="setting-details">
+    <%= image_tag @gym.topo_url.to_s %>
+  </section>
+</section>

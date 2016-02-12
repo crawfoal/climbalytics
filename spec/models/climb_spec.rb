@@ -20,6 +20,7 @@ RSpec.describe Climb, type: :model do
 
   describe 'Associations' do
     it { should belong_to :loggable }
+    it { should belong_to :gym_section }
   end
 
   context 'which is neither a boulder nor a route' do

@@ -24,6 +24,10 @@ RSpec.describe Gym, type: :model do
 
   describe 'Associations' do
     it { should have_one(:location).dependent(:destroy) }
+    it { should accept_nested_attributes_for :location }
+
+    it { should have_many(:gym_sections).dependent(:destroy) }
+    it { should accept_nested_attributes_for(:gym_sections).allow_destroy(true) }
   end
 
   it { is_expected.to be_valid }

@@ -23,9 +23,13 @@ RSpec.describe GymsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Gym. As you add validations to Gym, be sure to
   # adjust the attributes here as well.
+
+  # I'm sure there is a better way... look at Factory Girl's documentation later...
+  let(:state) { create(:state) }
+  let(:address_attribs) { attributes_for(:address).merge(state_id: state.id) }
   let(:location_attribs) { attributes_for(:location) }
   let(:section_attribs) { attributes_for(:gym_section) }
-  let(:valid_attributes) { attributes_for(:gym, location_attributes: location_attribs, gym_sections_attributes: [section_attribs]) }
+  let(:valid_attributes) { attributes_for(:gym, location_attributes: location_attribs.merge(address_attributes: address_attribs), gym_sections_attributes: [section_attribs]) }
 
   let(:invalid_attributes) { attributes_for(:gym, :no_name, :no_topo) }
 

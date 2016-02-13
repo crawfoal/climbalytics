@@ -116,6 +116,22 @@ RSpec.configure do |config|
   config.filter_run_excluding :rake_helper
 end
 
+Geocoder.configure(:lookup => :test)
+
+Geocoder::Lookup::Test.set_default_stub(
+  [
+    {
+      'latitude'     => 40.7143528,
+      'longitude'    => -74.0059731,
+      'address'      => 'New York, NY, USA',
+      'state'        => 'New York',
+      'state_code'   => 'NY',
+      'country'      => 'United States',
+      'country_code' => 'US'
+    }
+  ]
+)
+
 # Configurations for ShouldaMatchers
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

@@ -5,9 +5,26 @@
 }
 
 .business-details {
-  @include make-sm-column(4);
+  @include make-sm-column(3);
 }
 
 .setting-details {
-  @include make-sm-column(8);
+  @include make-sm-column(9);
+}
+
+.topo {
+  @include make-sm-column(6);
+}
+
+$panel-sections: sections-list;
+@import "helpers/panel_sections";
+
+.sections {
+  @include make-sm-column(6);
+  ul {
+    @extend .list-group;
+    li {
+      @extend .list-group-item;
+    }
+  }
 }

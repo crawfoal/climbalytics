@@ -64,6 +64,14 @@
               <%= f.label :topo, 'Upload a new topo image:' %><br>
               <%= f.file_field :topo %>
             </div>
+
+            <h3>Sections</h3>
+            <%= f.fields_for :gym_sections do |sections_form| %>
+              <%= render 'gym_section_fields', f: sections_form %>
+            <% end %>
+            <%= link_to_add_association(f, :gym_sections, {class: 'btn','data-association-insertion-node': 'this'}) do %>
+              <span class="glyphicon glyphicon-plus"></span>
+            <% end %>
           </div>
         </div>
       </section>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211071901) do
+ActiveRecord::Schema.define(version: 20160212214432) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "line1"
@@ -66,11 +66,22 @@ ActiveRecord::Schema.define(version: 20160211071901) do
     t.string   "type"
     t.integer  "loggable_id"
     t.string   "loggable_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "gym_section_id"
   end
 
+  add_index "climbs", ["gym_section_id"], name: "index_climbs_on_gym_section_id"
   add_index "climbs", ["loggable_type", "loggable_id"], name: "index_climbs_on_loggable_type_and_loggable_id"
+
+  create_table "gym_sections", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "gym_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "gym_sections", ["gym_id"], name: "index_gym_sections_on_gym_id"
 
   create_table "gyms", force: :cascade do |t|
     t.string   "name",       null: false

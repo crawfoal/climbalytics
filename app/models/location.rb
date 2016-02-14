@@ -3,7 +3,7 @@ class Location < ActiveRecord::Base
   accepts_nested_attributes_for :address
   delegate :geocode_format, to: :address, prefix: true
   geocoded_by :address_geocode_format
-  after_validation :geocode, if: -> { address.changed? }
+  after_validation :geocode, if: -> { address.present? and address.changed? }
 
   belongs_to :locateable, polymorphic: true
 end

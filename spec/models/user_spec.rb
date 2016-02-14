@@ -33,10 +33,6 @@ describe User do
       user.update(name_attributes: attributes_for(:name))
       expect(user.name).to be_persisted
     end
-    it 'accepts nested attributes for an address' do
-      user.update(address_attributes: attributes_for(:address).merge(state_id: create(:state).id))
-      expect(user.address).to be_persisted
-    end
     it 'cannot add a role unless it is already defined' do
       err_msg = user.add_role :undefined_role
       expect(user).to_not have_role :undefined_role
@@ -62,11 +58,6 @@ describe User do
       setter = create(:setter_user)
       expect(setter).to be_valid
       expect(setter).to have_role :setter
-    end
-    it 'destroys address during destruction' do
-      user = create(:user)
-      user.address = create(:address)
-      expect { user.destroy }.to change { user.address.destroyed? }.from(false).to(true)
     end
     describe User::Name do
       subject(:name) { create(:name) }

@@ -64,7 +64,8 @@ describe User do
       expect(setter).to have_role :setter
     end
     it 'destroys address during destruction' do
-      user = create(:user_address).addressable
+      user = create(:user)
+      user.address = create(:address)
       expect { user.destroy }.to change { user.address.destroyed? }.from(false).to(true)
     end
     describe User::Name do

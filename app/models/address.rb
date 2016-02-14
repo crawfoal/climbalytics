@@ -8,10 +8,14 @@ class Address < ActiveRecord::Base
   belongs_to :state
   belongs_to :addressable, polymorphic: true
 
-  def format
+  def post_office_format
     "#{line1}\n"\
     "#{line2}\n"\
     "#{city}, #{state.postal_abbreviation} #{zip}"
+  end
+
+  def geocode_format
+    [line1, line2, city, state.postal_abbreviation, zip].compact.join(', ')
   end
 
   def blank?
@@ -19,5 +23,5 @@ class Address < ActiveRecord::Base
   end
 
   generate_validations_for :line1, :line2, :city, :zip, :state_id, :addressable_id
-  
+
 end

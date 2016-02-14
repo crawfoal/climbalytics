@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Address do
   describe 'Validations' do
     subject(:address) { build(:address) }
-    
+
     #---------------------------------------------------------------------------
     # Validations defined in model
     it { should validate_presence_of :line1 }
@@ -35,13 +35,19 @@ describe Address do
       end
     end
 
-    describe '#format' do
+    describe '#post_office_format' do
       it 'formats the address in the standard US way' do
         full_address =
           "#{address.line1}\n"\
           "#{address.line2}\n"\
           "#{address.city}, #{address.state.postal_abbreviation} #{address.zip}"
-        expect(address.format).to eq full_address
+        expect(address.post_office_format).to eq full_address
+      end
+    end
+    describe '#geocode_format' do
+      it 'returns the address in one line, with each piece separated by a comma' do
+        geocode_address = [address.line1, address.line2, address.city, address.state.postal_abbreviation, address.zip].compact.join(', ')
+        expect(address.geocode_format).to eq geocode_address
       end
     end
   end

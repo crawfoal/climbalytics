@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212214432) do
+ActiveRecord::Schema.define(version: 20160213021451) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "line1"
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 20160212214432) do
     t.datetime "updated_at",      null: false
     t.integer  "locateable_id"
     t.string   "locateable_type"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "locations", ["locateable_type", "locateable_id"], name: "index_locations_on_locateable_type_and_locateable_id"

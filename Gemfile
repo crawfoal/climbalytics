@@ -33,6 +33,7 @@ gem 'pundit'
 gem 'mini_magick'
 gem 'cocoon'
 gem 'geocoder'
+gem 'resque', require: "resque/server"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

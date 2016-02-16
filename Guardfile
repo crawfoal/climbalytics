@@ -25,6 +25,7 @@
 #  * 'just' rspec: 'rspec'
 
 guard :rspec, cmd: "bundle exec rspec" do
+  require 'active_support/inflector'
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 
@@ -35,6 +36,9 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(rspec.spec_helper) { rspec.spec_dir }
   watch(rspec.spec_support) { rspec.spec_dir }
   watch(rspec.spec_files)
+
+  # Factories
+  watch(%r{^#{rspec.spec_dir}/factories/(.+)\.rb}) { |m| rspec.spec.("models/#{m[1].singularize}") }
 
   # Ruby files
   ruby = dsl.ruby

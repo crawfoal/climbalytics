@@ -17,6 +17,9 @@ class AthleteClimbLog < ActiveRecord::Base
 
   has_many :climb_seshes, dependent: :destroy
 
-  generate_validations_for :quality_rating, :note, :project
+  validates :quality_rating, numericality: { only_integer: true,
+                                             greater_than: 0,
+                                             less_than: 6 }, allow_nil: true
+  generate_validations_for :note, :project
 
 end

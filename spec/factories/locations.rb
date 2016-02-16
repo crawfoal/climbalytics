@@ -1,5 +1,8 @@
 FactoryGirl.define do
   factory :location do
-    address
+
+    trait :with_address do
+      address
+    end
   end
 end

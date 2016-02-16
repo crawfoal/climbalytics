@@ -60,8 +60,8 @@ describe User do
       expect(setter).to have_role :setter
     end
     describe User::Name do
-      subject(:name) { create(:name) }
-      let(:user) { name.user }
+      let(:user) { create(:user, :with_name) }
+      subject(:name) { user.name }
 
       it { should be_valid }
       it 'is destroyed when user is destroyed' do

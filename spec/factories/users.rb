@@ -1,42 +1,44 @@
 FactoryGirl.define do
+
+  sequence(:user_number) { |n| n }
+  sequence(:athlete_number) { |n| n }
+  sequence(:setter_number) { |n| n }
+
   factory :user do
-    sequence :email do |number|
-      "amanda#{number}@example.com"
+    transient do
+      user_number         { generate(:user_number) }
+      athlete_number      { generate(:athlete_number) }
+      setter_number       { generate(:setter_number) }
     end
-    password              'password'
+
+    email                 { "user#{user_number}@example.com" }
+    password              { "password#{user_number}" }
     password_confirmation { |u| u.password }
+
+    trait :with_name do
+      name
+    end
+
     factory :athlete_user do
-      sequence :email do |number|
-        "athlete#{number}@example.com"
-      end
+      email {"athlete#{user_number}@example.com"}
+
       after(:create) do |user|
         err_msg = user.add_role(:athlete)
         puts err_msg.red unless err_msg.blank? if err_msg
       end
     end
     factory :setter_user do
-      sequence :email do |number|
-        "setter#{number}@example.com"
-      end
+      email { "setter#{user_number}@example.com" }
+
       after(:create) do |user|
         err_msg = user.add_role(:setter)
         puts err_msg.red unless err_msg.blank? if err_msg
       end
     end
   end
+
   factory :name, class: User::Name do
-    first       'Amanda'
-    last        'Dolan'
-    user
-  end
-  factory :athlete_name, class: User::Name do
-    first       'Annie'
-    last        'Athlete'
-    association :user, factory: :athlete_user
-  end
-  factory :setter_name, class: User::Name do
-    first       'Sam'
-    last        'Setter'
-    association :user, factory: :setter_user
+    first       Faker::Name.first_name
+    last        Faker::Name.last_name
   end
 end

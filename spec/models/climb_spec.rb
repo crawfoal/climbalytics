@@ -24,7 +24,7 @@ RSpec.describe Climb, type: :model do
   end
 
   context 'which is neither a boulder nor a route' do
-    subject(:climb) { build(:climb) }
+    subject(:climb) { build(:climb, type: nil) }
     it { is_expected.to_not be_valid }
   end
 end

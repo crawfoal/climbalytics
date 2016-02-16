@@ -1,15 +1,13 @@
 FactoryGirl.define do
   factory :gym do
-    name "MyString"
+    name Faker::Company.name
     topo { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'gyms', 'topo_image.png')) }
     location
 
-    trait :no_name do
+    trait :invalid do
       name nil
-    end
-
-    trait :no_topo do
       topo nil
+      location nil
     end
   end
 

@@ -6,11 +6,11 @@ RSpec.describe AthleteClimbLog, type: :model do
     # Validations defined in model
     it { should validate_presence_of :athlete_story }
     it { should validate_presence_of :climb }
+    it { should validate_numericality_of(:quality_rating).only_integer.is_less_than(6).is_greater_than(0).allow_nil }
     #---------------------------------------------------------------------------
 
     #---------------------------------------------------------------------------
     # Generated validations based on db constraints
-    it { should validate_numericality_of(:quality_rating).only_integer.allow_nil }
     it { should validate_length_of(:note).is_at_most(20000) }
     #---------------------------------------------------------------------------
 
@@ -22,20 +22,18 @@ RSpec.describe AthleteClimbLog, type: :model do
   let(:user) { create(:athlete_user) }
   subject(:athlete_climb_log) { create(:athlete_climb_log, athlete_story: user.athlete_story) }
 
-  it { should belong_to :setter_climb_log }
+  describe 'Associations' do
+    it { should belong_to :setter_climb_log }
 
-  it { should belong_to :athlete_story }
-  it { should validate_presence_of :athlete_story }
+    it { should belong_to :athlete_story }
 
-  it { should have_one(:climb).dependent(:destroy) }
-  it { should accept_nested_attributes_for :climb }
-  it { should validate_presence_of :climb }
+    it { should have_one(:climb).dependent(:destroy) }
+    it { should accept_nested_attributes_for :climb }
 
-  it { should have_many(:climb_seshes).dependent(:destroy) }
+    it { should have_many(:climb_seshes).dependent(:destroy) }
+  end
 
   context 'with valid attributes' do
-
-
     it { should be_valid }
     it 'should have an associated climb' do
       expect(athlete_climb_log.climb).to_not be_nil

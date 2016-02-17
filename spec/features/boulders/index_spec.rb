@@ -37,7 +37,7 @@ feature 'When user views the setter_climb_log index' do
   end
 
   context 'and has a role of setter' do
-    let(:setter_user) { create(:setter_user) }
+    let(:setter_user) { create(:user, roles: [:setter]) }
     let(:setter_climb_log) { setter_user.setter_story.setter_climb_logs.create }
 
     before :each do

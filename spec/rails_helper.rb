@@ -7,7 +7,6 @@ require 'spec_helper'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'capybara/rspec'
-require 'devise'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -16,13 +15,14 @@ require 'devise'
 # run twice. It is recommended that you do not name files matching this glob to
 # end with _spec.rb. You can configure this pattern with the --pattern
 # option on the command line or in ~/.rspec, .rspec or `.rspec-local`.
-#
+
 # The following line is provided for convenience purposes. It has the downside
 # of increasing the boot-up time by auto-requiring all files in the support
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
-#
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/helpers/**/*.rb')].each { |f| require f }
+
+Dir[Rails.root.join('spec/support/configurations/**/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -30,17 +30,6 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
 
-  config.extend RoleHelper
-
-  # Configurations for Devise
-  config.include Devise::TestHelpers, type: :controller
-  config.extend ControllerMacros, type: :controller
-  config.include Devise::TestHelpers, type: :view
-
-  # Configurations for FactoryGirl
-  config.include FactoryGirl::Syntax::Methods
-
-  # Configurations for DatabaseCleaner
   config.use_transactional_fixtures = false
   config.before(:suite) do
     if config.use_transactional_fixtures?
@@ -81,15 +70,6 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.before(:all, :transaction_group) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.start
-  end
-
-  config.after(:all, :transaction_group) do
-    DatabaseCleaner.clean
-  end
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -114,28 +94,4 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.filter_run_excluding :rake_helper
-end
-
-Geocoder.configure(:lookup => :test)
-
-Geocoder::Lookup::Test.set_default_stub(
-  [
-    {
-      'latitude'     => 40.7143528,
-      'longitude'    => -74.0059731,
-      'address'      => 'New York, NY, USA',
-      'state'        => 'New York',
-      'state_code'   => 'NY',
-      'country'      => 'United States',
-      'country_code' => 'US'
-    }
-  ]
-)
-
-# Configurations for ShouldaMatchers
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
 end

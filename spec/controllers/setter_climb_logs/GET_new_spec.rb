@@ -12,7 +12,7 @@ describe SetterClimbLogsController do
     end
 
     context 'for a logged in setter' do
-      login_user(:setter_user)
+      login_user(:user, roles: [:setter])
 
       it_behaves_like 'a basic new request', :setter_climb_log
     end

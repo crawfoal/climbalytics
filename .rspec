@@ -1,3 +1,4 @@
 --color
 --require spec_helper
 --format documentation
+--exclude-pattern "spec/{data_generators,features}/**/*_spec.rb"

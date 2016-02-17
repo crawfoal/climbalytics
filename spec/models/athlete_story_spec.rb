@@ -12,7 +12,7 @@ RSpec.describe AthleteStory, type: :model do
     end
   end
 
-  let(:user) { create(:athlete_user) }
+  let(:user) { create(:user, roles: [:athlete]) }
 
   it 'is created for a user after a role of athlete is added' do
     expect(user.athlete_story).to be_persisted

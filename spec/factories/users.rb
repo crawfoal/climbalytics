@@ -6,32 +6,39 @@ FactoryGirl.define do
 
   factory :user do
     transient do
-      user_number         { generate(:user_number) }
-      athlete_number      { generate(:athlete_number) }
-      setter_number       { generate(:setter_number) }
+      roles []
+
+      user_number do
+        if roles.empty?
+          generate(:user_number)
+        else
+          generate "#{roles.first}_number".to_sym
+        end
+      end
+
+      email_prefix do
+        if roles.empty?
+          'user'
+        else
+          roles.join
+        end
+      end
     end
 
-    email                 { "user#{user_number}@example.com" }
+    #---------------------------------------------------------------------------
+    # Default Attributes
+    email                 { "#{email_prefix}#{user_number}@example.com" }
     password              { "password#{user_number}" }
     password_confirmation { |u| u.password }
+    #---------------------------------------------------------------------------
 
     trait :with_name do
       name
     end
 
-    factory :athlete_user do
-      email {"athlete#{user_number}@example.com"}
-
-      after(:create) do |user|
-        err_msg = user.add_role(:athlete)
-        puts err_msg.red unless err_msg.blank? if err_msg
-      end
-    end
-    factory :setter_user do
-      email { "setter#{user_number}@example.com" }
-
-      after(:create) do |user|
-        err_msg = user.add_role(:setter)
+    after(:create) do |user, evaluator|
+      evaluator.roles.each do |role|
+        err_msg = user.add_role(role)
         puts err_msg.red unless err_msg.blank? if err_msg
       end
     end

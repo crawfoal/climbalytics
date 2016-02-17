@@ -12,7 +12,7 @@ RSpec.describe SetterStory, type: :model do
     end
   end
 
-  let(:user) { create(:setter_user) }
+  let(:user) { create(:user, roles: [:setter]) }
 
   it 'is created for a user after a role of setter is added' do
     expect(user.setter_story).to be_persisted

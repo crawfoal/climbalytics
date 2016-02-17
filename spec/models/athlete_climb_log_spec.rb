@@ -19,7 +19,7 @@ RSpec.describe AthleteClimbLog, type: :model do
     end
   end
 
-  let(:user) { create(:athlete_user) }
+  let(:user) { create(:user, roles: [:athlete]) }
   subject(:athlete_climb_log) { create(:athlete_climb_log, athlete_story: user.athlete_story) }
 
   describe 'Associations' do

@@ -38,7 +38,17 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(rspec.spec_files)
 
   # Factories
-  watch(%r{^#{rspec.spec_dir}/factories/(.+)\.rb}) { |m| rspec.spec.("models/#{m[1].singularize}") }
+  watch(%r{^#{rspec.spec_dir}/factories/(.+)\.rb}) do |m|
+    [
+      rspec.spec.("models/#{m[1].singularize}"),
+      rspec.spec.("data_generators/#{m[1]}")
+    ]
+  end
+
+  # Data Generators
+  watch(%r(^lib/helpers/data_generators/(.+)\.rb$)) do |m|
+    rspec.spec.("data_generators/#{m[1]}")
+  end
 
   # Ruby files
   ruby = dsl.ruby
@@ -57,6 +67,7 @@ guard :rspec, cmd: "bundle exec rspec" do
     ]
   end
 
+  # Concerns
   watch(%r{^app/models/concerns/(.+)\.rb$}) { |m| rspec.spec.("concerns/#{m[1]}") }
 
   # Rails config changes

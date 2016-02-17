@@ -6,7 +6,7 @@ describe HomeController do
     context 'when the user is logged in' do
 
       context 'and the user has a current role defined' do
-        login_user(:athlete_user)
+        login_user(:user, roles: [:athlete])
 
         it 'renders their dashboard view' do
           get :show

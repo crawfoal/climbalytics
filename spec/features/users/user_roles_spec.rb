@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User Roles:' do
   scenario 'user switches current role', js: true do
-    @user = create(:athlete_user)
+    @user = create(:user, roles: [:athlete])
     @user.add_role :setter
     visit new_user_session_path
     fill_in 'Email', with: @user.email

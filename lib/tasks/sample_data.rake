@@ -1,4 +1,4 @@
-require_relative "../helpers/db_populate/make_users.rb"
+require "#{Rails.root}/lib/helpers/data_generators"
 
 namespace :db do
   desc "Fill database with sample data"
@@ -22,7 +22,7 @@ namespace :db do
 
     Rake::Task['db:reset'].invoke
 
-    # make users, as well as climb logs, seshes and related
-    MakeUsers.make_users
+    # Create some "new" users (users that don't have a role yet).
+    UserGenerator.new.run
   end
 end

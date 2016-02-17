@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Gym, type: :model do
-  subject { create :gym }
+  subject { build :gym }
 
   describe 'Validations' do
     #---------------------------------------------------------------------------

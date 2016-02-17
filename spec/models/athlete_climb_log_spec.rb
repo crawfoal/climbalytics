@@ -19,8 +19,7 @@ RSpec.describe AthleteClimbLog, type: :model do
     end
   end
 
-  let(:user) { create(:user, roles: [:athlete]) }
-  subject(:athlete_climb_log) { create(:athlete_climb_log, athlete_story: user.athlete_story) }
+  subject(:athlete_climb_log) { create(:athlete_climb_log) }
 
   describe 'Associations' do
     it { should belong_to :setter_climb_log }
@@ -41,7 +40,7 @@ RSpec.describe AthleteClimbLog, type: :model do
 
     describe '#athlete' do
       it 'returns the user associated with this athlete story' do
-        expect(athlete_climb_log.athlete).to be == user
+        expect(athlete_climb_log.athlete).to be == athlete_climb_log.athlete_story.user
       end
     end
 

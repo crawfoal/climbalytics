@@ -1,19 +1,14 @@
 FactoryGirl.define do
 
-  sequence(:user_number) { |n| n }
-  sequence(:athlete_number) { |n| n }
-  sequence(:setter_number) { |n| n }
+  # Initial value is just for when we're playing around in the terminal and there are already some users defined.
+  sequence(:user_number, User.count + 1) { |n| n }
 
   factory :user do
     transient do
       roles []
 
       user_number do
-        if roles.empty?
-          generate(:user_number)
-        else
-          generate "#{roles.first}_number".to_sym
-        end
+        generate(:user_number)
       end
 
       email_prefix do

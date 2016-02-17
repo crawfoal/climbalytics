@@ -1,5 +1,5 @@
-class UserGenerator
-  attr_accessor :min, :max, :include_name
+class UserGenerator < BaseGenerator
+  attr_accessor :include_name
 
   def initialize(args = {})
     @min = args[:min] || 5
@@ -7,13 +7,11 @@ class UserGenerator
     @include_name = args[:include_name] # not required
   end
 
-  def run
-    Faker::Number.between(@min, @max).times do
-      FactoryGirl.create(:user, *options)
-    end
-  end
-
   private
+
+  def factory
+    :user
+  end
 
   def options
     [(:with_name if include_name?)]
@@ -32,15 +30,30 @@ class UserGenerator
 end
 
 class AthleteGenerator < UserGenerator
+  attr_reader :athlete_climb_log_generator
+
   def initialize(args = {})
     super(args)
     @min = args[:min] || 20
     @max = args[:max] || 40
+    @athlete_climb_log_generator = AthleteClimbLogGenerator.new
   end
 
   private
-  def options
-    super + [roles: [:athlete]]
+  def factory
+    :_athlete
+  end
+
+  def define_factory
+    min = athlete_climb_log_generator.min
+    max = athlete_climb_log_generator.max
+    FactoryGirl.define do
+      factory :_athlete, parent: :athlete do
+        transient do
+          athlete_climb_logs_count { Faker::Number.between(min, max) }
+        end
+      end
+    end
   end
 end
 
@@ -52,7 +65,7 @@ class SetterGenerator < UserGenerator
   end
 
   private
-  def options
-    super + [roles: [:setter]]
+  def factory
+    :setter
   end
 end

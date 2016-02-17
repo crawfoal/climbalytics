@@ -3,19 +3,19 @@ require "#{Rails.root}/lib/helpers/data_generators"
 
 shared_examples 'creates some users' do |num_created|
   it 'creates some users' do
-    expect { subject.run }.to change { User.count }.by(num_created)
+    expect { subject.generate_set }.to change { User.count }.by(num_created)
   end
 end
 
 describe UserGenerator do
   subject(:user_generator) { UserGenerator.new(min: 2, max: 2) }
 
-  describe '#run' do
+  describe '#generate_set' do
     include_examples 'creates some users', 2
   end
 
   describe '#initialize' do
-    context 'using defaults' do
+    context 'by default' do
       subject(:user_generator) { UserGenerator.new }
       it 'sets @min = 5' do
         expect(user_generator.min).to be == 5
@@ -27,36 +27,27 @@ describe UserGenerator do
   end
 
   context 'with @include_name = :never' do
-    subject(:user_generator) { UserGenerator.new(min: 2, max: 2, include_name: :never) }
+    before :each do
+      user_generator.include_name = :never
+    end
 
-    describe '#run' do
-      include_examples 'creates some users', 2
-
-      it "doesn't create a name for any of the users" do
-        user_generator.min = 5
-        user_generator.max = 5
-        user_generator.run
-        User.all.each do |user|
-          expect(user.name).to be_nil
-        end
+    describe '#generate_one' do
+      it "doesn't create a name for the user" do
+        expect(user_generator.generate_one.name).to be_nil
       end
     end
   end
 
   context 'with @include_name = :always' do
-    subject(:user_generator) { UserGenerator.new(min: 2, max: 2, include_name: :always) }
+    before :each do
+      user_generator.include_name = :always
+    end
 
-    describe '#run' do
-      include_examples 'creates some users', 2
-
-      it "creates a full name for every user" do
-        user_generator.min = 5
-        user_generator.max = 5
-        user_generator.run
-        User.all.each do |user|
-          expect(user.name.first).to_not be_blank
-          expect(user.name.last).to_not be_blank
-        end
+    describe '#generate_one' do
+      it "creates a full name for the user" do
+        user = user_generator.generate_one
+        expect(user.name.first).to_not be_blank
+        expect(user.name.last).to_not be_blank
       end
     end
   end
@@ -64,15 +55,22 @@ end
 
 describe AthleteGenerator do
   subject(:athlete_generator) { AthleteGenerator.new(min: 2, max: 2) }
+  before :each do
+    athlete_generator.athlete_climb_log_generator.min = 2
+    athlete_generator.athlete_climb_log_generator.max = 2
+  end
 
-  describe '#run' do
+  describe '#generate_set' do
     include_examples 'creates some users', 2
+  end
 
-    it 'gives each user a role of athlete' do
-      athlete_generator.run
-      User.all.each do |user|
-        expect(user).to have_role :athlete
-      end
+  describe '#generate_one' do
+    subject(:athlete) { athlete_generator.generate_one }
+    it 'gives the user a role of athlete' do
+      expect(athlete).to have_role :athlete
+    end
+    it 'creates the specified number athlete_climb_logs' do
+      expect(athlete.athlete_story.athlete_climb_logs.size).to be == 2
     end
   end
 
@@ -92,14 +90,13 @@ end
 describe SetterGenerator do
   subject(:setter_generator) { SetterGenerator.new(min: 2, max: 2) }
 
-  describe '#run' do
+  describe '#generate_set' do
     include_examples 'creates some users', 2
+  end
 
-    it 'gives each user a role of setter' do
-      setter_generator.run
-      User.all.each do |user|
-        expect(user).to have_role :setter
-      end
+  describe '#generate_one' do
+    it 'gives the user a role of setter' do
+      expect(setter_generator.generate_one).to have_role :setter
     end
   end
 

@@ -16,7 +16,7 @@ describe AthleteClimbLogPolicy do
   end
 
   context 'for an athlete' do
-    let(:user) { create(:user, roles: [:athlete]) }
+    let(:user) { create(:athlete) }
 
     it { should permit(:new) }
 

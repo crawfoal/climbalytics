@@ -19,7 +19,7 @@ describe SetterClimbLogPolicy do
   end
 
   context 'for a setter' do
-    let(:user) { create(:user, roles: [:setter]) }
+    let(:user) { create(:setter) }
 
     context 'who owns the setter_climb_log problem' do
       let(:setter_climb_log) { user.setter_story.setter_climb_logs.create }

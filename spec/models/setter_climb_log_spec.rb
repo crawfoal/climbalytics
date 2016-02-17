@@ -26,7 +26,7 @@ describe SetterClimbLog do
 
       context 'with a setter defined' do
 
-        let(:user) { create(:user, roles: [:setter]) }
+        let(:user) { create(:setter) }
         subject(:setter_climb_log) { user.setter_story.setter_climb_logs.create }
 
         it "returns the setter's user model" do

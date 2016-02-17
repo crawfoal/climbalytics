@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User creates a setter_climb_log' do
-  let(:user) { create(:user, roles: [:setter]) }
+  let(:user) { create(:setter) }
 
   context 'when user has role of setter' do
     before :each do

@@ -15,7 +15,7 @@ describe AthleteClimbLogsController do
       end
 
       context 'with a role of athlete' do
-        login_user(:user, roles: [:athlete])
+        login_user(:athlete)
         let(:athlete_climb_log_attribs) { attributes_for(:athlete_climb_log, climb_attributes: attributes_for(:boulder)) }
 
         it_behaves_like 'a basic create request', :athlete_climb_log, :athlete_climb_log_attribs, {redirect_to: -> {AthleteClimbLog.last}}, {notice: 'Athlete climb log was successfully created.'}

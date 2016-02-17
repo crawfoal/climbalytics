@@ -15,7 +15,7 @@ describe AthleteClimbLogsController do
       end
 
       context 'with a role of athlete' do
-        login_user(:user, roles: [:athlete])
+        login_user(:athlete)
         it_behaves_like 'a basic new request', :athlete_climb_log
         describe 'associated models' do
           before :each do

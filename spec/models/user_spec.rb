@@ -50,12 +50,12 @@ describe User do
     end
 
     it 'has a valid athlete factory' do
-      athlete = create(:user, roles: [:athlete])
+      athlete = create(:athlete)
       expect(athlete).to be_valid
       expect(athlete).to have_role :athlete
     end
     it 'has a valid setter factory' do
-      setter = create(:user, roles: [:setter])
+      setter = create(:setter)
       expect(setter).to be_valid
       expect(setter).to have_role :setter
     end

@@ -2,26 +2,31 @@ module Sometimes
 
   private
 
-  # I could use metaprogramming here to dynamically generate these methods (or a lot of them). Look into this sometime. But then if I do that stubbing them would be hard or maybe impossible.
-  def half_of_the_time
-    yield if rand(2) == 0
+  # I'd rather use something like numbers_and_words gem. It has a lot functionality from getting the words based on numbers, but no so much the other way around, so it might require that we add functionality.
+  WordsToFractionPieces = {
+    half: [1,2],
+    a_third: [1,3],
+    two_thirds: [2,3],
+    a_fourth: [1,4],
+    three_fourths: [3,4],
+    a_fifth: [1,5],
+    four_fifths: [4,5]
+  }
+  def method_missing(sym, *args)
+    fraction_in_words, anchor, extra = sym.to_s.partition('_of_the_time')
+    unless extra.blank? and not anchor.blank? and not fraction_in_words.blank?
+      super
+    else
+      sometimes(*WordsToFractionPieces[fraction_in_words.to_sym]) { yield if block_given? }
+    end
   end
-  def a_third_of_the_time
-    yield if rand(3) == 0
-  end
-  def two_thirds_of_the_time
-    yield if rand(3) > 0
-  end
-  def a_fourth_of_the_time
-    yield if rand(4) == 0
-  end
-  def three_fourths_of_the_time
-    yield if rand(4) > 0
-  end
-  def a_fifth_of_the_time
-    yield if rand(5) == 0
-  end
-  def four_fifths_of_the_time
-    yield if rand(5) > 0
+
+  def sometimes(numerator, denominator)
+    do_it_this_time = rand(denominator) < numerator
+    if block_given?
+      yield if do_it_this_time
+    else
+      do_it_this_time ? true : false
+    end
   end
 end

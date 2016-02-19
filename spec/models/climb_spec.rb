@@ -27,4 +27,17 @@ RSpec.describe Climb, type: :model do
     subject(:climb) { build(:climb, type: nil) }
     it { is_expected.to_not be_valid }
   end
+
+  describe '#grade' do
+    context 'for a climb that is either a Boulder or a Route' do
+      it 'always returns the string, not the enum ID' do
+        climb = Climb.new
+        climb.type = 'Boulder'
+        climb.grade = 'V5'
+        climb.save
+        climb.reload
+        expect(climb.grade).to be_a String
+      end
+    end
+  end
 end

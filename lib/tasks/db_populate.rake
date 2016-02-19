@@ -2,7 +2,7 @@ require "#{Rails.root}/lib/data_generators"
 
 namespace :db do
   desc "Fill database with sample data"
-  task :populate => :only_dev do
+  task :populate => :non_prod do
     # Don't actually call out to Google API when creating sample data. We can configure Geocoder to have different stubs, e.g. we can say "when there is a query for foo, return bar". See the documentation.
     Geocoder.configure(:lookup => :test)
 

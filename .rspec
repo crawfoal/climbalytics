@@ -1,3 +1,4 @@
 --color
 --require spec_helper
 --format documentation
+--exclude-pattern "spec/{tasks,features}/**/*_spec.rb"

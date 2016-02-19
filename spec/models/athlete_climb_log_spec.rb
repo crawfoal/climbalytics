@@ -19,6 +19,16 @@ RSpec.describe AthleteClimbLog, type: :model do
     end
   end
 
+  describe '.min_quality_rating' do
+    subject { AthleteClimbLog.min_quality_rating }
+    it { should be == 1 }
+  end
+
+  describe '.max_quality_rating' do
+    subject { AthleteClimbLog.max_quality_rating }
+    it { should be == 5 }
+  end
+
   subject(:athlete_climb_log) { create(:athlete_climb_log) }
 
   describe 'Associations' do

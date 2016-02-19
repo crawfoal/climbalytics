@@ -20,6 +20,21 @@ class AthleteClimbLog < ActiveRecord::Base
   validates :quality_rating, numericality: { only_integer: true,
                                              greater_than: 0,
                                              less_than: 6 }, allow_nil: true
+  def self.min_quality_rating
+    validators_on(:quality_rating).each do |validator|
+      if validator.kind == :numericality
+          return validator.options[:greater_than] + 1
+      end
+    end
+  end
+  def self.max_quality_rating
+    validators_on(:quality_rating).each do |validator|
+      if validator.kind == :numericality
+          return validator.options[:less_than] - 1
+      end
+    end
+  end
+
   generate_validations_for :note, :project
 
 end

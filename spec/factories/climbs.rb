@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :climb do
-    type ['Boulder', 'Route'].sample
-    
+    type { ['Boulder', 'Route'].sample }
+
     factory :boulder do
       type  'Boulder'
     end

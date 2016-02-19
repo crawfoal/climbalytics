@@ -1,5 +1,5 @@
 require 'rails_helper'
-require "#{Rails.root}/lib/helpers/data_generators"
+require "#{Rails.root}/lib/data_generators"
 
 shared_examples 'creates some users' do |num_created|
   it 'creates some users' do

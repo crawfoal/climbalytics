@@ -1,5 +1,5 @@
 require 'rails_helper'
-require "#{Rails.root}/lib/helpers/data_generators"
+require "#{Rails.root}/lib/data_generators"
 
 describe ClimbSeshGenerator do
   subject(:climb_sesh_generator) { ClimbSeshGenerator.new(min: 2, max: 2) }

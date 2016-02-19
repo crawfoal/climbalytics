@@ -1,4 +1,4 @@
-require "#{Rails.root}/lib/helpers/data_generators"
+require "#{Rails.root}/lib/data_generators"
 
 namespace :db do
   desc "Fill database with sample data"

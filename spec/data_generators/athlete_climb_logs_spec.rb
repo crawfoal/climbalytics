@@ -1,5 +1,5 @@
 require 'rails_helper'
-require "#{Rails.root}/lib/helpers/data_generators"
+require "#{Rails.root}/lib/data_generators"
 
 describe ClimbLogGenerator do
   describe '#initialize' do

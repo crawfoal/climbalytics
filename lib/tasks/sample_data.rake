@@ -23,6 +23,8 @@ namespace :db do
     Rake::Task['db:reset'].invoke
 
     # Create some "new" users (users that don't have a role yet).
-    UserGenerator.new.run
+    UserGenerator.new.generate_set
+
+    AthleteGenerator.new.generate_set
   end
 end

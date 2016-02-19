@@ -40,13 +40,14 @@ FactoryGirl.define do
 
     factory :athlete do
       transient do
-        roles [:athlete]
-        athlete_climb_logs_count 0
+        roles                     [:athlete]
+        athlete_climb_logs_count  0
+        athlete_climb_log_factory :athlete_climb_log
       end
 
       after(:create) do |user, evaluator|
         if evaluator.athlete_climb_logs_count > 0
-          create_list(:athlete_climb_log, evaluator.athlete_climb_logs_count, athlete_story: user.athlete_story)
+          create_list(evaluator.athlete_climb_log_factory, evaluator.athlete_climb_logs_count, athlete_story: user.athlete_story)
         end
       end
     end

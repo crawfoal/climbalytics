@@ -2,14 +2,14 @@ class UserGenerator < BaseGenerator
   attr_accessor :include_name
 
   def initialize(args = {})
-    @min = args[:min] || 5
+    @min = args[:min] || 10
     @max = args[:max] || 15
     @include_name = args[:include_name] # not required
   end
 
   private
 
-  def factory
+  def define_factory
     :user
   end
 
@@ -30,7 +30,6 @@ class UserGenerator < BaseGenerator
 end
 
 class AthleteGenerator < UserGenerator
-  attr_reader :athlete_climb_log_generator
 
   def initialize(args = {})
     super(args)
@@ -39,19 +38,32 @@ class AthleteGenerator < UserGenerator
     @athlete_climb_log_generator = AthleteClimbLogGenerator.new
   end
 
-  private
-  def factory
-    :_athlete
+  def logs_count=(arg)
+    @athlete_climb_log_generator.count = arg
   end
 
+  def logs_count
+    @athlete_climb_log_generator.count
+  end
+
+  def seshes_per_log=(arg)
+    @athlete_climb_log_generator.seshes_count = arg
+  end
+
+  def seshes_per_log
+    @athlete_climb_log_generator.seshes_count
+  end
+
+  private
   def define_factory
-    min = athlete_climb_log_generator.min
-    max = athlete_climb_log_generator.max
-    FactoryGirl.define do
-      factory :_athlete, parent: :athlete do
-        transient do
-          athlete_climb_logs_count { Faker::Number.between(min, max) }
-        end
+    min = logs_count.min
+    max = logs_count.max
+    alog_factory = @athlete_climb_log_generator.factory_name
+
+    FactoryManager.define_child_of :athlete do
+      transient do
+        athlete_climb_logs_count  { Faker::Number.between(min, max) }
+        athlete_climb_log_factory alog_factory
       end
     end
   end
@@ -65,7 +77,7 @@ class SetterGenerator < UserGenerator
   end
 
   private
-  def factory
+  def define_factory
     :setter
   end
 end

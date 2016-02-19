@@ -47,6 +47,8 @@ guard :rspec, cmd: "bundle exec rspec" do
 
   # Data Generators
   watch(%r(^lib/helpers/data_generators/base.rb)) { "#{rspec.spec_dir}/data_generators" }
+  watch(%r(^lib/helpers/factory_manager.rb)) { "#{rspec.spec_dir}/data_generators" }
+  watch(%r(^lib/helpers/sometimes.rb)) { "#{rspec.spec_dir}/data_generators" }
   watch(%r(^lib/helpers/data_generators/(.+)\.rb$)) do |m|
     rspec.spec.("data_generators/#{m[1]}")
   end

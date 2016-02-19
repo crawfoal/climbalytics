@@ -17,8 +17,8 @@ describe UserGenerator do
   describe '#initialize' do
     context 'by default' do
       subject(:user_generator) { UserGenerator.new }
-      it 'sets @min = 5' do
-        expect(user_generator.min).to be == 5
+      it 'sets @min = 10' do
+        expect(user_generator.min).to be == 10
       end
       it 'sets @max = 15' do
         expect(user_generator.max).to be == 15
@@ -26,51 +26,59 @@ describe UserGenerator do
     end
   end
 
-  context 'with @include_name = :never' do
-    before :each do
-      user_generator.include_name = :never
-    end
+  describe 'user created by #generate_one' do
+    subject(:user) { user_generator.generate_one }
 
-    describe '#generate_one' do
-      it "doesn't create a name for the user" do
-        expect(user_generator.generate_one.name).to be_nil
+    context 'with @include_name = :never' do
+      before { user_generator.include_name = :never }
+      it "doesn't have a name" do
+        expect(user.name).to be_nil
       end
     end
-  end
 
-  context 'with @include_name = :always' do
-    before :each do
-      user_generator.include_name = :always
-    end
+    context 'with @include_name = :always' do
+      before { user_generator.include_name = :always }
 
-    describe '#generate_one' do
       it "creates a full name for the user" do
-        user = user_generator.generate_one
         expect(user.name.first).to_not be_blank
         expect(user.name.last).to_not be_blank
       end
     end
+
   end
 end
 
 describe AthleteGenerator do
   subject(:athlete_generator) { AthleteGenerator.new(min: 2, max: 2) }
   before :each do
-    athlete_generator.athlete_climb_log_generator.min = 2
-    athlete_generator.athlete_climb_log_generator.max = 2
+    athlete_generator.logs_count = 2
   end
 
-  describe '#generate_set' do
-    include_examples 'creates some users', 2
-  end
-
-  describe '#generate_one' do
-    subject(:athlete) { athlete_generator.generate_one }
-    it 'gives the user a role of athlete' do
-      expect(athlete).to have_role :athlete
+  describe '#logs_count' do
+    it 'calls AthleteClimbLogGenerator#count' do
+      expect_any_instance_of(AthleteClimbLogGenerator).to receive(:count)
+      athlete_generator.logs_count
     end
-    it 'creates the specified number athlete_climb_logs' do
-      expect(athlete.athlete_story.athlete_climb_logs.size).to be == 2
+  end
+
+  describe '#logs_count=' do
+    it 'calls AthleteClimbLogGenerator#count=' do
+      expect_any_instance_of(AthleteClimbLogGenerator).to receive(:count=).with(2)
+      athlete_generator.logs_count = 2
+    end
+  end
+
+  describe '#seshes_per_log' do
+    it 'calls ClimbSeshGenerator#count' do
+      expect_any_instance_of(ClimbSeshGenerator).to receive(:count)
+      athlete_generator.seshes_per_log
+    end
+  end
+
+  describe '#seshes_per_log=' do
+    it 'calls ClimbSeshGenerator#count=' do
+      expect_any_instance_of(ClimbSeshGenerator).to receive(:count=).with(2)
+      athlete_generator.seshes_per_log = 2
     end
   end
 
@@ -85,6 +93,38 @@ describe AthleteGenerator do
       end
     end
   end
+
+  describe '#generate_set' do
+    include_examples 'creates some users', 2
+  end
+
+  describe '#generate_one' do
+    it 'creates one athlete_story' do
+      expect { athlete_generator.generate_one }.to change { AthleteStory.count }.by 1
+    end
+  end
+
+  describe 'user created by #generate_one' do
+    subject(:athlete) { athlete_generator.generate_one }
+    it 'has a role of athlete' do
+      expect(athlete).to have_role :athlete
+    end
+    it 'has the correct number athlete_climb_logs' do
+      expect(athlete.athlete_story.athlete_climb_logs.size).to be == 2
+    end
+  end
+
+  describe '#factory_name' do
+    it 'is the same for two different default instances' do
+      expect(AthleteGenerator.new.factory_name).to be == AthleteGenerator.new.factory_name
+    end
+    it 'changes when a local variable in #define_factory changes' do
+      old_factory_name = athlete_generator.factory_name
+      athlete_generator.logs_count = athlete_generator.logs_count.max + 1
+      expect(athlete_generator.factory_name).to_not be == old_factory_name
+    end
+  end
+
 end
 
 describe SetterGenerator do
@@ -94,9 +134,10 @@ describe SetterGenerator do
     include_examples 'creates some users', 2
   end
 
-  describe '#generate_one' do
-    it 'gives the user a role of setter' do
-      expect(setter_generator.generate_one).to have_role :setter
+  describe 'user created by #generate_one' do
+    subject(:setter) { setter_generator.generate_one }
+    it 'has a role of setter' do
+      expect(setter).to have_role :setter
     end
   end
 

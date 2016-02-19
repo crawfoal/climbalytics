@@ -4,5 +4,6 @@ class Climb < ActiveRecord::Base
 
   belongs_to :gym_section
 
-  generate_validations_for :name, :moves_count
+  validates :moves_count, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
+  generate_validations_for :name
 end

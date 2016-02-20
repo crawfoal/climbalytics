@@ -1,6 +1,13 @@
 module Sometimes
 
-  private
+  def sometimes(numerator, denominator)
+    do_it_this_time = rand(denominator) < numerator
+    if block_given?
+      yield if do_it_this_time
+    else
+      do_it_this_time
+    end
+  end
 
   # I'd rather use something like numbers_and_words gem. It has a lot functionality from getting the words based on numbers, but no so much the other way around, so it might require that we add functionality.
   WordsToFractionPieces = {
@@ -12,21 +19,13 @@ module Sometimes
     a_fifth: [1,5],
     four_fifths: [4,5]
   }
-  def method_missing(sym, *args)
-    fraction_in_words, anchor, extra = sym.to_s.partition('_of_the_time')
-    unless extra.blank? and not anchor.blank? and not fraction_in_words.blank?
-      super
-    else
-      sometimes(*WordsToFractionPieces[fraction_in_words.to_sym]) { yield if block_given? }
-    end
-  end
 
-  def sometimes(numerator, denominator)
-    do_it_this_time = rand(denominator) < numerator
-    if block_given?
-      yield if do_it_this_time
+  def method_missing(sym, *args, &block)
+    fraction_in_words, anchor, extra = sym.to_s.partition('_of_the_time')
+    if extra.blank? and anchor == '_of_the_time' and not fraction_in_words.blank?
+      sometimes(*WordsToFractionPieces[fraction_in_words.to_sym], &block)
     else
-      do_it_this_time ? true : false
+      super
     end
   end
 end

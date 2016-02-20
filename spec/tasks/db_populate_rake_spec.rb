@@ -42,5 +42,8 @@ describe 'db:populate', :transaction_group do
   it 'creates some routes' do
     expect(Route.count).to be > 0
   end
+  it 'creates some gyms' do
+    expect(Gym.count).to be > 0
+  end
 
 end

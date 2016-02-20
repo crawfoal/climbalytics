@@ -26,5 +26,7 @@ namespace :db do
     UserGenerator.new.generate_set
 
     AthleteGenerator.new.generate_set
+
+    GymGenerator.new.generate_set
   end
 end

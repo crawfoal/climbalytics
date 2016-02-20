@@ -70,6 +70,9 @@ guard :rspec, cmd: "bundle exec rspec" do
     ]
   end
 
+  # Rake Files
+  watch(%r{^lib/tasks/(.+).rake}) { |m| rspec.spec.("tasks/#{m[1]}_rake") }
+
   # Concerns
   watch(%r{^app/models/concerns/(.+)\.rb$}) { |m| rspec.spec.("concerns/#{m[1]}") }
 

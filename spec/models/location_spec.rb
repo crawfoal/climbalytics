@@ -39,3 +39,16 @@ describe Location do
     end
   end
 end
+
+describe 'location and address default factories:' do
+  it 'more than one location can be created' do
+    expect { 2.times { create(:location) } }.to change { Location.count }.by(2)
+  end
+  it 'an address and a location can be created' do
+    expect { create(:address) }.to change { Address.count }.by(1)
+    expect { create(:location) }.to change { Location.count }.by(1)
+  end
+  it 'an address is created when a location is created with the :with_address option' do
+    expect { create(:location, :with_address) }.to change { Address.count }.by(1)
+  end
+end

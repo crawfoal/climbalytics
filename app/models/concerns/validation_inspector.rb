@@ -61,7 +61,7 @@ module ValidationInspector
       else
         true
       end
-      [foreign_key.to_sym, uniqueness: options]
+      [foreign_key.to_sym, uniqueness: options, allow_nil: true]
     end
 
     def validation_args(types_to_skip = [])

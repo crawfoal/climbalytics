@@ -69,12 +69,12 @@ describe ValidationInspector do
     describe '#validate_uniqueness_args' do
       context 'when the association is polymorphic' do
         it 'returns an argument array including a scope with the type column' do
-          expect(Climb.reflections['loggable'].validate_uniqueness_args).to be == [:loggable_id, uniqueness: { scope: :loggable_type }]
+          expect(Climb.reflections['loggable'].validate_uniqueness_args).to be == [:loggable_id, uniqueness: { scope: :loggable_type }, allow_nil: true]
         end
       end
       context 'when the association is not polymorphic' do
         it 'returns the argument array' do
-          expect(AthleteStory.reflections['user'].validate_uniqueness_args).to be == [:user_id, uniqueness: true]
+          expect(AthleteStory.reflections['user'].validate_uniqueness_args).to be == [:user_id, uniqueness: true, allow_nil: true]
         end
       end
     end

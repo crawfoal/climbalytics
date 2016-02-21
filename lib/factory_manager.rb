@@ -1,4 +1,5 @@
 # This class is tested using the AthleteGenerator
+# > but I should still test this stuff  by itself
 class FactoryManager
   def self.define_child_of(parent_factory, &block)
     unless FactoryGirl.factories.registered? parent_factory

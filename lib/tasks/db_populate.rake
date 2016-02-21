@@ -1,8 +1,7 @@
-require "#{Rails.root}/lib/data_generators"
-
 namespace :db do
   desc "Fill database with sample data"
   task :populate => :non_prod do
+    require "#{Rails.root}/lib/data_generators"
 
     Rake::Task['db:reset'].invoke
 

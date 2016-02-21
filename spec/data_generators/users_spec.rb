@@ -115,9 +115,6 @@ describe AthleteGenerator do
   end
 
   describe '#factory_name' do
-    it 'is the same for two different default instances' do
-      expect(AthleteGenerator.new.factory_name).to be == AthleteGenerator.new.factory_name
-    end
     it 'changes when a local variable in #define_factory changes' do
       old_factory_name = athlete_generator.factory_name
       athlete_generator.logs_count = athlete_generator.logs_count.max + 1

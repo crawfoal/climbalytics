@@ -22,6 +22,7 @@ require 'capybara/rspec'
 # require only the support files necessary.
 Dir[Rails.root.join('spec/support/helpers/**/*.rb')].each { |f| require f }
 
+load 'spec/support/configurations/geocoder.rb'
 Dir[Rails.root.join('spec/support/configurations/**/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.

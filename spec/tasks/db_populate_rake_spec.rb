@@ -45,5 +45,17 @@ describe 'db:populate', :transaction_group do
   it 'creates some gyms' do
     expect(Gym.count).to be > 0
   end
+  describe 'each generated gym' do
+    it 'has a location' do
+      Gym.all.each do |gym|
+        expect(gym.location).to be_present
+      end
+    end
+    it 'has an address' do
+      Gym.all.each do |gym|
+        expect(gym.location.address).to be_present
+      end
+    end
+  end
 
 end

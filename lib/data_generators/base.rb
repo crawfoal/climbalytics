@@ -1,4 +1,5 @@
 # tested via child classes
+# > but I should still test this by itself - I can create "minimum requirement" child class in the spec and test these method via that guy
 class BaseGenerator
   attr_accessor :min, :max
 

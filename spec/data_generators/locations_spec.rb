@@ -44,8 +44,10 @@ describe LocationGenerator do
       subject(:location) { location_generator.generate_one }
 
       context 'with `include_*?` stubbed out to true' do
-        it 'includes an address' do
+        before :each do
           allow(location_generator).to receive(:include_address?).and_return(true)
+        end
+        it 'includes an address' do
           expect(location.address).to be_present
         end
         it 'gets a latitude and longitude from the stub' do

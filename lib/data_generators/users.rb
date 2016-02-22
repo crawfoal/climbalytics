@@ -35,30 +35,14 @@ class AthleteGenerator < UserGenerator
     super(args)
     @min = args[:min] || 20
     @max = args[:max] || 40
-    @athlete_climb_log_generator = AthleteClimbLogGenerator.new
-  end
-
-  def logs_count=(arg)
-    @athlete_climb_log_generator.count = arg
-  end
-
-  def logs_count
-    @athlete_climb_log_generator.count
-  end
-
-  def seshes_per_log=(arg)
-    @athlete_climb_log_generator.seshes_count = arg
-  end
-
-  def seshes_per_log
-    @athlete_climb_log_generator.seshes_count
+    @alog_generator = args[:alog_generator] || AthleteClimbLogGenerator.new
   end
 
   private
   def define_factory
-    min = logs_count.min
-    max = logs_count.max
-    alog_factory = @athlete_climb_log_generator.factory_name
+    min = @alog_generator.min
+    max = @alog_generator.max
+    alog_factory = @alog_generator.factory_name
 
     FactoryManager.define_child_of :athlete do
       transient do

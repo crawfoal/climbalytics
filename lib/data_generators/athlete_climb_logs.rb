@@ -8,15 +8,7 @@ end
 class AthleteClimbLogGenerator < ClimbLogGenerator
   def initialize(args = {})
     super
-    @climb_sesh_generator = ClimbSeshGenerator.new
-  end
-
-  def seshes_count
-    @climb_sesh_generator.count
-  end
-
-  def seshes_count=(arg)
-    @climb_sesh_generator.count = arg
+    @climb_sesh_generator = args[:climb_sesh_generator] || ClimbSeshGenerator.new
   end
 
   private
@@ -25,8 +17,8 @@ class AthleteClimbLogGenerator < ClimbLogGenerator
     include_note = include_note?
     include_project = include_project?
     include_quality_rating = include_quality_rating?
-    seshes_per_log_min = seshes_count.min
-    seshes_per_log_max = seshes_count.max
+    seshes_per_log_min = @climb_sesh_generator.min
+    seshes_per_log_max = @climb_sesh_generator.max
     _climb_sesh_factory = @climb_sesh_generator.factory_name
 
     FactoryManager.define_child_of :athlete_climb_log do

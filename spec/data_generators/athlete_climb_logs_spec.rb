@@ -16,13 +16,12 @@ describe ClimbLogGenerator do
 end
 
 describe AthleteClimbLogGenerator do
-  subject(:athlete_climb_log_generator) { AthleteClimbLogGenerator.new(min: 2, max: 2) }
+  subject(:athlete_climb_log_generator) { AthleteClimbLogGenerator.new(min: 2, max: 2, climb_sesh_generator: ClimbSeshGenerator.new(min: 2, max: 2)) }
 
   describe 'athlete_climb_log created by #generate_one' do
     subject(:athlete_climb_log) { athlete_climb_log_generator.generate_one }
 
     it 'creates some associated climb_seshes' do
-      athlete_climb_log_generator.seshes_count = 2
       expect(athlete_climb_log.climb_seshes.size).to be == 2
     end
 

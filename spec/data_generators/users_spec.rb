@@ -49,38 +49,7 @@ describe UserGenerator do
 end
 
 describe AthleteGenerator do
-  subject(:athlete_generator) { AthleteGenerator.new(min: 2, max: 2) }
-  before :each do
-    athlete_generator.logs_count = 2
-  end
-
-  describe '#logs_count' do
-    it 'calls AthleteClimbLogGenerator#count' do
-      expect_any_instance_of(AthleteClimbLogGenerator).to receive(:count)
-      athlete_generator.logs_count
-    end
-  end
-
-  describe '#logs_count=' do
-    it 'calls AthleteClimbLogGenerator#count=' do
-      expect_any_instance_of(AthleteClimbLogGenerator).to receive(:count=).with(2)
-      athlete_generator.logs_count = 2
-    end
-  end
-
-  describe '#seshes_per_log' do
-    it 'calls ClimbSeshGenerator#count' do
-      expect_any_instance_of(ClimbSeshGenerator).to receive(:count)
-      athlete_generator.seshes_per_log
-    end
-  end
-
-  describe '#seshes_per_log=' do
-    it 'calls ClimbSeshGenerator#count=' do
-      expect_any_instance_of(ClimbSeshGenerator).to receive(:count=).with(2)
-      athlete_generator.seshes_per_log = 2
-    end
-  end
+  subject(:athlete_generator) { AthleteGenerator.new(min: 2, max: 2, alog_generator: AthleteClimbLogGenerator.new(min: 2, max: 2)) }
 
   describe '#initialize' do
     context 'using defaults' do
@@ -116,9 +85,9 @@ describe AthleteGenerator do
 
   describe '#factory_name' do
     it 'changes when a local variable in #define_factory changes' do
-      old_factory_name = athlete_generator.factory_name
-      athlete_generator.logs_count = athlete_generator.logs_count.max + 1
-      expect(athlete_generator.factory_name).to_not be == old_factory_name
+      athlete_generator1 = AthleteGenerator.new(alog_generator: AthleteClimbLogGenerator.new(min: 2, max: 2))
+      athlete_generator2 = AthleteGenerator.new(alog_generator: AthleteClimbLogGenerator.new(min: 1, max: 1))
+      expect(athlete_generator1.factory_name).to_not be == athlete_generator2.factory_name
     end
   end
 

@@ -13,7 +13,6 @@ class AthleteClimbLogGenerator < ClimbLogGenerator
 
   private
   def define_factory
-    # It would be cool if we could use metaprogramming here... could we use method_missing and Binding#local_variable_set? We would need to make that whatever we do, the local variables are still available when the child factory name is computed.
     include_note = include_note?
     include_project = include_project?
     include_quality_rating = include_quality_rating?

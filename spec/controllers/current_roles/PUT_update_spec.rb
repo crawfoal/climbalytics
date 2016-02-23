@@ -6,7 +6,7 @@ describe CurrentRolesController do
   describe "PUT #update" do
     context 'for a logged in user' do
       context 'with a role of setter' do
-        login_user(:setter_user)
+        login_user(:setter)
         let(:http_request_proc) { Proc.new { put :update, user: {current_role: 'athlete'} } }
 
         before :each do

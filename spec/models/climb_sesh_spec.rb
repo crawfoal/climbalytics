@@ -18,7 +18,7 @@ RSpec.describe ClimbSesh, type: :model do
     end
   end
 
-  subject(:climb_sesh) { build(:climb_sesh) }
+  subject { build(:climb_sesh) }
   it { should be_valid }
 
 end

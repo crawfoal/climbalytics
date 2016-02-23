@@ -5,6 +5,7 @@ class Gym < ActiveRecord::Base
 
   has_many :gym_sections, dependent: :destroy
   accepts_nested_attributes_for :gym_sections, reject_if: :all_blank, allow_destroy: true
+  alias_method :sections, :gym_sections
 
   mount_uploader :topo, TopoUploader
   validates :topo, presence: true

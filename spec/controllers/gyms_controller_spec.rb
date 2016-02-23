@@ -25,13 +25,14 @@ RSpec.describe GymsController, type: :controller do
   # adjust the attributes here as well.
 
   # I'm sure there is a better way... look at Factory Girl's documentation later...
+  # ---> look at the 5th example in this section: http://www.rubydoc.info/gems/factory_girl/file/GETTING_STARTED.md#Using_factories
   let(:state) { create(:state) }
   let(:address_attribs) { attributes_for(:address).merge(state_id: state.id) }
   let(:location_attribs) { attributes_for(:location) }
   let(:section_attribs) { attributes_for(:gym_section) }
   let(:valid_attributes) { attributes_for(:gym, location_attributes: location_attribs.merge(address_attributes: address_attribs), gym_sections_attributes: [section_attribs]) }
 
-  let(:invalid_attributes) { attributes_for(:gym, :no_name, :no_topo) }
+  let(:invalid_attributes) { attributes_for(:gym, :invalid) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

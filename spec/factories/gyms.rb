@@ -1,15 +1,21 @@
 FactoryGirl.define do
   factory :gym do
-    name "MyString"
-    topo { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'gyms', 'topo_image.png')) }
-    location
 
-    trait :no_name do
-      name nil
+    transient do
+      location_factory :location
     end
 
-    trait :no_topo do
+    name { Faker::Company.name }
+    topo { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'gyms', 'topo_image.png')) }
+
+    after(:build) do |gym, evaluator|
+      gym.location = build(evaluator.location_factory)
+    end
+
+    trait :invalid do
+      name nil
       topo nil
+      location nil
     end
   end
 

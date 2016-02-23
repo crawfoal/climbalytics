@@ -15,7 +15,7 @@ describe AthleteClimbLogsController do
       end
 
       context 'with a role of athlete' do
-        login_user(:athlete_user)
+        login_user(:athlete)
 
         context 'who owns the athlete_climb_log' do
           let(:athlete_climb_log) { create(:athlete_climb_log, athlete_story: current_user.athlete_story) }

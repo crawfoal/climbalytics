@@ -29,7 +29,7 @@ feature 'User views a setter_climb_log' do
 
   context 'when user has a role of setter' do
 
-    let(:setter_user) { create(:setter_user) }
+    let(:setter_user) { create(:setter) }
 
     before :each do
       visit new_user_session_path

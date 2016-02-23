@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User signs in' do
   scenario 'with valid credentials' do
-    user = create(:athlete_user)
+    user = create(:user, roles: [:athlete])
     visit new_user_session_path
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password

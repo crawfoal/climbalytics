@@ -15,14 +15,14 @@ describe SetterClimbLogsController do
       end
 
       context 'and the user is a setter' do
-        login_user(:setter_user)
+        login_user(:setter)
 
         it_behaves_like 'a request for a unauthorized action', :http_request_proc
       end
     end
 
     context 'when the user owns the setter_climb_log' do
-      login_user(:setter_user)
+      login_user(:setter)
       let(:setter_climb_log) { current_user.setter_story.setter_climb_logs.create(attributes_for(:setter_climb_log)) }
 
       it_behaves_like 'a basic edit request', :setter_climb_log

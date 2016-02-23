@@ -13,7 +13,7 @@ describe SetterClimbLogsController do
     end
 
     context 'for a logged in setter' do
-      login_user(:setter_user)
+      login_user(:setter)
 
       context 'and with valid setter_climb_log attributes' do
 

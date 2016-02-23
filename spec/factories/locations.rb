@@ -1,5 +1,9 @@
 FactoryGirl.define do
   factory :location do
-    address
+
+    # will get latitutde and longitude from default stub
+    trait :with_address do
+      address
+    end
   end
 end

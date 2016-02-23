@@ -3,6 +3,7 @@ require "#{Rails.root}/lib/data_generators"
 
 describe ClimbGenerator do
   subject(:climb_generator) { ClimbGenerator.new }
+
   describe 'climb created by #generate_one' do
     subject(:climb) { climb_generator.generate_one }
 
@@ -33,6 +34,14 @@ describe ClimbGenerator do
       it 'does not name' do
         allow(climb_generator).to receive(:include_name?).and_return(false)
         expect(climb.name).to be_nil
+      end
+    end
+
+    context 'when generator is initialized with a gym' do
+      let(:gym) { GymGenerator.new.generate_one }
+      let(:climb_generator) { ClimbGenerator.new(gym: gym) }
+      it 'belongs to a section of the gym' do
+        expect(climb.gym_section).to be_in gym.sections
       end
     end
   end

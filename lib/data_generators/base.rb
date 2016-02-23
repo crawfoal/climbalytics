@@ -3,6 +3,11 @@
 class BaseGenerator
   attr_accessor :min, :max
 
+  def initialize(args = {})
+    @min = args[:min]
+    @max = args[:max]
+  end
+
   def generate_one
     FactoryGirl.create(factory_name, *options)
   end

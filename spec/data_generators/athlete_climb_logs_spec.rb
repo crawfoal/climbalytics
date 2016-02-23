@@ -25,6 +25,10 @@ describe AthleteClimbLogGenerator do
       expect(athlete_climb_log.climb_seshes.size).to be == 2
     end
 
+    it "does not create another athlete_climb_log (from the factory's association)" do
+      expect { athlete_climb_log }.to change { AthleteClimbLog.count }.by(1)
+    end
+
     context 'with `include_*?` methods stubbed out to true' do
       it 'has a note' do
         allow(athlete_climb_log_generator).to receive(:include_note?) { true }

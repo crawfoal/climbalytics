@@ -9,6 +9,7 @@ class AthleteClimbLogGenerator < ClimbLogGenerator
   def initialize(args = {})
     super
     @climb_sesh_generator = args[:climb_sesh_generator] || ClimbSeshGenerator.new
+    @climb_generator = args[:climb_generator] || ClimbGenerator.new
   end
 
   private
@@ -19,6 +20,7 @@ class AthleteClimbLogGenerator < ClimbLogGenerator
     seshes_per_log_min = @climb_sesh_generator.min
     seshes_per_log_max = @climb_sesh_generator.max
     _climb_sesh_factory = @climb_sesh_generator.factory_name
+    _climb_factory = @climb_generator.factory_name
 
     FactoryManager.define_child_of :athlete_climb_log do
       note { Faker::Hipster.paragraph(1, false, 3) if include_note }
@@ -28,6 +30,7 @@ class AthleteClimbLogGenerator < ClimbLogGenerator
       transient do
         climb_seshes_count { Faker::Number.between(seshes_per_log_min, seshes_per_log_max) }
         climb_sesh_factory _climb_sesh_factory
+        climb_factory _climb_factory
       end
     end
   end

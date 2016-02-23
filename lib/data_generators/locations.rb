@@ -3,6 +3,7 @@ class LocationGenerator < BaseGenerator
   alias_method :rand_lat_long?, :rand_lat_long
 
   def initialize(args = {})
+    super
     @rand_lat_long = true unless args[:rand_lat_long] == false
   end
 

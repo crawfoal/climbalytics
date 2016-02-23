@@ -4,7 +4,7 @@ class UserGenerator < BaseGenerator
   def initialize(args = {})
     @min = args[:min] || 10
     @max = args[:max] || 15
-    @include_name = args[:include_name] # not required
+    @include_name = args[:include_name]
   end
 
   private
@@ -32,7 +32,7 @@ end
 class AthleteGenerator < UserGenerator
 
   def initialize(args = {})
-    super(args)
+    super
     @min = args[:min] || 20
     @max = args[:max] || 40
     @alog_generator = args[:alog_generator] || AthleteClimbLogGenerator.new
@@ -55,7 +55,7 @@ end
 
 class SetterGenerator < UserGenerator
   def initialize(args = {})
-    super(args)
+    super
     @min = args[:min] || 15
     @max = args[:max] || 20
   end

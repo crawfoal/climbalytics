@@ -4,8 +4,12 @@ FactoryGirl.define do
     # Default Attributes
     athlete_story
 
-    before(:create) do |athlete_climb_log|
-      athlete_climb_log.climb = FactoryGirl.create([:boulder, :route].sample)
+    transient do
+      climb_factory { [:boulder, :route].sample }
+    end
+
+    before(:create) do |athlete_climb_log, evaluator|
+      athlete_climb_log.climb = FactoryGirl.create(evaluator.climb_factory)
     end
     #---------------------------------------------------------------------------
 

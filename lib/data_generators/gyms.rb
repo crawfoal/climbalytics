@@ -18,6 +18,6 @@ class GymGenerator < BaseGenerator
     end
   end
   def num_sections
-    Faker::Number.between(0,5)
+    Faker::Number.between(1,5)
   end
 end

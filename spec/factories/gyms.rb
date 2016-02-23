@@ -5,7 +5,7 @@ FactoryGirl.define do
       location_factory :location
     end
 
-    name Faker::Company.name
+    name { Faker::Company.name }
     topo { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'gyms', 'topo_image.png')) }
 
     after(:build) do |gym, evaluator|

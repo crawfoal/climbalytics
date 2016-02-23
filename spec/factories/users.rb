@@ -67,7 +67,7 @@ FactoryGirl.define do
   end
 
   factory :name, class: User::Name do
-    first       Faker::Name.first_name
-    last        Faker::Name.last_name
+    first       { Faker::Name.first_name }
+    last        { Faker::Name.last_name }
   end
 end

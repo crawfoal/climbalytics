@@ -91,5 +91,10 @@ describe 'generic factories:' do
     it 'has a corresponding Geocoder stub' do
       expect(Geocoder::Lookup::Test.stubs.keys).to include location.address_geocode_format
     end
+    it 'has a random latitude and longitude' do
+      loc1 = create(:generic_location)
+      loc2 = create(:generic_location)
+      expect(loc1.latitude).to_not be_within(0.0001).of(loc2.latitude)
+    end
   end
 end

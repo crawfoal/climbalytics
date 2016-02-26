@@ -7,9 +7,7 @@ feature 'User signs in' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_on 'Log in'
-    expect(page).to have_content('Log a...')
-    expect(page).to have_content('Find a...')
-    expect(page).to have_content('Review...')
+    expect(page).to have_content('Log a climb')
   end
   scenario 'without valid credentials' do
     user = build(:user)

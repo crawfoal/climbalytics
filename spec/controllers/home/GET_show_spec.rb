@@ -10,7 +10,7 @@ describe HomeController do
 
         it 'renders their dashboard view' do
           get :show
-          expect(response).to render_template "home/dashboards/#{current_user.current_role}"
+          expect(response).to redirect_to "/#{current_user.current_role}/dashboard"
         end
       end
 

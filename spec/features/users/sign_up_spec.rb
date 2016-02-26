@@ -21,10 +21,10 @@ feature 'User signs up for an account' do
     context 'and the user selects and submits a role' do
       before :each do
         check 'athlete'
-        fill_in 'user_current_password', with: 'password'
+        # fill_in 'user_current_password', with: 'password'
         click_on 'Update'
       end
-      it { should have_content 'Log a...' }
+      it { should have_content 'Log a climb' }
     end
   end
 end

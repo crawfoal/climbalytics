@@ -59,7 +59,11 @@ class User < ActiveRecord::Base
   # ----------------------------------------------------------------------------
   has_one :athlete_story
 
+  # ----------------------------------------------------------------------------
+  # Current Location
+  # ----------------------------------------------------------------------------
+  has_one :current_location, as: :locateable, class_name: 'Location', dependent: :destroy
+  accepts_nested_attributes_for :current_location
 
   generate_validations_for :email, :current_role
-
 end

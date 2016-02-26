@@ -1,0 +1,22 @@
+@import "application";
+
+article {
+  @include make-row();
+}
+
+.col-wrapper {
+  @include make-sm-column(12);
+  @include make-md-column(4);
+}
+
+$panel-sections: log-a-climb review find;
+@import "helpers/panel_sections";
+
+#refresh-my-location {
+  @extend .btn-sm;
+}
+
+.gym-link, #find-me {
+  @extend .btn-block;
+  @extend .btn-lg;
+}

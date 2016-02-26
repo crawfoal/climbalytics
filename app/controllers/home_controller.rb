@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     if not user_signed_in?
       render 'homepage'
     elsif current_user.current_role
-      render "home/dashboards/#{current_user.current_role}"
+      redirect_to action: :show, controller: "#{current_user.current_role}/dashboards"
     else
       flash.keep
       flash[:warning] = 'Select a role to start using the site.'

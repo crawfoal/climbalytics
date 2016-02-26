@@ -2,6 +2,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
+  respond_to :json
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -19,9 +21,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    params[:user][:'_roles'] ||= []
     super do |resource|
-      params[:user][:'_roles'].each do |role|
+      params[:user][:'_roles'].try(:each) do |role|
         err_msg = resource.add_role role unless resource.has_role? role
         flash[:alert] = err_msg unless err_msg.blank? if err_msg
       end
@@ -63,4 +64,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  protected
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
 end

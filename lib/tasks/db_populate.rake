@@ -10,6 +10,10 @@ namespace :db do
 
     GymGenerator.new.generate_set
 
+    # Create a gym nearby us
+    wa = State.create!(postal_abbreviation: 'WA', full_name: 'Washington')
+    Gym.create!(name: 'Wild Walls', topo: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'gyms', 'topo_image.png')), location_attributes: { address_attributes: { line1: '202 West Second Avenue', city: 'Spokane', zip: '99201', state_id: wa.id } })
+
     Gym.all.each { |gym| generate_members_for gym }
 
   end

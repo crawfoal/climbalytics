@@ -14,7 +14,8 @@ module DevisePermittedParameters
                          :password,
                          :password_confirmation,
                          :current_password,
-                         name_attributes: [:id, :first, :last])
+                         name_attributes: [:id, :first, :last],
+                         current_location_attributes: [:id, :latitude, :longitude])
     end
   end
 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :user_accounts
   resources :gyms
   root 'home#show', via: [:get]
 

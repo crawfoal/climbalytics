@@ -25,6 +25,10 @@ describe User do
     end
   end
 
+  describe 'Associations' do
+    it { should belong_to :user_account }
+  end
+
   context 'with valid attributes' do
     subject(:user) { create(:user) }
     it { should be_valid }

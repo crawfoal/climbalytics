@@ -32,7 +32,9 @@ describe ValidationInspector do
         end
       end
       context 'the column type is decimal or float' do
-        it 'specifies true'
+        it 'specifies true' do
+          expect(Location.columns_hash['latitude'].validate_numericality_args).to be == [:latitude, {:numericality=>true, :allow_nil=>true}]
+        end
       end
     end
 

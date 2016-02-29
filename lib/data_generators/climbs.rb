@@ -1,8 +1,9 @@
 class ClimbGenerator < BaseGenerator
+  attr_accessor :gym
 
   def initialize(args = {})
     super
-    @gym = args[:gym]
+    @gym = (args[:gym] or four_fifths_of_the_time { Gym.random } or GymGenerator.new.generate_one)
   end
 
   private
@@ -35,6 +36,6 @@ class ClimbGenerator < BaseGenerator
   end
 
   def gym_section
-    @gym.try(:sections).try(:sample)
+    gym.sections.sample
   end
 end

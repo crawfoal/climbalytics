@@ -4,6 +4,14 @@ require "#{Rails.root}/lib/data_generators"
 describe ClimbGenerator do
   subject(:climb_generator) { ClimbGenerator.new }
 
+  describe '#initialize' do
+    context 'when not given a gym' do
+      it 'assigns a gym to @gym (either a new one, or chooses a random, existing gym)' do
+        expect(climb_generator.gym).to be_present
+      end
+    end
+  end
+
   describe 'climb created by #generate_one' do
     subject(:climb) { climb_generator.generate_one }
 

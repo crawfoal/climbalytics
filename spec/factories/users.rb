@@ -1,34 +1,16 @@
 FactoryGirl.define do
 
-  # Initial value is just for when we're playing around in the terminal and there are already some users defined.
-  sequence(:user_number, User.count + 1) { |n| n }
-
   factory :user do
     transient do
       roles []
-
-      user_number do
-        generate(:user_number)
-      end
-
-      email_prefix do
-        if roles.empty?
-          'user'
-        else
-          roles.join
-        end
-      end
     end
-
-    #---------------------------------------------------------------------------
-    # Default Attributes
-    email                 { "#{email_prefix}#{user_number}@example.com" }
-    password              { "password#{user_number}" }
-    password_confirmation { |u| u.password }
-    #---------------------------------------------------------------------------
 
     trait :with_name do
       name
+    end
+
+    after(:build) do |user, evaluator|
+      user.user_account = build(:user_account, roles: evaluator.roles)
     end
 
     after(:create) do |user, evaluator|

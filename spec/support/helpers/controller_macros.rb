@@ -4,7 +4,7 @@ module ControllerMacros
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       user = create(factory_name, *options)
-      sign_in user
+      sign_in user.user_account
     end
     let(:current_user) {user}
   end

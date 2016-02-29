@@ -81,6 +81,9 @@ describe AthleteGenerator do
     it 'has the correct number athlete_climb_logs' do
       expect(athlete.athlete_story.athlete_climb_logs.size).to be == 2
     end
+    it 'has an email that starts with "athlete"' do
+      expect(/^athlete/).to match athlete.email
+    end
   end
 
   describe '#factory_name' do

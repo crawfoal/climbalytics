@@ -5,7 +5,7 @@ describe IndexInspector do
     context 'for a single column' do
       context 'with the unique option' do
         context 'when the index exists' do
-          subject { User.index_exists?(:email, unique: true) }
+          subject { UserAccount.index_exists?(:email, unique: true) }
           it { should be == true }
         end
         context 'when the index does not exists' do

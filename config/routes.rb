@@ -1,23 +1,12 @@
 Rails.application.routes.draw do
 
+  devise_for :user_accounts
   resources :gyms
   root 'home#show', via: [:get]
 
-  devise_for :users, skip: :registrations
-  devise_scope :user do
-    resource :registration,
-      only: [:new, :create, :edit, :update],
-      path: 'users',
-      path_names: { new: 'sign_up' },
-      controller: 'users/registrations',
-                  as: :user_registration do
-                    get :cancel
-                  end
-  end
+  resource :user, only: [:edit, :update]
 
   resource :current_role, only: [:update]
-
-  resources :setter_climb_logs
 
   resources :athlete_climb_logs
 

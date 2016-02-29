@@ -6,4 +6,6 @@ class Location < ActiveRecord::Base
   after_validation :geocode, if: -> { address.present? and address.changed? }
 
   belongs_to :locateable, polymorphic: true
+
+  generate_validations_for :latitude, :longitude
 end

@@ -4,9 +4,9 @@ feature 'User Roles:' do
   scenario 'user switches current role', js: true do
     @user = create(:user, roles: [:athlete])
     @user.add_role :setter
-    visit new_user_session_path
+    visit new_user_account_session_path
     fill_in 'Email', with: @user.email
-    fill_in 'Password', with: @user.password
+    fill_in 'Password', with: @user.user_account.password
     click_on 'Log in'
     expect(@user.current_role).to eq 'athlete'
     click_on "Logged in as #{@user.address_me_as}"

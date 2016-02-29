@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   #-----------------------------------------------------------------------------
   # Devise
   #-----------------------------------------------------------------------------
-  before_action :authenticate_user!
+  before_action :authenticate_user_account!
 
   #-----------------------------------------------------------------------------
   # Pundit
@@ -14,13 +14,22 @@ class ApplicationController < ActionController::Base
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  protected
+  def current_user
+    current_user_account.user || current_user_account.create_user
+  end
+  def user_signed_in?
+    user_account_signed_in?
+  end
+  helper_method :current_user, :user_signed_in?
+
   private
 
   #-----------------------------------------------------------------------------
   # Devise
   #-----------------------------------------------------------------------------
   def after_sign_out_path_for(resource_or_scope)
-    new_user_session_path
+    root_path
   end
 
   #-----------------------------------------------------------------------------

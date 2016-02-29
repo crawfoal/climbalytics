@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Users::RegistrationsController, type: :controller do
-
+RSpec.describe UsersController, type: :controller do
   context 'JSON format' do
     describe '#update' do
       context 'for a logged in user' do
@@ -24,5 +23,4 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       end
     end
   end
-
 end

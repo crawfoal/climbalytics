@@ -1,15 +1,5 @@
 <%= form_for(@climb_sesh) do |f| %>
-  <% if @climb_sesh.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@climb_sesh.errors.count, "error") %> prohibited this climb_sesh from being saved:</h2>
-
-      <ul>
-      <% @climb_sesh.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "shared/error_messages", target: @climb_sesh %>
 
   <div class="field">
     <%= f.label :high_hold %><br>

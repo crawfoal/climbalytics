@@ -12,7 +12,7 @@
     &:not(.warning) {
       @extend .panel-default;
     }
-    .section-header {
+    .section-header, header {
       @extend .panel-heading;
       .section-title {
         @extend .panel-title;

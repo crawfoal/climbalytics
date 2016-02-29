@@ -1,8 +1,0 @@
-<p>
-  <strong>Picture:</strong>
-  <%= image_tag(@setter_climb_log.picture_url, :width => 600) if @setter_climb_log.picture.present? %>
-</p>
-
-<%= link_to 'Edit', edit_setter_climb_log_path(@setter_climb_log) if policy(@setter_climb_log).update? %>
-<%= link_to 'Delete', setter_climb_log_path(@setter_climb_log) if policy(@setter_climb_log).destroy? %>
-<%= link_to 'Back', setter_climb_logs_path %>

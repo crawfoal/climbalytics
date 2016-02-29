@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user_account!
 
   def show
     if not user_signed_in?
@@ -9,7 +9,7 @@ class HomeController < ApplicationController
     else
       flash.keep
       flash[:warning] = 'Select a role to start using the site.'
-      redirect_to edit_user_registration_path
+      redirect_to edit_user_path
     end
   end
 end

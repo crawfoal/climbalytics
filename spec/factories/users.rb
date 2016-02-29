@@ -10,7 +10,7 @@ FactoryGirl.define do
     end
 
     after(:build) do |user, evaluator|
-      user.user_account = create(:user_account, roles: evaluator.roles)
+      user.user_account = build(:user_account, roles: evaluator.roles)
     end
 
     after(:create) do |user, evaluator|

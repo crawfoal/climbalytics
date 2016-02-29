@@ -39,7 +39,7 @@ describe ValidationInspector do
     describe '#validate_presence_args' do
       context 'when null = false is specified for the column' do
         it 'returns true' do
-          expect(User.columns_hash['email'].validate_presence_args).to be == [:email, presence: true]
+          expect(UserAccount.columns_hash['email'].validate_presence_args).to be == [:email, presence: true]
         end
       end
 

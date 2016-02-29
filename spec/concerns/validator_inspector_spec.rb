@@ -8,7 +8,7 @@ describe ValidatorInspector do
     end
     context 'a column with some validations' do
       it 'should be an array of the corresponding validation types' do
-        expect(User.validation_types_for(:email)).to include :presence, :uniqueness
+        expect(UserAccount.validation_types_for(:email)).to include :presence, :uniqueness
       end
     end
   end

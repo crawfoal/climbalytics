@@ -1,15 +1,6 @@
 <%= form_for(@gym) do |f| %>
-  <% if @gym.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@gym.errors.count, "error") %> prohibited this gym from being saved:</h2>
-
-      <ul>
-      <% @gym.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "shared/error_messages", target: @gym %>
+  
   <section class="gym-profile-fields">
     <section class="business-details">
       <section class="basic-info">

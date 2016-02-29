@@ -1,15 +1,5 @@
 <%= form_for(@athlete_climb_log) do |f| %>
-  <% if @athlete_climb_log.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@athlete_climb_log.errors.count, "error") %> prohibited this athlete_climb_log from being saved:</h2>
-
-      <ul>
-      <% @athlete_climb_log.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "shared/error_messages", target: @athlete_climb_log %>
 
   <div class="field">
     <%= f.label :quality_rating %><br>

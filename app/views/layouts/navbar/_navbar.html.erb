@@ -8,9 +8,6 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <%= render partial: '/layouts/navbar/signed_in_user_sub_menu' %>
-        <% else %>
-          <li><%= link_to 'Sign up', new_user_registration_path, :class => 'navbar-link' %></li>
-          <li><%= link_to 'Login', new_user_session_path, :class => 'navbar-link' %></li>
         <% end %>
       </ul>
     </div>

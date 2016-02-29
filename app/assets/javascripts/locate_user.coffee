@@ -10,7 +10,7 @@ geolocSuccess = (position) ->
   }
   $.ajax({
     type: 'PATCH',
-    url: Routes.user_registration_path() + '.json',
+    url: Routes.user_path() + '.json',
     contentType: 'application/json',
     data: JSON.stringify({user: user})
     }).done (message) ->

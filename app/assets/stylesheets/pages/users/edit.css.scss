@@ -14,9 +14,12 @@ $panel-sections: login-credentials roles name;
 
 .form-footer {
   @include make-row();
+  .btn {
+    @extend .btn-block;
+  }
   .submit-fields {
     @include make-sm-column(12);
-    @include make-md-column(6);
-    @include make-md-column-offset(3);
+    @include make-md-column(4);
+    @include make-md-column-offset(4);
   }
 }

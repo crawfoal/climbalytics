@@ -1,14 +1,16 @@
 FactoryGirl.define do
 
   factory :user do
-    user_account
-
     transient do
       roles []
     end
 
     trait :with_name do
       name
+    end
+
+    after(:build) do |user, evaluator|
+      user.user_account = create(:user_account, roles: evaluator.roles)
     end
 
     after(:create) do |user, evaluator|

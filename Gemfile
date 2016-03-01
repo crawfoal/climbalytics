@@ -35,6 +35,7 @@ gem 'cocoon'
 gem 'geocoder'
 gem 'resque', require: "resque/server"
 gem 'js-routes'
+gem 'inline_svg'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

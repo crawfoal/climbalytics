@@ -22,7 +22,7 @@ $panel-sections: basic-info address gym-layout;
     @include make-sm-column-offset(4);
     @include make-md-column(2);
     @include make-md-column-offset(5);
-    .btn {
+    .btn-default {
       @extend .btn-block;
     }
   }

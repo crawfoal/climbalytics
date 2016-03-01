@@ -14,7 +14,7 @@ $panel-sections: login-credentials roles name;
 
 .form-footer {
   @include make-row();
-  .btn {
+  .btn-default {
     @extend .btn-block;
   }
   .submit-fields {

@@ -1,6 +1,6 @@
 <%= form_for(@gym) do |f| %>
   <%= render partial: "shared/error_messages", target: @gym %>
-  
+
   <section class="gym-profile-fields">
     <section class="business-details">
       <section class="basic-info">
@@ -72,7 +72,7 @@
 
   <section class="form-footer">
     <div class="submit-fields">
-      <%= f.submit 'Save', class: 'btn' %>
+      <%= f.submit 'Save', class: 'btn-default' %>
     </div>
   </section>
 <% end %>

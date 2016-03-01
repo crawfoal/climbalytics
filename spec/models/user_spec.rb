@@ -74,6 +74,12 @@ describe User do
         end
       end
     end
+
+    describe '#account' do
+      it "returns the user_account" do
+        expect(user.account).to be == user.user_account
+      end
+    end
   end
 
 end

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   belongs_to :user_account
   delegate :email, to: :user_account
+  alias_method :account, :user_account
 
   # ----------------------------------------------------------------------------
   # Rolify

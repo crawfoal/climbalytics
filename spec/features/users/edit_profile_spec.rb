@@ -6,7 +6,7 @@ feature 'User edits profile:' do
     @state = create(:state)
     visit new_user_account_session_path
     fill_in 'Email', with: @user.email
-    fill_in 'Password', with: @user.user_account.password
+    fill_in 'Password', with: @user.account.password
     click_on 'Log in'
     click_on 'Edit profile'
   end

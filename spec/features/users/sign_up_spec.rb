@@ -23,7 +23,7 @@ feature 'User signs up for an account' do
         check 'athlete'
         click_on 'Update'
       end
-      it { should have_content 'Log a climb' }
+      it { should have_css '.log-a-climb' }
     end
   end
 end

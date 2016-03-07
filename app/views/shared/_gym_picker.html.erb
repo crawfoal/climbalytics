@@ -2,7 +2,7 @@
   <% if current_user.current_location %>
     Near you:
     <%= link_to('#', data: { behavior: 'locate-user', user_id: current_user.id }, role: 'button', class: 'btn-default', id: 'refresh-my-location') do %>
-      <span class="glyphicon glyphicon-refresh"></span>
+      <i class="fa fa-refresh fa-lg"></i>
     <% end %>
     <% gyms_near(current_user).each do |gym| %>
       <%= link_to gym.name, '#', role: 'button', class: 'btn-default gym-link' %>

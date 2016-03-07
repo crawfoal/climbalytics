@@ -12,13 +12,13 @@ Rails.application.routes.draw do
 
   resources :climb_seshes
 
-  namespace :athlete do
-    resource :dashboard, only: [:show]
-  end
+  resource :athlete_dashboard, only: [:show]
 
-  namespace :setter do
-    resource :dashboard, only: [:show]
-  end
+  resource :setter_dashboard, only: [:show]
+
+  resource :gym_picker, only: [:show]
+
+  resource :flash, only: [:show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

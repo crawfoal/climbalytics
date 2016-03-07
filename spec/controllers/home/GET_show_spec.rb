@@ -21,7 +21,7 @@ describe HomeController do
 
         it 'renders their dashboard view' do
           get :show
-          expect(response).to redirect_to "/#{current_user.current_role}/dashboard"
+          expect(response).to redirect_to athlete_dashboard_path
         end
       end
 

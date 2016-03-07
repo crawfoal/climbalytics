@@ -7,7 +7,7 @@ feature 'User signs in' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.user_account.password
     click_on 'Log in'
-    expect(page).to have_content('Log a climb')
+    expect(page).to have_css('.log-a-climb')
   end
   scenario 'without valid credentials (i.e. not signed up yet)' do
     user = build(:user, user_account: build(:user_account))

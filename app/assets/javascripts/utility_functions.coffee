@@ -1,10 +1,10 @@
-@getFlash = (flash_options) ->
+Climbalytics.getFlash = (flash_options) ->
   $.get(
     Routes.flash_path(),
     flash_options
   )
 
-@updateUserRecord = (user_attributes) ->
+Climbalytics.updateUserRecord = (user_attributes) ->
   $.ajax({
     type: 'PATCH',
     url: Routes.user_path() + '.json',

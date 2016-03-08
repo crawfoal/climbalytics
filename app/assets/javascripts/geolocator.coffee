@@ -6,11 +6,11 @@ class Climbalytics.Geolocator
     @current_location =
       latitude: position.coords.latitude,
       longitude: position.coords.longitude
-    updateUserRecord(current_location_attributes: @current_location)
+    Climbalytics.updateUserRecord(current_location_attributes: @current_location)
     @success_callback()
 
   error: =>
-    getFlash(
+    Climbalytics.getFlash(
       alert_style: 'danger',
       message: 'We were not able to find your location. Either this webpage does not have permission to access your location, or your browser does not support geolocation.'
     ).done (result) =>

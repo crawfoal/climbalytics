@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resource :setter_dashboard, only: [:show]
 
-  resource :gym_picker, only: [:show]
+  resource :nearby_gyms, only: [:show]
 
   resource :flash, only: [:show]
 

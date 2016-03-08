@@ -1,8 +1,8 @@
 # This needs a different name. It encapsulates the behavior of updating the users current location, and reloading the nearby gyms. So maybe it needs to be split into two classes.
-class Climbalytics.GymPicker
+class Climbalytics.NearbyGyms
   constructor: (@button) ->
     @refreshIcon = @button.find('.fa-refresh')
-    @enclosingElement = $('.gym-picker .section-body')
+    @enclosingElement = $('.gym-picker .section-body .nearby-gyms')
     @geolocator = new Climbalytics.Geolocator(@reloadPartial, @removeLoadingStyles)
 
   isLoading: =>
@@ -23,7 +23,7 @@ class Climbalytics.GymPicker
     @refreshIcon.removeClass('fa-spin')
 
   reloadPartial: =>
-    $.get(Routes.gym_picker_path(), (result) =>
+    $.get(Routes.nearby_gyms_path(), (result) =>
       @enclosingElement.html(result)
       console.log('Nearby gyms updated at ' + Date($.now))
     )
@@ -31,7 +31,7 @@ class Climbalytics.GymPicker
 $(document).on 'page:change', ->
   $('.gym-picker').on 'click', '[data-behavior~=locate-user]', (e) ->
     e.preventDefault()
-    gymPicker = new Climbalytics.GymPicker $(this)
-    return if gymPicker.isLoading()
-    gymPicker.applyLoadingStyles()
-    gymPicker.geolocator.run()
+    nearbyGyms = new Climbalytics.NearbyGyms $(this)
+    return if nearbyGyms.isLoading()
+    nearbyGyms.applyLoadingStyles()
+    nearbyGyms.geolocator.run()

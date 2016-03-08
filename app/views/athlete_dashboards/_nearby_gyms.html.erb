@@ -1,0 +1,11 @@
+<% if current_user.current_location %>
+  Near you:
+  <%= link_to('#', data: { behavior: 'locate-user', toggle: 'tooltip', placement: 'bottom' }, role: 'button', class: 'btn-default', id: 'refresh-my-location', title: 'Update my current location') do %>
+    <i class="fa fa-refresh fa-lg"></i>
+  <% end %>
+  <% gyms_near(current_user).each do |gym| %>
+    <%= link_to gym.name, '#', role: 'button', class: 'btn-default gym-link' %>
+  <% end %>
+<% else %>
+<%= link_to 'Find gyms near me', '#', data: { behavior: 'locate-user' }, role: 'button', class: 'btn-default', id: 'find-me'%>
+<% end %>

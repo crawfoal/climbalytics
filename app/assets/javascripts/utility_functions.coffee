@@ -5,7 +5,6 @@
   )
 
 @updateUserRecord = (user_attributes) ->
-  console.log(user_attributes)
   $.ajax({
     type: 'PATCH',
     url: Routes.user_path() + '.json',

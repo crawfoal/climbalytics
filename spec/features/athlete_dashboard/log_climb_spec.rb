@@ -26,6 +26,9 @@ feature 'Athlete logs a climb from their dashboard', js: true do
 
       scenario 'the user clicks on a nearby gym', :focus do
         click_on 'Wild Walls'
+        expect(page).to have_content 'Select a climb'
+        expect(page).to have_content 'Wild Walls'
+        expect(page).to have_css '.topo'
       end
     end
 

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resource :nearby_gyms, only: [:show]
 
+  resources :route_pickers, only: [:show]
+
   resource :flash, only: [:show]
 
   # The priority is based upon order of creation: first created -> highest priority.

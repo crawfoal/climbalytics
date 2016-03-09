@@ -11,25 +11,7 @@ namespace :db do
     GymGenerator.new.generate_set
 
     # Create a gym nearby us
-    wa = State.create!(
-      postal_abbreviation: 'WA',
-      full_name: 'Washington'
-    )
-    ww = Gym.create!(
-      name: 'Wild Walls',
-      topo: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'gyms', 'topo_image.png')),
-      location_attributes: {
-        address_attributes: {
-          line1: '202 West Second Avenue',
-          city: 'Spokane',
-          zip: '99201',
-          state_id: wa.id
-        }
-      }
-    )
-    ww.location.latitude = 47.654717
-    ww.location.longitude = -117.415597
-    ww.save!
+    ww = FactoryGirl.create(:wild_walls)
     Faker::Number.between(1,5).times { ww.sections << FactoryGirl.create(:gym_section) }
 
     generate_members_for Gym.all

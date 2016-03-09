@@ -17,6 +17,12 @@ FactoryGirl.define do
       topo nil
       location nil
     end
-  end
 
+    factory :wild_walls do
+      name 'Wild Walls'
+      transient do
+        location_factory :ww_location
+      end
+    end
+  end
 end

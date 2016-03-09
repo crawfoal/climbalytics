@@ -5,5 +5,9 @@ FactoryGirl.define do
     trait :with_address do
       address
     end
+
+    factory :ww_location do
+      association :address, factory: :ww_address
+    end
   end
 end

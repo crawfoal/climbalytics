@@ -15,12 +15,17 @@ feature 'Athlete logs a climb from their dashboard', js: true do
 
     context 'The browser allows/supports geolocation' do
       before :each do
-        page.execute_script "navigator.geolocation.getCurrentPosition = function(success) { success({coords: {latitude: 47.654717, longitude: -117.415597}}); }"
+        create(:wild_walls)
+        page.execute_script "navigator.geolocation.getCurrentPosition = function(success) { success({coords: {latitude: 47.627867, longitude: -117.662724}}); }"
+        click_on 'find-me'
       end
 
-      scenario 'The user triggers geolocation' do
-        click_on 'find-me'
+      scenario 'the user can refresh their location' do
         expect(page).to have_link 'refresh-my-location'
+      end
+
+      scenario 'the user clicks on a nearby gym', :focus do
+        click_on 'Wild Walls'
       end
     end
 

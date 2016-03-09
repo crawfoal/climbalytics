@@ -13,3 +13,15 @@ Geocoder::Lookup::Test.set_default_stub(
     }
   ]
 )
+
+Geocoder::Lookup::Test.add_stub(
+   "202 West Second Avenue, Spokane, WA, 99201", [{
+    'latitude'      => 47.654717,
+    'longitude'     => -117.415597,
+    'address'       => "202 West Second Avenue, Spokane, WA, 99201",
+    'state'         => 'Washington',
+    'state_code'    => 'WA',
+    'country'       => 'United States',
+    'country_code'  => 'US'
+  }]
+)

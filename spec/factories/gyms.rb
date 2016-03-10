@@ -23,6 +23,9 @@ FactoryGirl.define do
       transient do
         location_factory :ww_location
       end
+      after :create do |gym|
+        Faker::Number.between(1,5).times { gym.sections << create(:gym_section) }
+      end
     end
   end
 end

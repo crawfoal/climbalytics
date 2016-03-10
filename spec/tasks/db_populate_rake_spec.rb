@@ -67,4 +67,14 @@ describe 'db:populate', :transaction_group do
     expect(Route.count).to be > 0
   end
 
+  describe 'Wild Walls' do
+    let(:wild_walls) { Gym.find_by name: 'Wild Walls' }
+    it 'exists' do
+      expect(wild_walls).to be_present
+    end
+    it 'has some sections' do
+      expect(wild_walls.sections).to_not be_empty
+    end
+  end
+
 end

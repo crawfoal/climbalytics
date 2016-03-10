@@ -12,7 +12,6 @@ namespace :db do
 
     # Create a gym nearby us
     ww = FactoryGirl.create(:wild_walls)
-    Faker::Number.between(1,5).times { ww.sections << FactoryGirl.create(:gym_section) }
 
     generate_members_for Gym.all
 

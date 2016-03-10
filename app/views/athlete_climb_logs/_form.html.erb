@@ -1,5 +1,5 @@
 <%= form_for(@athlete_climb_log) do |f| %>
-  <%= render partial: "shared/error_messages", target: @athlete_climb_log %>
+  <%= render partial: "shared/error_messages", locals: {target: @athlete_climb_log} %>
 
   <div class="field">
     <%= f.label :quality_rating %><br>

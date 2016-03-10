@@ -14,11 +14,12 @@ class AthleteClimbLogsController < ApplicationController
   end
 
   # GET /athlete_climb_logs/new
+  # POST /athlete_climb_log/new
   def new
     authorize AthleteClimbLog
-    @athlete_climb_log = AthleteClimbLog.new
-    @athlete_climb_log.build_climb
-    @athlete_climb_log.climb_seshes.build
+    @athlete_climb_log = AthleteClimbLog.new(form_new_presets)
+    @athlete_climb_log.build_climb unless @athlete_climb_log.climb.present?
+    @athlete_climb_log.climb_seshes.build unless @athlete_climb_log.climb_seshes.present?
   end
 
   # GET /athlete_climb_logs/1/edit
@@ -78,5 +79,10 @@ class AthleteClimbLogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def athlete_climb_log_params
       params.require(:athlete_climb_log).permit(:quality_rating, :note, :project, :athlete_story_id, :setter_climb_log_id, climb_attributes: [:name, :moves_count, :type, :grade])
+    end
+
+    # Don't want to require that anything is passed in (obviously GET requests to #new won't pass anything), but still want to filter stuff out, so we need a separate function than the standard one above.
+    def form_new_presets
+      params[:athlete_climb_log].try(:permit, climb_attributes: [:gym_section_id])
     end
 end

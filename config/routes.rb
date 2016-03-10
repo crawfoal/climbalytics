@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resource :current_role, only: [:update]
 
   resources :athlete_climb_logs
+  post 'athlete_climb_logs/new', to: 'athlete_climb_logs#new', as: ''
 
   resources :climb_seshes
 

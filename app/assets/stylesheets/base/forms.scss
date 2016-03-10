@@ -3,7 +3,7 @@
   margin-bottom: $line-height-computed;
 }
 
-input:not(.btn):not([type="checkbox"]):not([type="submit"]):not([type="file"]), textarea, select {
+input:not(.btn):not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="file"]), textarea, select {
   @extend .form-control;
 }
 

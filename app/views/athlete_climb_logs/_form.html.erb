@@ -1,17 +1,18 @@
-<%= form_for(@athlete_climb_log) do |f| %>
+<%= form_for @athlete_climb_log do |f| %>
   <%= render partial: "shared/error_messages", locals: {target: @athlete_climb_log} %>
 
-  <div class="field">
+  <div class="form-group">
+    <%= f.label :project do %>
+      <%= f.check_box :project %> Project
+    <% end %>
+  </div>
+  <div class="form-group">
     <%= f.label :quality_rating %><br>
     <%= f.number_field :quality_rating, min: 1, max: 5, step: 1 %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :note %><br>
     <%= f.text_area :note %>
-  </div>
-  <div class="field">
-    <%= f.label :project %><br>
-    <%= f.check_box :project %>
   </div>
 
   <%= f.fields_for :climb do |ff| %>
@@ -19,6 +20,6 @@
   <% end %>
 
   <div class="actions">
-    <%= submit_tag 'Save' %>
+    <%= f.submit 'Save' %>
   </div>
 <% end %>

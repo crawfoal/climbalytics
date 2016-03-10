@@ -1,29 +1,29 @@
-<%# Make the following radio buttons appear as toggle buttons as is shown at http://getbootstrap.com/javascript/#buttons-checkbox-radio. Alternatively, use a select box. %>
-<div class="field">
-  <%= climb_form.radio_button :type, :Boulder %>
-  <%= climb_form.label :type, 'Boulder', value: 'Boulder' %>
+<div class="form-group">
+  <%= climb_form.label :name %>
+  <%= climb_form.text_field :name %>
 </div>
-<div class="field">
-  <%= climb_form.radio_button :type, :Route %>
-  <%= climb_form.label :type, 'Route', value: 'Route' %>
+
+<%# Make the following radio buttons appear as toggle buttons as is shown at http://getbootstrap.com/javascript/#buttons-checkbox-radio. Alternatively, use a select box. %>
+<div class="form-group">
+  <%= climb_form.label 'Climb type' %><br />
+  <div class="climb-type btn-group" data-toggle="buttons">
+    <%= climb_form.label :type, value: 'Boulder', class: 'btn' do %>
+      <%= climb_form.radio_button :type, :Boulder %>Boulder
+    <% end %>
+    <%= climb_form.label :type, value: 'Route', class: 'btn' do %>
+      <%= climb_form.radio_button :type, :Route %>Route
+    <% end %>
+  </div>
 </div>
 
 <%# Use jQuery to switch select options when the above radio is toggled. Make sure to store the old options in the data-options-toggle attribute in case they switch back and forth. Could also store them each in their own data attribute, e.g. 'data-boulder-grades' and 'data-route-grades'. Consider having no options populated unless one of the radio buttons is selected. %>
-<div class="field">
+<div class="form-group grade">
   <%= climb_form.label :grade %>
-  <% if climb_form.object.type == "Route" %>
-    <%= climb_form.select :grade, Route.grades.keys, { include_blank: true }, {'data-options-toggle': "#{Boulder.grades.keys}"} %>
-  <% else %>
-    <%= climb_form.select :grade, Boulder.grades.keys, { include_blank: true }, {'data-options-toggle': "#{Route.grades.keys}"} %>
-  <% end %>
+  <%= climb_form.select :grade, Route.grades.keys, { include_blank: true }, {id: 'route_grades'} %>
+  <%= climb_form.select :grade, Boulder.grades.keys, { include_blank: true }, {id: 'boulder_grades'} %>
 </div>
 
-<div class="field">
+<div class="form-group">
   <%= climb_form.label :moves_count, 'Number of moves' %>
   <%= climb_form.number_field :moves_count, min: 1, step: 1 %>
-</div>
-
-<div class="field">
-  <%= climb_form.label :name %>
-  <%= climb_form.text_field :name %>
 </div>

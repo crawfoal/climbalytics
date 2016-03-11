@@ -24,7 +24,18 @@ FactoryGirl.define do
         location_factory :ww_location
       end
       after :create do |gym|
-        Faker::Number.between(1,5).times { gym.sections << create(:gym_section) }
+        [
+          'Slab',
+          'Back wall',
+          'Gentle overhang',
+          'The vert',
+          'The 45',
+          'The cave',
+          'Left of the cave',
+          'Setter cave exterior'
+        ].each do |name|
+          gym.sections << create(:gym_section, name: name)
+        end
       end
     end
   end

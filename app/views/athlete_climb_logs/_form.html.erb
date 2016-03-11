@@ -1,23 +1,51 @@
 <%= form_for @athlete_climb_log do |f| %>
   <%= render partial: "shared/error_messages", locals: {target: @athlete_climb_log} %>
 
-  <div class="form-group">
-    <%= f.label :project do %>
-      <%= f.check_box :project %> Project
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.label :quality_rating %><br>
-    <%= f.number_field :quality_rating, min: 1, max: 5, step: 1 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :note %><br>
-    <%= f.text_area :note %>
-  </div>
+  <section class="athlete-climb-log-fields">
+    <div class="col">
+      <section class="log-details">
+        <div class="section-header">
+          <h2 class="section-title">
+            Log Details
+          </h2>
+        </div>
+        <div class="section-body">
+          <div class="form-group">
+            <%= f.label :project do %>
+              <%= f.check_box :project %> Project
+            <% end %>
+          </div>
+          <div class="form-group">
+            <%= f.label :quality_rating %><br>
+            <%= f.number_field :quality_rating, min: 1, max: 5, step: 1 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :note %><br>
+            <%= f.text_area :note %>
+          </div>
+        </div>
+      </section>
+    </div>
 
-  <%= f.fields_for :climb do |ff| %>
-    <%= render partial: 'climbs/form', locals: { climb_form: ff } %>
-  <% end %>
+    <div class="col">
+      <section class="climb-details">
+        <div class="section-header">
+          <h2 class="section-title">
+            Climb Details
+          </h2>
+        </div>
+        <div class="section-body">
+          <%= f.fields_for :climb do |ff| %>
+            <%= render partial: 'climbs/form', locals: { climb_form: ff } %>
+          <% end %>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="climb-seshes">
+
+  </section>
 
   <div class="actions">
     <%= f.submit 'Save' %>

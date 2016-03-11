@@ -14,3 +14,14 @@
   @extend .btn;
   @extend .btn-default;
 }
+
+$panel-sections: log-details, climb-details;
+@import "helpers/panel_sections";
+
+.athlete-climb-log-fields {
+  @include make-row();
+  .col {
+    @include make-sm-column(12);
+    @include make-md-column(6);
+  }
+}

@@ -44,7 +44,14 @@
   </section>
 
   <section class="climb-seshes">
-
+    <div class="section-header">
+      <h2 class="section-title">
+        Seshes
+      </h2>
+    </div>
+    <div class="section-body">
+      <%= render partial: 'climb_seshes/index', locals: {climb_seshes: @athlete_climb_log.climb_seshes} %>
+    </div>
   </section>
 
   <div class="actions">

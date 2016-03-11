@@ -1,0 +1,21 @@
+<% if climb_seshes %>
+  <table>
+    <thead>
+      <tr>
+        <th class="high_hold">High hold</th>
+        <th class="note">Note</th>
+        <th class="delete"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% climb_seshes.each do |climb_sesh| %>
+        <tr>
+          <td class="high_hold"><%= climb_sesh.high_hold %></td>
+          <td class="note"><%= climb_sesh.note %></td>
+          <td class="delete"><%= link_to 'Destroy', climb_sesh, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

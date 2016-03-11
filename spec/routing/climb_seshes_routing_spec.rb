@@ -3,10 +3,6 @@ require "rails_helper"
 RSpec.describe ClimbSeshesController, type: :routing do
   describe "routing" do
 
-    it "routes to #index" do
-      expect(:get => "/climb_seshes").to route_to("climb_seshes#index")
-    end
-
     it "routes to #new" do
       expect(:get => "/climb_seshes/new").to route_to("climb_seshes#new")
     end

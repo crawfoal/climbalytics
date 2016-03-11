@@ -1,12 +1,6 @@
 class ClimbSeshesController < ApplicationController
   before_action :set_climb_sesh, only: [:show, :edit, :update, :destroy]
 
-  # GET /climb_seshes
-  # GET /climb_seshes.json
-  def index
-    @climb_seshes = ClimbSesh.all
-  end
-
   # GET /climb_seshes/new
   def new
     @climb_sesh = ClimbSesh.new

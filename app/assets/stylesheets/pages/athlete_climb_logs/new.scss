@@ -15,7 +15,7 @@
   @extend .btn-default;
 }
 
-$panel-sections: log-details, climb-details;
+$panel-sections: log-details, climb-details, climb-seshes;
 @import "helpers/panel_sections";
 
 .athlete-climb-log-fields {
@@ -23,5 +23,23 @@ $panel-sections: log-details, climb-details;
   .col {
     @include make-sm-column(12);
     @include make-md-column(6);
+  }
+}
+
+.climb-seshes {
+  table {
+    table-layout: fixed;
+    @extend .table;
+    @extend .table-hover;
+    @extend .table-condensed;
+    .high_hold {
+      width: 10%;
+    }
+    .delete {
+      width: 10%;
+      a {
+        @extend .pull-right;
+      }
+    }
   }
 }

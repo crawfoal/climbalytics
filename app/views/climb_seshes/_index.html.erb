@@ -14,7 +14,11 @@
         <tr>
           <td class="high_hold"><%= climb_sesh.high_hold %></td>
           <td class="note"><%= climb_sesh.note %></td>
-          <td class="delete"><%= link_to 'Destroy', climb_sesh, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="delete">
+            <%= link_to climb_sesh, remote: true, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-remove"></i>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

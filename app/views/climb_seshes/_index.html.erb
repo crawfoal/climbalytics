@@ -1,4 +1,4 @@
-<% if climb_seshes %>
+<% if climb_seshes and climb_seshes.any?(&:persisted?) %>
   <table>
     <thead>
       <tr>
@@ -10,6 +10,7 @@
 
     <tbody>
       <% climb_seshes.each do |climb_sesh| %>
+        <% next if climb_sesh.new_record? %>
         <tr>
           <td class="high_hold"><%= climb_sesh.high_hold %></td>
           <td class="note"><%= climb_sesh.note %></td>

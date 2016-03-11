@@ -36,7 +36,7 @@
         </div>
         <div class="section-body">
           <%= f.fields_for :climb do |ff| %>
-            <%= render partial: 'climbs/form', locals: { climb_form: ff } %>
+            <%= render partial: 'climbs/form', locals: { climb_form: ff, climb: @athlete_climb_log.climb } %>
           <% end %>
         </div>
       </section>

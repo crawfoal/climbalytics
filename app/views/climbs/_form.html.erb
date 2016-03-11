@@ -1,3 +1,8 @@
+<% if (gym = climb.try(:gym)) %>
+  <%= climb_form.collection_select :gym_section_id, gym.sections, :id, :name %>
+  <%= image_tag gym.topo_url.to_s %>
+<% end %>
+
 <div class="form-group">
   <%= climb_form.label :name %>
   <%= climb_form.text_field :name %>

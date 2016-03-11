@@ -27,12 +27,12 @@ describe 'db:populate', :transaction_group do
   end
   describe 'each generated gym' do
     it 'has a location' do
-      Gym.all.each do |gym|
+      Gym.find_each do |gym|
         expect(gym.location).to be_present
       end
     end
     it 'has an address' do
-      Gym.all.each do |gym|
+      Gym.find_each do |gym|
         expect(gym.location.address).to be_present
       end
     end
@@ -55,7 +55,7 @@ describe 'db:populate', :transaction_group do
   end
   describe 'each generated climb' do
     it 'belongs to a gym section' do
-      Climb.all.each do |climb|
+      Climb.find_each do |climb|
         expect(climb.gym_section).to be_present
       end
     end

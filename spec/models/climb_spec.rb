@@ -40,4 +40,23 @@ RSpec.describe Climb, type: :model do
       end
     end
   end
+
+  describe '#gym' do
+    context 'for a climb with an associated gym_section' do
+      let(:ww) { create(:wild_walls) }
+      let(:climb) { create(:boulder, gym_section: ww.sections.sample) }
+
+      it "returns the gym that the climb's section belongs to" do
+        expect(climb.gym).to be == ww
+      end
+    end
+
+    context 'for a climb without an associated gym_section' do
+      let(:climb) { create(:boulder) }
+
+      it 'returns nil' do
+        expect(climb.gym).to be_nil
+      end
+    end
+  end
 end

@@ -3,6 +3,10 @@ class Climb < ActiveRecord::Base
   validates_presence_of :type
 
   belongs_to :gym_section
+  # For now, only define the getter method for the associated gym; not using a `has_one :through` association because it doesn't make sense to create/build a gym from an instance of a climb. At some point, we might want to define a setter method as well, but there is no use case yet.
+  def gym
+    gym_section.try(:gym)
+  end
 
   def grade
     unless type.blank?

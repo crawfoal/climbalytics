@@ -45,7 +45,7 @@ class ClimbSeshesController < ApplicationController
   def destroy
     @climb_sesh.destroy
     respond_to do |format|
-      format.html { redirect_to climb_seshes_url, notice: 'Climb sesh was successfully destroyed.' }
+      format.html { render nothing: true }
       format.json { head :no_content }
     end
   end

@@ -1,5 +1,5 @@
 <% if climb_seshes and climb_seshes.any?(&:persisted?) %>
-  <table>
+  <table id="climb_seshes_index_table">
     <thead>
       <tr>
         <th class="high_hold">High hold</th>
@@ -14,7 +14,7 @@
         <tr>
           <td class="high_hold"><%= climb_sesh.high_hold %></td>
           <td class="note"><%= climb_sesh.note %></td>
-          <td class="delete"><%= link_to 'Destroy', climb_sesh, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="delete"><%= link_to 'Destroy', climb_sesh, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>

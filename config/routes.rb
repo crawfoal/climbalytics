@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :athlete_climb_logs
   post 'athlete_climb_logs/new', to: 'athlete_climb_logs#new', as: ''
 
-  resources :climb_seshes
+  resources :climb_seshes, only: [:new, :create, :edit, :update, :destroy, :index]
 
   resource :athlete_dashboard, only: [:show]
 

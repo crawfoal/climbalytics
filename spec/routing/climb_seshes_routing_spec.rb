@@ -11,10 +11,6 @@ RSpec.describe ClimbSeshesController, type: :routing do
       expect(:get => "/climb_seshes/new").to route_to("climb_seshes#new")
     end
 
-    it "routes to #show" do
-      expect(:get => "/climb_seshes/1").to route_to("climb_seshes#show", :id => "1")
-    end
-
     it "routes to #edit" do
       expect(:get => "/climb_seshes/1/edit").to route_to("climb_seshes#edit", :id => "1")
     end

@@ -7,11 +7,6 @@ class ClimbSeshesController < ApplicationController
     @climb_seshes = ClimbSesh.all
   end
 
-  # GET /climb_seshes/1
-  # GET /climb_seshes/1.json
-  def show
-  end
-
   # GET /climb_seshes/new
   def new
     @climb_sesh = ClimbSesh.new

@@ -4,7 +4,9 @@ class AthleteClimbLogsController < ApplicationController
   # GET /athlete_climb_logs
   # GET /athlete_climb_logs.json
   def index
-    @athlete_climb_logs = AthleteClimbLog.all
+    if current_user.athlete_story
+      @athlete_climb_logs = AthleteClimbLog.where athlete_story: current_user.athlete_story
+    end
   end
 
   # GET /athlete_climb_logs/1

@@ -1,5 +1,5 @@
 <%= form_for(@gym) do |f| %>
-  <%= render partial: "shared/error_messages", target: @gym %>
+  <%= render partial: "shared/error_messages", locals: {target: @gym} %>
 
   <section class="gym-profile-fields">
     <section class="business-details">

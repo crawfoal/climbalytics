@@ -6,3 +6,6 @@ $(document).on 'page:change', ->
       message: 'Sesh successfully deleted.'
     ).done (result) =>
       $('.page-content').before(result)
+
+  if $('#climb_seshes_index_table tr').length == 1
+    $('a.add_fields').trigger 'click'

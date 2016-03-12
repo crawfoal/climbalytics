@@ -1,26 +1,23 @@
-<% if climb_seshes and climb_seshes.any?(&:persisted?) %>
-  <table id="climb_seshes_index_table">
-    <thead>
-      <tr>
-        <th class="high_hold">High hold</th>
-        <th class="note">Note</th>
-        <th class="delete"></th>
-      </tr>
-    </thead>
+<table id="climb_seshes_index_table">
+  <thead>
+    <tr>
+      <th class="high-hold">High hold</th>
+      <th class="note">Note</th>
+      <th class="delete"></th>
+    </tr>
+  </thead>
 
-    <tbody>
-      <% climb_seshes.each do |climb_sesh| %>
-        <% next if climb_sesh.new_record? %>
-        <tr>
-          <td class="high_hold"><%= climb_sesh.high_hold %></td>
-          <td class="note"><%= climb_sesh.note %></td>
-          <td class="delete">
-            <%= link_to climb_sesh, remote: true, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <i class="fa fa-remove"></i>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+  <tbody>
+    <% climb_seshes.each do |climb_sesh| %>
+      <tr>
+        <td class="high-hold"><%= climb_sesh.high_hold %></td>
+        <td class="note"><%= climb_sesh.note %></td>
+        <td class="delete">
+          <%= link_to climb_sesh, remote: true, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-remove"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

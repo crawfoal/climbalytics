@@ -32,14 +32,19 @@ $panel-sections: log-details, climb-details, climb-seshes;
     @extend .table;
     @extend .table-hover;
     @extend .table-condensed;
-    .high_hold {
+    .high-hold {
       width: 10%;
+    }
+    td.high-hold {
+      text-align: right;
     }
     .delete {
       width: 10%;
-      a {
-        @extend .pull-right;
-      }
+      text-align: right;
+      vertical-align: middle;
+    }
+    textarea {
+      resize: vertical;
     }
   }
 }

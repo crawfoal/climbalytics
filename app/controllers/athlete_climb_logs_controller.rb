@@ -21,7 +21,6 @@ class AthleteClimbLogsController < ApplicationController
     authorize AthleteClimbLog
     @athlete_climb_log = AthleteClimbLog.new(form_new_presets)
     @athlete_climb_log.build_climb unless @athlete_climb_log.climb.present?
-    @athlete_climb_log.climb_seshes.build unless @athlete_climb_log.climb_seshes.present?
   end
 
   # GET /athlete_climb_logs/1/edit

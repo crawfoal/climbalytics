@@ -41,4 +41,25 @@ $panel-sections: gym-picker, route-picker;
     @extend .btn-block;
     @extend .btn-default;
   }
+
+  .climb-links {
+    width: 100%;
+    @extend .btn-group;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: $form-group-margin-bottom;
+    a {
+      @extend .btn;
+      @extend .btn-default;
+      @extend .btn-xs;
+      border-radius: 0px;
+      width: 20%;
+    }
+    a:nth-child(n+6) {
+      margin-top: -1px;
+    }
+    a:nth-child(5n+6) {
+      margin-left: 0px;
+    }
+  }
 }

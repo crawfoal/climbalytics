@@ -9,7 +9,10 @@
   <%= image_tag @gym.topo_url.to_s, class: 'topo' %>
 
   Climbs in selected section:
+  <div class="climb-links"></div>
   <%# This is where we should render the list of the climbs for the selected section. It should look kinda like a table, with the climb's grade listed, the color as the background for the row, and the climb's name listed as well (if applicable). Each row should be clickable. When a climb is clicked, it will take the user to a form to fill out the for the athlete climb log. If they have already started a log for this climb, everything will pull in automatically, and the focus will jump to the new row in the climb sesh part of the athlete climb log form. %>
+
+  Or...
 
   <%= f.submit 'New climb', role: 'button' %>
 

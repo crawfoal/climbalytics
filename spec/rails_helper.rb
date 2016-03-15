@@ -22,11 +22,11 @@ require 'capybara/rspec'
 # require only the support files necessary.
 Dir[Rails.root.join('spec/support/helpers/**/*.rb')].each { |f| require f }
 
-load 'spec/support/configurations/geocoder.rb'
+require_relative 'support/configurations/geocoder.rb'
 Dir[Rails.root.join('spec/support/configurations/**/*.rb')].each { |f| require f }
 
 require "#{Rails.root}/lib/factories/factories"
-load 'spec/support/helpers/sometimes_stub.rb'
+require_relative 'support/helpers/sometimes_stub.rb'
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.

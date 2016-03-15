@@ -18,7 +18,7 @@ RSpec.describe SetterStory, type: :model do
     expect(user.setter_story).to be_persisted
   end
   it 'can create an associated setter_climb_log' do
-    expect { user.setter_story.setter_climb_logs.create }.to change { user.setter_story.setter_climb_logs.count }.by(1)
+    expect { user.setter_story.setter_climb_logs.create(climb: create(:climb)) }.to change { user.setter_story.setter_climb_logs.count }.by(1)
   end
 
 end

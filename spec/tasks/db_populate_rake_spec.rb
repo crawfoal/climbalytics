@@ -77,4 +77,13 @@ describe 'db:populate', :transaction_group do
     end
   end
 
+  describe 'all users' do
+    it 'have a password and email' do
+      User.find_each do |user|
+        expect(user.email).to_not be_blank
+        expect(user.user_account.encrypted_password).to_not be_nil
+      end
+    end
+  end
+
 end

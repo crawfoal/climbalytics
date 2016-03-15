@@ -1,6 +1,7 @@
 FactoryGirl.define do
 
   factory :user do
+
     transient do
       roles []
     end
@@ -9,8 +10,8 @@ FactoryGirl.define do
       name
     end
 
-    after(:build) do |user, evaluator|
-      user.user_account = build(:user_account, roles: evaluator.roles)
+    before(:create) do |user, evaluator|
+      user.user_account = create(:user_account, roles: evaluator.roles)
     end
 
     after(:create) do |user, evaluator|

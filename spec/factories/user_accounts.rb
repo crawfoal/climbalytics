@@ -24,7 +24,7 @@ FactoryGirl.define do
     # Default Attributes
     email                 { "#{email_prefix}#{user_account_number}@example.com" }
     password              { "password#{user_account_number}" }
-    password_confirmation { password }
+    password_confirmation { |u| u.password }
     #---------------------------------------------------------------------------
   end
 

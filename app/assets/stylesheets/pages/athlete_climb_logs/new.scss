@@ -1,5 +1,9 @@
 @import 'application';
 
+#athlete_climb_log_setter_climb_log_id {
+  display: none;
+}
+
 .climb-type {
   .btn {
     @extend .btn-default;

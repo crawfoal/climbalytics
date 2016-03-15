@@ -62,4 +62,8 @@ $panel-sections: gym-picker, route-picker;
       margin-left: 0px;
     }
   }
+
+  input[type="number"] {
+    display: none;
+  }
 }

@@ -1,3 +1,4 @@
 <% climbs.each_with_index do |climb, index| %>
-    <%= link_to_edit_loggable climb, (climb.grade or '?'), class: 'loggable-link'%>
+  <% next unless (url = path_to_athlete_climb_log_for(climb)) %>
+  <%= link_to (climb.grade or '?'), url, class: 'loggable-link', data: {'slog-id': climb.loggable_id} %>
 <% end %>

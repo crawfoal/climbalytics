@@ -84,6 +84,6 @@ class AthleteClimbLogsController < ApplicationController
 
     # Don't want to require that anything is passed in (obviously GET requests to #new won't pass anything), but still want to filter stuff out, so we need a separate function than the standard one above.
     def form_new_presets
-      params[:athlete_climb_log].try(:permit, climb_attributes: [:gym_section_id])
+      params[:athlete_climb_log].try(:permit, :setter_climb_log_id, climb_attributes: [:gym_section_id])
     end
 end

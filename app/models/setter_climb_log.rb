@@ -1,7 +1,5 @@
 class SetterClimbLog < ActiveRecord::Base
 
-  extend StiChooseable
-  
   #-----------------------------------------------------------------------------
   # Pictures
   #-----------------------------------------------------------------------------
@@ -26,7 +24,6 @@ class SetterClimbLog < ActiveRecord::Base
   #-----------------------------------------------------------------------------
   has_one :climb, as: :loggable, dependent: :destroy
   accepts_nested_attributes_for :climb
-  sti_chooseable :climb, :boulder, :route
   validates_presence_of :climb
 
   generate_validations_for :note

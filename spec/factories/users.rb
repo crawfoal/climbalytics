@@ -39,11 +39,12 @@ FactoryGirl.define do
       transient do
         roles [:setter]
         setter_climb_logs_count 0
+        setter_climb_log_factory :setter_climb_log
       end
 
       after(:create) do |user, evaluator|
         if evaluator.setter_climb_logs_count > 0
-          create_list(:setter_climb_log, evaluator.setter_climb_logs_count, setter_story: user.setter_story)
+          create_list(evaluator.setter_climb_log_factory, evaluator.setter_climb_logs_count, setter_story: user.setter_story)
         end
       end
     end

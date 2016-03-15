@@ -34,6 +34,7 @@ module Climbalytics
     console do
       require 'ap'
       require 'pry'
+      require "#{Rails.root}/lib/factories/factories"
       config.console = Pry
     end
   end

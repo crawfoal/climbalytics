@@ -27,6 +27,14 @@ class Climb < ActiveRecord::Base
     end
   end
 
+  def grade=(value)
+    if value.is_a? String and not type.blank?
+      write_attribute(:grade, type.constantize.grades[value])
+    else
+      write_attribute(:grade, value)
+    end
+  end
+
   validates :moves_count, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
   generate_validations_for :name
 end

@@ -3,6 +3,8 @@ FactoryGirl.define do
 
     transient do
       location_factory :location
+      num_sections 0
+      sections_factory :gym_section
     end
 
     name { Faker::Company.name }
@@ -10,6 +12,8 @@ FactoryGirl.define do
 
     after(:build) do |gym, evaluator|
       gym.location = build(evaluator.location_factory)
+
+      gym.sections << create_list(evaluator.sections_factory, evaluator.num_sections)
     end
 
     trait :invalid do

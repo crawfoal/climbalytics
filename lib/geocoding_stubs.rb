@@ -1,18 +1,4 @@
-Geocoder.configure(:lookup => :test)
-
-Geocoder::Lookup::Test.set_default_stub(
-  [
-    {
-      'latitude'     => 40.7143528,
-      'longitude'    => -74.0059731,
-      'address'      => 'New York, NY, USA',
-      'state'        => 'New York',
-      'state_code'   => 'NY',
-      'country'      => 'United States',
-      'country_code' => 'US'
-    }
-  ]
-)
+require "#{Rails.root}/spec/support/configurations/geocoder.rb"
 
 Geocoder::Lookup::Test.add_stub(
    "123 Main St., Somewhere, XX, 00000", [{

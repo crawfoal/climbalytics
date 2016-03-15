@@ -67,6 +67,10 @@ describe 'db:populate', :transaction_group do
     expect(Route.count).to be > 0
   end
 
+  it 'creates some setter users' do
+    expect(User.with_role(:setter).size).to be > 0
+  end
+
   describe 'Wild Walls' do
     let(:wild_walls) { Gym.find_by name: 'Wild Walls' }
     it 'exists' do

@@ -25,9 +25,10 @@ FactoryGirl.define do
     factory :wild_walls do
       name 'Wild Walls'
       transient do
+        num_sections 0
         location_factory :ww_location
       end
-      after :create do |gym|
+      after :build do |gym|
         [
           'Slab',
           'Back wall',

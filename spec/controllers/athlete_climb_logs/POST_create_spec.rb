@@ -4,7 +4,7 @@ require 'shared_examples/create_request'
 
 describe AthleteClimbLogsController do
   describe 'POST #create' do
-    let(:athlete_climb_log_attribs) { attributes_for(:athlete_climb_log) }
+    let(:athlete_climb_log_attribs) { attributes_for(:athlete_climb_log, climb_attributes: {gym_section_id: create(:gym_section).id}) }
     let(:http_request_proc) { Proc.new { post :create, {athlete_climb_log: athlete_climb_log_attribs} } }
 
     context 'for a logged in user' do
@@ -16,7 +16,7 @@ describe AthleteClimbLogsController do
 
       context 'with a role of athlete' do
         login_user(:athlete)
-        let(:athlete_climb_log_attribs) { attributes_for(:athlete_climb_log, climb_attributes: attributes_for(:boulder)) }
+        let(:athlete_climb_log_attribs) { attributes_for(:athlete_climb_log, climb_attributes: attributes_for(:boulder, gym_section_id: create(:gym_section).id)) }
 
         it_behaves_like 'a basic create request', :athlete_climb_log, :athlete_climb_log_attribs, {redirect_to: -> {AthleteClimbLog.last}}, {notice: 'Athlete climb log was successfully created.'}
 

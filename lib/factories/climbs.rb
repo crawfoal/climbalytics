@@ -11,19 +11,7 @@ FactoryGirl.define do
     end
 
     transient do
-      gym do
-        if loggable_type == 'AthleteClimbLog'
-          athlete_climb_log.athlete_story.athlete_climb_logs.sample.try(:climb).try(:gym) or
-          Gym.random or
-          create(:_gym_)
-        else
-          Gym.random or create(:_gym_)
-        end
-      end
-    end
-
-    after :build do |climb, evaluator|
-      climb.gym_section = evaluator.gym.sections.sample
+      gym_factory :_gym_
     end
   end
 end

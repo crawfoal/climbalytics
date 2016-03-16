@@ -18,6 +18,7 @@ class Climb < ActiveRecord::Base
     _gym = Gym.find_by id: gym unless gym.respond_to? :sections
     in_sections (_gym or gym).sections
   end
+  validates_presence_of :gym_section
 
   def grade
     unless type.blank?

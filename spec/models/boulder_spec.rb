@@ -7,10 +7,11 @@ RSpec.describe Boulder, type: :model do
     it { should validate_presence_of :type }
     it { should validate_length_of(:name).is_at_most(255) }
     it { should validate_numericality_of(:moves_count).only_integer.allow_nil }
+    it { should validate_presence_of :gym_section }
     #---------------------------------------------------------------------------
 
-    it 'should have 3 validators' do
-      expect(Boulder.validators.size).to be 3
+    it 'should have 4 validators' do
+      expect(Boulder.validators.size).to be 4
     end
   end
 

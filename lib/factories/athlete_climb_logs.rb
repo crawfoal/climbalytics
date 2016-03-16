@@ -19,6 +19,11 @@ FactoryGirl.define do
       climb_seshes_count { Faker::Number.between(1, 10) }
       climb_sesh_factory :_climb_sesh_
       climb_factory :_climb_
+      setter_climb_log_factory :_setter_climb_log_
+    end
+
+    after :build do |alog, evaluator|
+      alog.setter_climb_log = create evaluator.setter_climb_log_factory, gym_section: evaluator.gym_section
     end
   end
 end

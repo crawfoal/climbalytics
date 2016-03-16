@@ -16,7 +16,7 @@ FactoryGirl.define do
     end
 
     after :build do |climb, evaluator|
-      climb.gym_section = evaluator.gym.sections.sample
+      climb.gym_section = evaluator.gym.sections.sample unless climb.gym_section
     end
 
     factory :boulder do

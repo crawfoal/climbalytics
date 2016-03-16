@@ -11,8 +11,8 @@ namespace :db do
     FactoryGirl.create_list(:_gym_, Faker::Number.between(5, 10))
     FactoryGirl.create(:wild_walls)
 
-    FactoryGirl.create_list(:_athlete_, Faker::Number.between(35, 40))
-
     FactoryGirl.create_list(:_setter_, Faker::Number.between(15, 20))
+
+    FactoryGirl.create_list(:_athlete_, Faker::Number.between(35, 40))
   end
 end

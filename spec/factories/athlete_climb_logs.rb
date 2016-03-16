@@ -5,11 +5,12 @@ FactoryGirl.define do
     athlete_story
 
     transient do
+      gym_section nil
       climb_factory { [:boulder, :route].sample }
     end
 
     before(:create) do |athlete_climb_log, evaluator|
-      athlete_climb_log.climb = FactoryGirl.create(evaluator.climb_factory)
+      athlete_climb_log.climb = FactoryGirl.create(evaluator.climb_factory, gym_section: evaluator.gym_section)
     end
     #---------------------------------------------------------------------------
 

@@ -20,5 +20,16 @@ describe 'db:populate' do
     it 'has a quality rating (1/3 of the time)' do
       expect(alog.quality_rating).to_not be_nil
     end
+
+    it 'belongs to a setter_climb_log' do
+      expect(alog.setter_climb_log).to be_present
+    end
+
+    it 'gym_section is set appropriately for both the athlete_climb_log and the setter_climb_log' do
+      gym_section = create(:gym_section)
+      alog = create :_athlete_climb_log_, gym_section: gym_section
+      expect(alog.climb.gym_section).to be == gym_section
+      expect(alog.setter_climb_log.climb.gym_section).to be == gym_section
+    end
   end
 end

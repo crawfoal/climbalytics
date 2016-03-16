@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Athlete logs a climb from their dashboard', js: true do
   context "We don't know the user's current location" do
     before :each do
-      user = create(:athlete)
+      user = create(:athlete, athlete_climb_logs_count: 1)
       visit root_path
       within '.signin-fields' do
         fill_in 'Email', with: user.email
@@ -24,11 +24,20 @@ feature 'Athlete logs a climb from their dashboard', js: true do
         expect(page).to have_link 'refresh-my-location'
       end
 
-      scenario 'the user clicks on a nearby gym', :focus do
+      scenario 'the user clicks on a nearby gym' do
         click_on 'Wild Walls'
         expect(page).to have_content 'Select a climb'
         expect(page).to have_content 'Wild Walls'
         expect(page).to have_css '.topo'
+      end
+
+      scenario 'the user clicks on a recent gym' do
+        gym_name = User.last.athlete_story.athlete_climb_logs.first.climb.gym.name
+        within '.recent-gyms' do
+          click_on gym_name
+        end
+        expect(page).to have_content 'Select a climb'
+        expect(page).to have_content gym_name
       end
     end
 

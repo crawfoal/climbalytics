@@ -8,7 +8,7 @@ $(document).on 'page:change', ->
     $(this).slideUp()
     $(this).closest('.log-a-climb').find('.gym-picker').slideDown()
 
-  $('.nearby-gyms').on 'click', '.gym-link', ->
+  $('.gym-picker').on 'click', '.gym-link', ->
     gymPicker = $(this).closest('.gym-picker')
     gymPicker.slideUp()
     routePicker = gymPicker.closest('.log-a-climb').find('.route-picker')

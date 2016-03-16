@@ -4,7 +4,7 @@
     <i class="fa fa-refresh fa-lg"></i>
   <% end %>
   <% gyms_near(current_user).each do |gym| %>
-    <%= link_to gym.name, '#', data: {'gym-id': gym.id}, role: 'button', class: 'btn-default gym-link' %>
+    <%= link_with_inner_div_to gym.name, '#', data: {'gym-id': gym.id}, role: 'button', class: 'gym-link' %>
   <% end %>
 <% else %>
 <%= link_to 'Find gyms near me', '#', data: { behavior: 'locate-user' }, role: 'button', class: 'btn-default', id: 'find-me'%>

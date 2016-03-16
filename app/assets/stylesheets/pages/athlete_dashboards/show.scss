@@ -28,8 +28,14 @@ $panel-sections: gym-picker, route-picker;
 }
 
 .gym-link, #find-me {
+  @extend .btn;
+  @extend .btn-default;
   @extend .btn-block;
   @extend .btn-lg;
+  .inner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .route-picker .section-body {

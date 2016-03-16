@@ -80,6 +80,31 @@ describe User do
         expect(user.account).to be == user.user_account
       end
     end
+
+    describe '#recent_gyms' do
+      context 'for a user with a current role of athlete' do
+        let(:user) { create :athlete }
+        before :each do
+          4.times { user.athlete_story.athlete_climb_logs << create(:athlete_climb_log, gym_section: create(:gym).sections.first) }
+          alogs = user.athlete_story.athlete_climb_logs.order(created_at: :desc, id: :asc)
+          @gyms = alogs.map{ |alog| alog.climb.gym }.uniq
+          @gyms = @gyms[0..[2, @gyms.length].min]
+        end
+
+        it 'returns some recent gyms' do
+          expect(user.recent_gyms).to include(*@gyms)
+        end
+
+        it 'returns, at most, 3 gyms' do
+          expect(user.recent_gyms.length).to be <= 3
+        end
+      end
+      context 'for a user with a current role other than athlete' do
+        it 'returns nil (for now)' do
+          expect(user.recent_gyms).to be_nil
+        end
+      end
+    end
   end
 
 end

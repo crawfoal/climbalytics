@@ -3,7 +3,7 @@ FactoryGirl.define do
 
     transient do
       location_factory :location
-      num_sections 0
+      num_sections 1
       sections_factory :gym_section
     end
 

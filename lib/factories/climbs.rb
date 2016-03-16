@@ -23,9 +23,7 @@ FactoryGirl.define do
     end
 
     after :build do |climb, evaluator|
-      four_fifths_of_the_time do
-        climb.gym_section = evaluator.gym.sections.sample
-      end
+      climb.gym_section = evaluator.gym.sections.sample
     end
   end
 end

@@ -21,7 +21,7 @@ describe 'db:populate' do
       expect(climb.name).to_not be_blank
     end
 
-    it 'belongs to a gym section (4/5 of the time)' do
+    it 'belongs to a gym section' do
       expect(climb.gym_section).to be_present
     end
   end

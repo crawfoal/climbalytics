@@ -6,6 +6,15 @@ def setup_gym_and_climb_data
   create :setter, setter_climb_logs_count: 1
 end
 
+def select_climb_and_expect_form_to_appear
+  expect(page).to have_css '.climb-links', wait: 3
+
+  within '.climb-links' do
+    first('.loggable-link').click
+  end
+  expect(page).to have_css '.new_athlete_climb_log'
+end
+
 feature 'Athlete logs a climb' do
   let(:wild_walls) {create :gym, name: 'Wild Walls', location_factory: :ww_location, num_sections: 1}
   let(:user) { create :athlete }
@@ -24,12 +33,8 @@ feature 'Athlete logs a climb' do
       within '.nearby-gyms' do
         click_on 'Wild Walls'
       end
-      expect(page).to have_css '.climb-links', wait: 3
 
-      within '.climb-links' do
-        first('.loggable-link').click
-      end
-      expect(page).to have_css '.new_athlete_climb_log'
+      select_climb_and_expect_form_to_appear
     end
 
     scenario 'for a recent gym' do
@@ -41,12 +46,8 @@ feature 'Athlete logs a climb' do
       within '.recent-gyms' do
         first('.gym-link').click
       end
-      expect(page).to have_css '.climb-links', wait: 3
 
-      within '.climb-links' do
-        first('.loggable-link').click
-      end
-      expect(page).to have_css '.new_athlete_climb_log'
+      select_climb_and_expect_form_to_appear
     end
   end
 end

@@ -7,7 +7,7 @@ module FeatureHelper
         success(position);
       }
     JS
-    sleep 0.2 # make sure that the above script finishes executing before the caller of this function tries to do something on the page
+    sleep 0.3 # make sure that the above script finishes executing before the caller of this function tries to do something on the page
   end
 
   def capybara_login(user)

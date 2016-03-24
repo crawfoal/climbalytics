@@ -7,6 +7,7 @@ class AthleteClimbLog < ActiveRecord::Base
   def athlete
     athlete_story.user if athlete_story
   end
+  delegate :gym, to: :climb
 
   has_one :climb, as: :loggable, dependent: :destroy
   accepts_nested_attributes_for :climb

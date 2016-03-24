@@ -37,5 +37,7 @@ module Climbalytics
       require "#{Rails.root}/lib/factories/factories"
       config.console = Pry
     end
+
+    config.active_record.observers = :athlete_climb_log_observer
   end
 end

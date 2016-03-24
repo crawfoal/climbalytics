@@ -61,15 +61,5 @@ class User < ActiveRecord::Base
   has_one :current_location, as: :locateable, class_name: 'Location', dependent: :destroy
   accepts_nested_attributes_for :current_location
 
-  def recent_gyms
-    if current_role == 'athlete'
-      alogs = athlete_story.athlete_climb_logs.order(created_at: :desc, id: :asc).limit(25)
-      gyms = alogs.map{ |alog| alog.climb.gym }.uniq
-      gyms = gyms[0..([2, gyms.length].min)]
-    else # will implement setter version later
-      return nil
-    end
-  end
-
   generate_validations_for :current_role
 end

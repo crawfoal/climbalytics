@@ -3,7 +3,7 @@
 </div>
 <div class="recent-gyms">
   Recent choices:
-  <% current_user.recent_gyms.each do |gym| %>
+  <% current_user.athlete_story.recent_gyms.each do |gym| %>
     <%= link_with_inner_div_to gym.name, '#', data: {'gym-id': gym.id}, role: 'button', class: 'gym-link' %>
   <% end %>
 </div>

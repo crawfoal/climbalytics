@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227001950) do
+ActiveRecord::Schema.define(version: 20160317151818) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "line1"
@@ -43,8 +43,9 @@ ActiveRecord::Schema.define(version: 20160227001950) do
 
   create_table "athlete_stories", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.text     "recent_gym_ids_cache"
   end
 
   add_index "athlete_stories", ["user_id"], name: "index_athlete_stories_on_user_id"

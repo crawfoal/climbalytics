@@ -15,8 +15,13 @@ def select_climb_and_expect_form_to_appear
   expect(page).to have_css '.new_athlete_climb_log'
 end
 
+def check_field_presets_for_climb
+  expect(page).to have_select "athlete_climb_log[climb_attributes][gym_section_id]", selected: gym_section.name
+end
+
 feature 'Athlete logs a climb' do
-  let(:wild_walls) {create :gym, name: 'Wild Walls', location_factory: :ww_location, num_sections: 1}
+  let(:wild_walls) { create :gym, name: 'Wild Walls', location_factory: :ww_location, num_sections: 1 }
+  let(:gym_section) { wild_walls.sections.first }
   let(:user) { create :athlete }
 
   context 'from the dashboard', js: true do
@@ -35,6 +40,8 @@ feature 'Athlete logs a climb' do
       end
 
       select_climb_and_expect_form_to_appear
+
+      check_field_presets_for_climb
     end
 
     scenario 'for a recent gym' do
@@ -48,6 +55,8 @@ feature 'Athlete logs a climb' do
       end
 
       select_climb_and_expect_form_to_appear
+
+      check_field_presets_for_climb
     end
   end
 end

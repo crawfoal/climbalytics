@@ -10,6 +10,8 @@ namespace :db do
 
     FactoryGirl.create_list(:_gym_, Faker::Number.between(5, 10))
     FactoryGirl.create(:wild_walls)
+    FactoryGirl.create(:brooklyn_boulders_ny)
+    FactoryGirl.create(:the_front_salt_lake)
 
     FactoryGirl.create_list(:_setter_, Faker::Number.between(15, 20))
 

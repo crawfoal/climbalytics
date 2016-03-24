@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :athlete_story do
-    user
+    association :user, factory: :athlete
   end
 
 end

@@ -36,6 +36,20 @@ class Climb < ActiveRecord::Base
     end
   end
 
+  def value_attribute_names
+    [
+      'grade',
+      'name',
+      'moves_count',
+      'type',
+      'gym_section_id'
+    ]
+  end
+
+  def value_attributes
+    attributes.slice(*value_attribute_names)
+  end
+
   validates :moves_count, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
   generate_validations_for :name
 end

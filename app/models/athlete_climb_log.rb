@@ -13,7 +13,8 @@ class AthleteClimbLog < ActiveRecord::Base
   accepts_nested_attributes_for :climb
   validates_presence_of :climb
 
-  has_many :climb_seshes, dependent: :destroy
+  has_many :climb_seshes, dependent: :destroy, inverse_of: :athlete_climb_log
+  accepts_nested_attributes_for :climb_seshes, allow_destroy: true
 
   validates :quality_rating, numericality: { only_integer: true,
                                              greater_than: 0,

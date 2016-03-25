@@ -16,12 +16,16 @@ describe AthleteClimbLogsController do
 
       context 'with a role of athlete' do
         login_user(:athlete)
-        let(:athlete_climb_log_attribs) { attributes_for(:athlete_climb_log, climb_attributes: attributes_for(:boulder, gym_section_id: create(:gym_section).id)) }
+        let(:athlete_climb_log_attribs) { attributes_for(:athlete_climb_log, climb_attributes: attributes_for(:boulder, gym_section_id: create(:gym_section).id), climb_seshes_attributes: [attributes_for(:climb_sesh), attributes_for(:climb_sesh)]) }
 
         it_behaves_like 'a basic create request', :athlete_climb_log, :athlete_climb_log_attribs, {redirect_to: -> {AthleteClimbLog.last}}, {notice: 'Athlete climb log was successfully created.'}
 
         it 'associates the log with the athlete' do
           expect { post :create, {athlete_climb_log: athlete_climb_log_attribs} }.to change {current_user.athlete_story.athlete_climb_logs.count}.by(1)
+        end
+
+        it 'saves associated climb_seshes' do
+          expect{ post :create, {athlete_climb_log: athlete_climb_log_attribs} }.to change{ClimbSesh.count}.by(2)
         end
       end
 

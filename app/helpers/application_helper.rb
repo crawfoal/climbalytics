@@ -1,6 +1,6 @@
 module ApplicationHelper
   def page_stylesheet
-    page_stylesheet = "pages/#{scoped_controller_name}/#{action_name}"
+    page_stylesheet = "pages/#{scoped_controller_name}/#{params[:action]}"
     page_stylesheet
   end
   def scoped_controller_name

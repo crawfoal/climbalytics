@@ -1,27 +1,29 @@
 Rails.application.routes.draw do
 
+  devise_for :user_accounts
   resources :gyms
   root 'home#show', via: [:get]
 
-  devise_for :users, skip: :registrations
-  devise_scope :user do
-    resource :registration,
-      only: [:new, :create, :edit, :update],
-      path: 'users',
-      path_names: { new: 'sign_up' },
-      controller: 'users/registrations',
-                  as: :user_registration do
-                    get :cancel
-                  end
-  end
+  resource :user, only: [:edit, :update]
 
   resource :current_role, only: [:update]
 
-  resources :setter_climb_logs
-
   resources :athlete_climb_logs
+  post 'athlete_climb_logs/new', to: 'athlete_climb_logs#new', as: ''
 
-  resources :climb_seshes
+  resources :climbs, only: [:index]
+
+  resources :climb_seshes, only: [:new, :create, :edit, :update, :destroy]
+
+  resource :athlete_dashboard, only: [:show]
+
+  resource :setter_dashboard, only: [:show]
+
+  resource :nearby_gyms, only: [:show]
+
+  resources :route_pickers, only: [:show]
+
+  resource :flash, only: [:show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

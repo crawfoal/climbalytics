@@ -24,9 +24,6 @@ describe AthleteClimbLogsController do
           it 'builds a new associated climb model' do
             expect(assigns(:athlete_climb_log).climb).to be_a_new(Climb)
           end
-          it 'builds a new associated climb_sesh model' do
-            expect(assigns(:athlete_climb_log).climb_seshes.size).to be 1
-          end
         end
       end
 

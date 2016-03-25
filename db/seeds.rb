@@ -10,7 +10,6 @@ require 'active_record/fixtures'
 
 ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/test/fixtures", "states")
 
-# Make sure the roles are defined for the first user (mainly needed for the view).
 # ToDo: use define_roles method from the RoleHelper RSpec module
 [:athlete, :setter].each do |role_name|
   Role.create! name: role_name

@@ -6,6 +6,7 @@ RSpec.describe Climb, type: :model do
     # Validations defined in model
     it { should validate_presence_of :type }
     it { should validate_numericality_of(:moves_count).is_greater_than(0).only_integer.allow_nil }
+    it { should validate_presence_of :gym_section }
     #---------------------------------------------------------------------------
 
     #---------------------------------------------------------------------------
@@ -13,8 +14,8 @@ RSpec.describe Climb, type: :model do
     it { should validate_length_of(:name).is_at_most(255) }
     #---------------------------------------------------------------------------
 
-    it 'should have 3 validators' do
-      expect(Climb.validators.size).to be 3
+    it 'should have 4 validators' do
+      expect(Climb.validators.size).to be 4
     end
   end
 
@@ -31,12 +32,18 @@ RSpec.describe Climb, type: :model do
   describe '#grade' do
     context 'for a climb that is either a Boulder or a Route' do
       it 'always returns the string, not the enum ID' do
-        climb = Climb.new
-        climb.type = 'Boulder'
-        climb.grade = 'V5'
-        climb.save
-        climb.reload
-        expect(climb.grade).to be_a String
+        expect(create(:boulder, grade: 'V5').grade).to be_a String
+      end
+    end
+  end
+
+  describe '#gym' do
+    context 'for a climb with an associated gym_section' do
+      let(:ww) { create(:wild_walls) }
+      let(:climb) { create(:boulder, gym_section: ww.sections.sample) }
+
+      it "returns the gym that the climb's section belongs to" do
+        expect(climb.gym).to be == ww
       end
     end
   end

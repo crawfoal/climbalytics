@@ -32,14 +32,16 @@ describe ValidationInspector do
         end
       end
       context 'the column type is decimal or float' do
-        it 'specifies true'
+        it 'specifies true' do
+          expect(Location.columns_hash['latitude'].validate_numericality_args).to be == [:latitude, {:numericality=>true, :allow_nil=>true}]
+        end
       end
     end
 
     describe '#validate_presence_args' do
       context 'when null = false is specified for the column' do
         it 'returns true' do
-          expect(User.columns_hash['email'].validate_presence_args).to be == [:email, presence: true]
+          expect(UserAccount.columns_hash['email'].validate_presence_args).to be == [:email, presence: true]
         end
       end
 

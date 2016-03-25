@@ -1,24 +1,20 @@
 namespace :db do
   desc "Fill database with sample data"
   task :populate => :non_prod do
-    require "#{Rails.root}/lib/data_generators"
+    load "#{Rails.root}/lib/geocoding_stubs.rb"
+    require "#{Rails.root}/lib/factories/factories"
 
     Rake::Task['db:reset'].invoke
 
-    # Create some "new" users (users that don't have a role yet).
-    UserGenerator.new.generate_set
+    FactoryGirl.create_list(:_user_, Faker::Number.between(10, 15))
 
-    GymGenerator.new.generate_set
+    FactoryGirl.create_list(:_gym_, Faker::Number.between(5, 10))
+    FactoryGirl.create(:wild_walls)
+    FactoryGirl.create(:brooklyn_boulders_ny)
+    FactoryGirl.create(:the_front_salt_lake)
 
-    Gym.all.each { |gym| generate_members_for gym }
+    FactoryGirl.create_list(:_setter_, Faker::Number.between(15, 20))
 
-  end
-
-  def generate_members_for(gym)
-    climb_generator = ClimbGenerator.new(gym: gym)
-    alog_generator = AthleteClimbLogGenerator.new(climb_generator: climb_generator)
-    athlete_generator = AthleteGenerator.new(min: 1, max: 15, alog_generator: alog_generator)
-
-    athlete_generator.generate_set
+    FactoryGirl.create_list(:_athlete_, Faker::Number.between(35, 40))
   end
 end

@@ -54,6 +54,7 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(%r(^lib/data_generators/(.+)\.rb$)) do |m|
     rspec.spec.("data_generators/#{m[1]}")
   end
+  watch(%r(^lib/factories/(.+)\.rb$)) { |m| rspec.spec.("db_populate_factories/#{m[1]}") }
 
   # Ruby files
   ruby = dsl.ruby

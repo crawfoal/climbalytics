@@ -18,6 +18,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap/variables";
 @import "bootstrap";
-@import "bootstrap/theme";
+// @import "bootstrap/theme";
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 @import "./base/*";

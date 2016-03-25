@@ -1,0 +1,25 @@
+@import "application";
+
+.user-profile-fields {
+  @include make-row();
+}
+
+.account-information, .personal-details {
+  @include make-sm-column(12);
+  @include make-md-column(6);
+}
+
+$panel-sections: login-credentials roles name;
+@import "helpers/panel_sections";
+
+.form-footer {
+  @include make-row();
+  .btn-default {
+    @extend .btn-block;
+  }
+  .submit-fields {
+    @include make-sm-column(12);
+    @include make-md-column(4);
+    @include make-md-column-offset(4);
+  }
+}

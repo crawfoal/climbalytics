@@ -1,0 +1,25 @@
+<%= form_for :user_account, url: user_account_registration_path do |f| %>
+  <%= render partial: "shared/error_messages", locals: {target: @user_account} %>
+
+  <section class="signup-fields">
+    <div class="form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field( :email, { autofocus: true, placeholder: "Email Address"}) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field( :password, { autocomplete: "off", placeholder: "Password"}) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field( :password_confirmation, { autocomplete: "off", placeholder: "Confirm Password"}) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Sign up", class: "btn-default" %>
+    </div>
+  </section>
+
+<% end %>

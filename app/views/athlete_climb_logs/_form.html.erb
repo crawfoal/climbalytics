@@ -1,34 +1,65 @@
-<%= form_for(@athlete_climb_log) do |f| %>
-  <% if @athlete_climb_log.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@athlete_climb_log.errors.count, "error") %> prohibited this athlete_climb_log from being saved:</h2>
+<%= form_for @athlete_climb_log do |f| %>
+  <%= render partial: "shared/error_messages", locals: {target: @athlete_climb_log} %>
 
-      <ul>
-      <% @athlete_climb_log.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <section class="athlete-climb-log-fields">
+    <%= f.number_field :setter_climb_log_id, min: 1, step: 1 %>
+
+    <div class="col">
+      <section class="log-details">
+        <div class="section-header">
+          <h2 class="section-title">
+            Log Details
+          </h2>
+        </div>
+        <div class="section-body">
+          <div class="form-group">
+            <%= f.label :project do %>
+              <%= f.check_box :project %> Project
+            <% end %>
+          </div>
+          <div class="form-group">
+            <%= f.label :quality_rating %><br>
+            <%= f.number_field :quality_rating, min: 1, max: 5, step: 1 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :note %><br>
+            <%= f.text_area :note, rows: '5' %>
+          </div>
+        </div>
+      </section>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :quality_rating %><br>
-    <%= f.number_field :quality_rating, min: 1, max: 5, step: 1 %>
-  </div>
-  <div class="field">
-    <%= f.label :note %><br>
-    <%= f.text_area :note %>
-  </div>
-  <div class="field">
-    <%= f.label :project %><br>
-    <%= f.check_box :project %>
-  </div>
+    <div class="col">
+      <section class="climb-details">
+        <div class="section-header">
+          <h2 class="section-title">
+            Climb Details
+          </h2>
+        </div>
+        <div class="section-body">
+          <%= f.fields_for :climb do |ff| %>
+            <%= render partial: 'climbs/form', locals: { climb_form: ff, climb: @athlete_climb_log.climb } %>
+          <% end %>
+        </div>
+      </section>
+    </div>
+  </section>
 
-  <%= f.fields_for :climb do |ff| %>
-    <%= render partial: 'climbs/form', locals: { climb_form: ff } %>
-  <% end %>
+  <section class="climb-seshes">
+    <div class="section-header">
+      <h2 class="section-title">
+        Seshes
+      </h2>
+    </div>
+    <div class="section-body">
+      <%= render partial: 'climb_seshes/index', locals: {climb_seshes: @athlete_climb_log.climb_seshes} %>
+      <%= link_to_add_association f, :climb_seshes, 'data-association-insertion-node': '#climb_seshes_index_table tbody', 'data-association-insertion-method': 'append', partial: 'shared/climb_sesh_fields' do %>
+        <i class="fa fa-plus"></i>
+      <% end %>
+    </div>
+  </section>
 
   <div class="actions">
-    <%= submit_tag 'Save' %>
+    <%= f.submit 'Save' %>
   </div>
 <% end %>

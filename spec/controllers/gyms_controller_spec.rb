@@ -131,16 +131,6 @@ RSpec.describe GymsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested gym" do
-        gym = Gym.create! valid_attributes
-        put :update, {:id => gym.to_param, :gym => new_attributes}, valid_session
-        gym.reload
-        skip("Add assertions for updated state")
-      end
 
       it "assigns the requested gym as @gym" do
         gym = Gym.create! valid_attributes

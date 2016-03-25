@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 
+  belongs_to :user_account
+  delegate :email, to: :user_account
+  alias_method :account, :user_account
+
   # ----------------------------------------------------------------------------
   # Rolify
   # ----------------------------------------------------------------------------
@@ -23,14 +27,6 @@ class User < ActiveRecord::Base
   alias grant add_role # otherwise grant refers to the old one
 
   # ----------------------------------------------------------------------------
-  # Devise
-  # ----------------------------------------------------------------------------
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  # ----------------------------------------------------------------------------
   # Name
   # ----------------------------------------------------------------------------
   has_one :name, dependent: :destroy
@@ -39,14 +35,14 @@ class User < ActiveRecord::Base
   class Name < ActiveRecord::Base
     belongs_to :user
     generate_validations_for :first, :last
+
+    def short_format
+      first unless first.blank?
+    end
   end
 
   def address_me_as
-    if name
-      name.first.blank? ? email : name.first
-    else
-      email
-    end
+    name.try(:short_format) || email
   end
 
   # ----------------------------------------------------------------------------
@@ -59,7 +55,11 @@ class User < ActiveRecord::Base
   # ----------------------------------------------------------------------------
   has_one :athlete_story
 
+  # ----------------------------------------------------------------------------
+  # Current Location
+  # ----------------------------------------------------------------------------
+  has_one :current_location, as: :locateable, class_name: 'Location', dependent: :destroy
+  accepts_nested_attributes_for :current_location
 
-  generate_validations_for :email, :current_role
-
+  generate_validations_for :current_role
 end

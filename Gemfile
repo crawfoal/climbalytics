@@ -34,6 +34,10 @@ gem 'mini_magick'
 gem 'cocoon'
 gem 'geocoder'
 gem 'resque', require: "resque/server"
+gem 'js-routes'
+gem 'inline_svg'
+gem 'font-awesome-sass'
+gem 'rails-observers'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

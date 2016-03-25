@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213021451) do
+ActiveRecord::Schema.define(version: 20160317151818) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "line1"
@@ -43,8 +43,9 @@ ActiveRecord::Schema.define(version: 20160213021451) do
 
   create_table "athlete_stories", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.text     "recent_gym_ids_cache"
   end
 
   add_index "athlete_stories", ["user_id"], name: "index_athlete_stories_on_user_id"
@@ -137,15 +138,7 @@ ActiveRecord::Schema.define(version: 20160213021451) do
     t.datetime "updated_at",                     null: false
   end
 
-  create_table "user_names", force: :cascade do |t|
-    t.string  "first"
-    t.string  "last"
-    t.integer "user_id"
-  end
-
-  add_index "user_names", ["user_id"], name: "index_user_names_on_user_id"
-
-  create_table "users", force: :cascade do |t|
+  create_table "user_accounts", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -158,11 +151,27 @@ ActiveRecord::Schema.define(version: 20160213021451) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "current_role"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "user_accounts", ["email"], name: "index_user_accounts_on_email", unique: true
+  add_index "user_accounts", ["reset_password_token"], name: "index_user_accounts_on_reset_password_token", unique: true
+
+  create_table "user_names", force: :cascade do |t|
+    t.string  "first"
+    t.string  "last"
+    t.integer "user_id"
+  end
+
+  add_index "user_names", ["user_id"], name: "index_user_names_on_user_id"
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "current_role"
+    t.integer  "user_account_id"
+  end
+
+  add_index "users", ["user_account_id"], name: "index_users_on_user_account_id"
 
   create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"

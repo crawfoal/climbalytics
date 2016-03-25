@@ -5,15 +5,9 @@
       <a class="navbar-brand" href="/">Climbalytics</a>
     </div>
     <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/setter_climb_logs">Setter Climb Logs</a></li>
-      </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <%= render partial: '/layouts/navbar/signed_in_user_sub_menu' %>
-        <% else %>
-          <li><%= link_to 'Sign up', new_user_registration_path, :class => 'navbar-link' %></li>
-          <li><%= link_to 'Login', new_user_session_path, :class => 'navbar-link' %></li>
         <% end %>
       </ul>
     </div>

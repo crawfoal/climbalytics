@@ -1,0 +1,75 @@
+@import "application";
+
+article {
+  @include make-row();
+}
+
+.col-wrapper {
+  @include make-sm-column(12);
+  @include make-md-column(4);
+}
+
+.start button {
+  @extend .img-responsive;
+  @extend .btn;
+  @extend .btn-block;
+  @extend .btn-default;
+}
+
+.gym-picker, .route-picker {
+  display: none;
+}
+
+$panel-sections: gym-picker, route-picker;
+@import "helpers/panel_sections";
+
+#refresh-my-location {
+  @extend .btn-sm;
+}
+
+.gym-link, #find-me {
+  @extend .btn;
+  @extend .btn-default;
+  @extend .btn-block;
+  @extend .btn-lg;
+  .inner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.route-picker .section-body {
+  h3 {
+    text-align: center;
+  }
+  button, [role="button"] {
+    @extend .btn;
+    @extend .btn-block;
+    @extend .btn-default;
+  }
+
+  .climb-links {
+    width: 100%;
+    @extend .btn-group;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: $form-group-margin-bottom;
+    a {
+      @extend .btn;
+      @extend .btn-default;
+      @extend .btn-xs;
+      border-radius: 0px;
+      width: 20%;
+    }
+    a:nth-child(n+6) {
+      margin-top: -1px;
+    }
+    a:nth-child(5n+6) {
+      margin-left: 0px;
+    }
+  }
+
+  input[type="number"] {
+    display: none;
+  }
+}

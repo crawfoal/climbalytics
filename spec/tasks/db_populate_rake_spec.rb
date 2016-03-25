@@ -27,12 +27,12 @@ describe 'db:populate', :transaction_group do
   end
   describe 'each generated gym' do
     it 'has a location' do
-      Gym.all.each do |gym|
+      Gym.find_each do |gym|
         expect(gym.location).to be_present
       end
     end
     it 'has an address' do
-      Gym.all.each do |gym|
+      Gym.find_each do |gym|
         expect(gym.location.address).to be_present
       end
     end
@@ -55,7 +55,7 @@ describe 'db:populate', :transaction_group do
   end
   describe 'each generated climb' do
     it 'belongs to a gym section' do
-      Climb.all.each do |climb|
+      Climb.find_each do |climb|
         expect(climb.gym_section).to be_present
       end
     end
@@ -65,6 +65,29 @@ describe 'db:populate', :transaction_group do
   end
   it 'creates some routes' do
     expect(Route.count).to be > 0
+  end
+
+  it 'creates some setter users' do
+    expect(User.with_role(:setter).size).to be > 0
+  end
+
+  describe 'Wild Walls' do
+    let(:wild_walls) { Gym.find_by name: 'Wild Walls' }
+    it 'exists' do
+      expect(wild_walls).to be_present
+    end
+    it 'has some sections' do
+      expect(wild_walls.sections).to_not be_empty
+    end
+  end
+
+  describe 'all users' do
+    it 'have a password and email' do
+      User.find_each do |user|
+        expect(user.email).to_not be_blank
+        expect(user.user_account.encrypted_password).to_not be_nil
+      end
+    end
   end
 
 end

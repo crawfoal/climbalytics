@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Climbalytics</title>
-  <% if Rails.application.assets.find_asset(ps = page_stylesheet(params[:controller], params[:action])) %>
+  <% if Rails.application.assets.find_asset(ps = page_stylesheet) %>
     <%= stylesheet_link_tag ps, media: 'all', 'data-turbolinks-track' => true %>
   <% else %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -16,7 +16,7 @@
 
 <%= render_flash %>
 
-<div class="container page-content">
+<div class="container page-content" data-controller=<%= scoped_controller_name %> data-action=<%= controller.action_name %>>
   <%= yield %>
 </div>
 

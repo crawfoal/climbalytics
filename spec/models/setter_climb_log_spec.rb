@@ -4,7 +4,7 @@ describe SetterClimbLog do
   describe 'Validations' do
     #---------------------------------------------------------------------------
     # Validations defined in model
-
+    it { should validate_presence_of :climb }
     #---------------------------------------------------------------------------
 
     #---------------------------------------------------------------------------
@@ -12,9 +12,15 @@ describe SetterClimbLog do
     it { should validate_length_of(:note).is_at_most(20000) }
     #---------------------------------------------------------------------------
 
-    it 'should have 4 validator' do
-      expect(SetterClimbLog.validators.size).to be 4 # include CarrierWave validators
+    it 'should have 5 validator' do
+      expect(SetterClimbLog.validators.size).to be 5 # include CarrierWave validators
     end
+  end
+
+  describe 'Associations' do
+    it { should belong_to :setter_story }
+    it { should have_many :athlete_climb_logs }
+    it { should have_one(:climb).dependent(:destroy) }
   end
 
   context 'with valid attributes' do

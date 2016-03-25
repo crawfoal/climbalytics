@@ -7,8 +7,10 @@ describe Location do
   end
 
   describe 'Validations' do
-    it 'should have no validators' do
-      expect(Location.validators.size).to be == 0
+    it { should validate_numericality_of :latitude }
+    it { should validate_numericality_of :longitude }
+    it 'should have 2 validators' do
+      expect(Location.validators.size).to be == 2
     end
   end
 

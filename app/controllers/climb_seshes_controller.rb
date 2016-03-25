@@ -1,17 +1,6 @@
 class ClimbSeshesController < ApplicationController
   before_action :set_climb_sesh, only: [:show, :edit, :update, :destroy]
 
-  # GET /climb_seshes
-  # GET /climb_seshes.json
-  def index
-    @climb_seshes = ClimbSesh.all
-  end
-
-  # GET /climb_seshes/1
-  # GET /climb_seshes/1.json
-  def show
-  end
-
   # GET /climb_seshes/new
   def new
     @climb_sesh = ClimbSesh.new
@@ -56,7 +45,7 @@ class ClimbSeshesController < ApplicationController
   def destroy
     @climb_sesh.destroy
     respond_to do |format|
-      format.html { redirect_to climb_seshes_url, notice: 'Climb sesh was successfully destroyed.' }
+      format.html { render nothing: true }
       format.json { head :no_content }
     end
   end

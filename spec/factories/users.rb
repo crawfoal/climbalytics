@@ -1,34 +1,17 @@
 FactoryGirl.define do
 
-  # Initial value is just for when we're playing around in the terminal and there are already some users defined.
-  sequence(:user_number, User.count + 1) { |n| n }
-
   factory :user do
+
     transient do
       roles []
-
-      user_number do
-        generate(:user_number)
-      end
-
-      email_prefix do
-        if roles.empty?
-          'user'
-        else
-          roles.join
-        end
-      end
     end
-
-    #---------------------------------------------------------------------------
-    # Default Attributes
-    email                 { "#{email_prefix}#{user_number}@example.com" }
-    password              { "password#{user_number}" }
-    password_confirmation { |u| u.password }
-    #---------------------------------------------------------------------------
 
     trait :with_name do
       name
+    end
+
+    before(:create) do |user, evaluator|
+      user.user_account = create(:user_account, roles: evaluator.roles)
     end
 
     after(:create) do |user, evaluator|
@@ -56,11 +39,12 @@ FactoryGirl.define do
       transient do
         roles [:setter]
         setter_climb_logs_count 0
+        setter_climb_log_factory :setter_climb_log
       end
 
       after(:create) do |user, evaluator|
         if evaluator.setter_climb_logs_count > 0
-          create_list(:setter_climb_log, evaluator.setter_climb_logs_count, setter_story: user.setter_story)
+          create_list(evaluator.setter_climb_log_factory, evaluator.setter_climb_logs_count, setter_story: user.setter_story)
         end
       end
     end

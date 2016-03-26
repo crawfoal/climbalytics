@@ -1,7 +1,13 @@
 FactoryGirl.define do
 
-  # Initial value is just for when we're playing around in the terminal and there are already some users defined.
-  sequence(:user_account_number, User.count + 1) { |n| n }
+  start_num =
+    begin
+      User.count
+    rescue ActiveRecord::StatementInvalid
+      0
+    end
+
+  sequence(:user_account_number, start_num + 1) { |n| n }
 
   factory :user_account do
     transient do

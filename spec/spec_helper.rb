@@ -19,15 +19,6 @@
 
 # require 'pundit/rspec'
 
-require 'rspec/retry'
-
-RSpec.configure do |config|
-  config.verbose_retry = true # show retry status in spec process
-  config.display_try_failure_messages = true
-  config.default_retry_count = 5
-  config.exceptions_to_retry = [Net::ReadTimeout] # only retry if this exception was thrown
-end
-
 RSpec.configure do |config|
 
   # rspec-expectations config goes here. You can use an alternate

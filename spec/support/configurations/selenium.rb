@@ -1,8 +1,5 @@
 Capybara.register_driver :selenium do |app|
-  profile = Selenium::WebDriver::Firefox::Profile.new
-  client = Selenium::WebDriver::Remote::Http::Default.new
-  # client.timeout = 15 # instead of default of 60
-  Capybara::Selenium::Driver.new(app, browser: :firefox, profile: profile, http_client: client)
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
 require 'rspec/retry'
@@ -12,6 +9,6 @@ RSpec.configure do |config|
   config.exceptions_to_retry = [Net::ReadTimeout] # only retry if this exception was thrown
 
   config.around :each, :js do |ex|
-    ex.run_with_retry retry: 4
+    ex.run_with_retry retry: 2
   end
 end

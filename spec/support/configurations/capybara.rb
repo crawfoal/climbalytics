@@ -9,6 +9,6 @@ require 'rspec/retry'
 
 RSpec.configure do |config|
   config.verbose_retry = true # show retry status in spec process
-  config.default_retry_count = 4
+  config.default_retry_count = 20
   config.exceptions_to_retry = [Net::ReadTimeout] # only retry if this exception was thrown
 end

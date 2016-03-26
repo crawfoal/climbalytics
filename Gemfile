@@ -48,6 +48,8 @@ gem 'rails-observers'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem "codeclimate-test-reporter", group: :test, require: nil
+
 group :development, :test do
   gem 'awesome_print'
   gem 'pry'

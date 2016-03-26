@@ -65,6 +65,8 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     choice (0.2.0)
     cocoon (1.2.7)
+    codeclimate-test-reporter (0.5.0)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -85,6 +87,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     erubis (2.7.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
@@ -256,6 +259,11 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.0)
       activesupport (>= 4.0.0)
+    simplecov (0.11.2)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -304,6 +312,7 @@ DEPENDENCIES
   capybara
   carrierwave
   cocoon
+  codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   colorize
   database_cleaner

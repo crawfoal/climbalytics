@@ -2,19 +2,8 @@ require 'rails_helper'
 
 describe SetterClimbLog do
   describe 'Validations' do
-    #---------------------------------------------------------------------------
-    # Validations defined in model
     it { should validate_presence_of :climb }
-    #---------------------------------------------------------------------------
-
-    #---------------------------------------------------------------------------
-    # Generated validations
     it { should validate_length_of(:note).is_at_most(20000) }
-    #---------------------------------------------------------------------------
-
-    it 'should have 5 validator' do
-      expect(SetterClimbLog.validators.size).to be 5 # include CarrierWave validators
-    end
   end
 
   describe 'Associations' do

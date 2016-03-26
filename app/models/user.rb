@@ -34,11 +34,12 @@ class User < ActiveRecord::Base
 
   class Name < ActiveRecord::Base
     belongs_to :user
-    generate_validations_for :first, :last
 
     def short_format
       first unless first.blank?
     end
+
+    validates_length_of :first, :last, maximum: 255
   end
 
   def address_me_as
@@ -61,5 +62,5 @@ class User < ActiveRecord::Base
   has_one :current_location, as: :locateable, class_name: 'Location', dependent: :destroy
   accepts_nested_attributes_for :current_location
 
-  generate_validations_for :current_role
+  validates_length_of :current_role, maximum: 255
 end

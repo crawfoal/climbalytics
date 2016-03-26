@@ -3,14 +3,7 @@ require 'rails_helper'
 describe User do
   describe 'Validations' do
     subject { build(:user) }
-    #---------------------------------------------------------------------------
-    # Validations generated from databsase constraints and associations
     it { should validate_length_of(:current_role).is_at_most(255) }
-    #---------------------------------------------------------------------------
-
-    it 'should have 1 validator' do
-      expect(User.validators.size).to be 1
-    end
   end
 
   describe 'Associations' do
@@ -86,11 +79,6 @@ describe User do
 end
 
 describe User::Name do
-
-  #-----------------------------------------------------------------------------
-  # Validations generated from databsase constraints and associations
   it { should validate_length_of(:first).is_at_most(255) }
   it { should validate_length_of(:last).is_at_most(255) }
-  #-----------------------------------------------------------------------------
-
 end

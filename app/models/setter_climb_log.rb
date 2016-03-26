@@ -26,5 +26,5 @@ class SetterClimbLog < ActiveRecord::Base
   accepts_nested_attributes_for :climb
   validates_presence_of :climb
 
-  generate_validations_for :note
+  validates_length_of :note, maximum: 20000
 end

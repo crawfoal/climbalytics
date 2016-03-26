@@ -2,14 +2,7 @@ require 'rails_helper'
 
 describe Role do
   describe 'Validations' do
-    #---------------------------------------------------------------------------
-    # Validations defined in model
     it { should validate_inclusion_of(:resource_type).in_array(Rolify.resource_types) }
-    #---------------------------------------------------------------------------
-
-    it 'should have 1 validator' do
-      expect(Role.validators.size).to be 1
-    end
   end
 
   before :each do

@@ -4,24 +4,13 @@ RSpec.describe Gym, type: :model do
   subject { build :gym }
 
   describe 'Validations' do
-    #---------------------------------------------------------------------------
-    # Validations defined in the model
     it 'should validate validate presence of topo' do
       expect(Gym.create(attributes_for :gym, topo: nil)).to_not be_valid
     end
     it { should validate_presence_of :location }
     it { should validate_length_of(:gym_sections) }
-    #---------------------------------------------------------------------------
-
-    #---------------------------------------------------------------------------
-    # Generated validations
     it { should validate_length_of(:name).is_at_most(255) }
     it { should validate_presence_of :name }
-    #---------------------------------------------------------------------------
-
-    it 'should have 8 validators' do
-      expect(Gym.validators.size).to be 8 # includes 3 validations from CarrierWave for topo column
-    end
   end
 
   describe 'Associations' do

@@ -14,5 +14,6 @@ class Gym < ActiveRecord::Base
   mount_uploader :topo, TopoUploader
   validates :topo, presence: true
 
-  generate_validations_for :name
+  validates_length_of :name, maximum: 255
+  validates_presence_of :name
 end

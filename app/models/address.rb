@@ -4,6 +4,8 @@ class Address < ActiveRecord::Base
     address.validates_presence_of :line1, :city, :state
     address.validates :zip, length: { is: 5 }, numericality: { only_integer: true }
   end
+  validates :line1, :line2, :city, length: { maximum: 255 }
+  validates :addressable_id, uniqueness: { scope: :addressable_type }, allow_nil: true
 
   belongs_to :state
   belongs_to :addressable, polymorphic: true
@@ -21,7 +23,5 @@ class Address < ActiveRecord::Base
   def blank?
     [:line1, :line2, :city, :state, :zip].all? { |attrib| self.send(attrib).blank? }
   end
-
-  generate_validations_for :line1, :line2, :city, :zip, :state_id, :addressable_id
 
 end

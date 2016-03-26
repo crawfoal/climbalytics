@@ -6,5 +6,5 @@ class UserAccount < ActiveRecord::Base
 
   has_one :user
 
-  generate_validations_for :email
+  validates_length_of :email, maximum: 255
 end

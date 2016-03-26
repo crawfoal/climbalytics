@@ -3,5 +3,5 @@ class GymSection < ActiveRecord::Base
 
   has_many :climbs, -> { where loggable_type: 'SetterClimbLog' }
 
-  generate_validations_for :name
+  validates_presence_of :name
 end

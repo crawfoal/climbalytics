@@ -9,9 +9,6 @@ describe Location do
   describe 'Validations' do
     it { should validate_numericality_of :latitude }
     it { should validate_numericality_of :longitude }
-    it 'should have 2 validators' do
-      expect(Location.validators.size).to be == 2
-    end
   end
 
   context 'with valid attributes' do

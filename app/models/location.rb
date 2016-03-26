@@ -7,5 +7,5 @@ class Location < ActiveRecord::Base
 
   belongs_to :locateable, polymorphic: true
 
-  generate_validations_for :latitude, :longitude
+  validates_numericality_of :latitude, :longitude, allow_nil: true
 end

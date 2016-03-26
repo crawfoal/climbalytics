@@ -34,6 +34,6 @@ class AthleteClimbLog < ActiveRecord::Base
     end
   end
 
-  generate_validations_for :note, :project
+  validates_length_of :note, maximum: 20000
 
 end

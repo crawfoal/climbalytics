@@ -50,6 +50,6 @@ class Climb < ActiveRecord::Base
     attributes.slice(*value_attribute_names)
   end
 
-  validates :moves_count, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
-  generate_validations_for :name
+  validates_numericality_of :moves_count, only_integer: true, greater_than: 0, allow_nil: true
+  validates_length_of :name, maximum: 255
 end

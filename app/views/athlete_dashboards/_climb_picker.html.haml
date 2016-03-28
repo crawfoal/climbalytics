@@ -1,10 +1,12 @@
 = form_for :athlete_climb_log, url: new_athlete_climb_log_path do |f|
+
   %h3= @gym.name
+
   = image_tag @gym.topo_url.to_s, class: 'topo'
   = f.fields_for :climb_attributes do |ff|
     = ff.collection_select :gym_section_id, @gym.sections, :id, :name
   = f.number_field :setter_climb_log_id, min: 1, step: 1
   .climb-links
-  Or...
 
+  Or...
   \#{f.submit 'New climb', role: 'button'}

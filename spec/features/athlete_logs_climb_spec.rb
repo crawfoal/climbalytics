@@ -8,19 +8,41 @@ def setup_gym_and_climb_data
   climb.update(grade: climb.type.constantize.grades.keys.sample)
 end
 
-def select_climb_and_expect_form_to_appear
+def select_existing_climb
   expect(page).to have_css '.climb-links', wait: 3
 
   within '.climb-links' do
     first('.loggable-link').click
   end
+end
+
+def expect_form_to_appear
   expect(page).to have_css '.new_athlete_climb_log'
 end
 
-def check_field_presets_for_climb
+def expect_gym_section_to_be_set
   expect(page).to have_select "athlete_climb_log[climb_attributes][gym_section_id]", selected: gym_section.name
+end
+
+def check_field_presets_for_climb
+  expect_gym_section_to_be_set
   expect(page).to have_checked_field climb.type
   expect(page).to have_select "athlete_climb_log[climb_attributes][grade]", selected: climb.grade
+end
+
+def click_on_log_a_climb
+  within('.log-a-climb') { find('.start').click }
+  expect(page).to have_css '.recent-gyms' # check for ajax response
+end
+
+def click_on_first_gym
+  within '.recent-gyms' do
+    first('.gym-link').click
+  end
+end
+
+def choose_boulder
+  within('.climb-type') { find('label[for="athlete_climb_log_climb_attributes_type_boulder"]').click }
 end
 
 def save_and_expect_success
@@ -42,7 +64,7 @@ feature 'Athlete logs a climb' do
       setup_gym_and_climb_data
       capybara_login(user)
       simulate_location 47.627867, -117.662724 # pretend we're close to Wild Walls
-      within('.log-a-climb') { click_on 'Log' }
+      click_on_log_a_climb
 
       click_on 'find-me'
       expect(page).to have_link 'refresh-my-location', wait: 3
@@ -51,26 +73,41 @@ feature 'Athlete logs a climb' do
         click_on 'Wild Walls'
       end
 
-      select_climb_and_expect_form_to_appear
+      select_existing_climb
+      expect_form_to_appear
 
       check_field_presets_for_climb
     end
 
-    scenario 'for a recent gym' do
-      setup_gym_and_climb_data
-      create(:athlete_climb_log, athlete_story: user.athlete_story, gym: wild_walls)
-      capybara_login(user)
-      within('.log-a-climb') { click_on 'Log' }
-
-      within '.recent-gyms' do
-        first('.gym-link').click
+    context 'for a recent gym' do
+      before :each do
+        setup_gym_and_climb_data
+        create(:athlete_climb_log, athlete_story: user.athlete_story, gym: wild_walls)
+        capybara_login(user)
+        click_on_log_a_climb
+        click_on_first_gym
       end
 
-      select_climb_and_expect_form_to_appear
+      context 'for an existing climb' do
+        scenario 'log is successfully created' do
+          select_existing_climb
+          expect_form_to_appear
 
-      check_field_presets_for_climb
+          check_field_presets_for_climb
 
-      save_and_expect_success
+          save_and_expect_success
+        end
+      end
+
+      context 'for a new climb' do
+        scenario 'log is successfully created', :focus do
+          click_on 'New climb'
+          expect_form_to_appear
+          expect_gym_section_to_be_set
+          choose_boulder
+          save_and_expect_success
+        end
+      end
     end
   end
 end

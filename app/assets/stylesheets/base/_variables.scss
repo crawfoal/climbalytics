@@ -4,6 +4,7 @@ $heading-font-family: 'Raleway', sans-serif;
 
 // Font Sizes
 $base-font-size: 1em;
+$small-font-size: $base-font-size * .75;
 
 // Line height
 $base-line-height: 1.5;
@@ -15,7 +16,8 @@ $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
 $tiny-spacing: $small-spacing / 2;
 $base-z-index: 0;
-$page-gutter: 60px;
+$base-page-gutter: 60px;
+$small-page-gutter: $base-page-gutter / 3;
 $base-grid-item-height: 14 * $base-font-size;
 
 // Colors

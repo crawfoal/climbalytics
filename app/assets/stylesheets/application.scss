@@ -1,12 +1,11 @@
 @import "normalize";
 
 @import "bourbon";
-@import "base/base";
+@import "base/manifest";
 @import "neat";
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-@import "./base/*";
-@import "./layouts/*";
-@import "./pages/*";
+@import "layouts/**/*";
+@import "pages/**/*";

@@ -106,12 +106,24 @@ class AthleteClimbLogsController < ApplicationController
       params.has_key? :athlete_climb_log
     end
 
+    def slog_specified?
+      athlete_climb_log_params[:setter_climb_log_id].present?
+    end
+
+    def presets_from_slog
+      slog = SetterClimbLog.find(athlete_climb_log_params[:setter_climb_log_id])
+
+      {setter_climb_log_id: athlete_climb_log_params[:setter_climb_log_id], climb_attributes: slog.climb.value_attributes}
+    end
+
     # Don't want to require that anything is passed in (obviously GET requests to #new won't pass anything), but still want to filter stuff out, so we need a separate function than the standard one above.
     def form_new_presets
       return nil unless presets_given?
 
-      slog = SetterClimbLog.find(athlete_climb_log_params[:setter_climb_log_id])
-
-      {setter_climb_log_id: athlete_climb_log_params[:setter_climb_log_id], climb_attributes: slog.climb.value_attributes}
+      if slog_specified?
+        presets_from_slog
+      else
+        athlete_climb_log_params
+      end
     end
 end

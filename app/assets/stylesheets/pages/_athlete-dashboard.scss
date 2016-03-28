@@ -9,7 +9,9 @@ main[data-controller="athlete_dashboards"][data-action="show"] {
     #BDCC97,
     #979EA0;
   $grid-item-border-size: 9px;
-  $grid-item-columns: 4;
+  $grid-item-columns-laptop: 4;
+  $grid-item-columns-tablet: 6;
+  $grid-item-columns-mobile: 12;
   $grid-item-color: white;
   $grid-item-height: 14em;
 
@@ -24,8 +26,14 @@ main[data-controller="athlete_dashboards"][data-action="show"] {
     text-align: center;
     width: 100%;
 
-    @include media($large-screen) {
-      @include grid-item-columns($grid-item-columns);
+    @include media($laptop-and-up) {
+      @include grid-item-columns($grid-item-columns-laptop);
+    }
+    @include media($tablet) {
+      @include grid-item-columns($grid-item-columns-tablet);
+    }
+    @include media($mobile) {
+      @include grid-item-columns($grid-item-columns-mobile);
     }
 
     @for $i from 1 through length($grid-item-colors) { // assign colors from $grid-item-colors list
@@ -77,6 +85,7 @@ main[data-controller="athlete_dashboards"][data-action="show"] {
     display: block;
     width: 100%;
     margin-top: $small-spacing;
+    font-size: $small-font-size;
   }
 
   button#refresh-my-location {
@@ -94,14 +103,22 @@ main[data-controller="athlete_dashboards"][data-action="show"] {
     a {
       margin: 1px;
 
+      @include media($mobile) {
+        @include flex-basis(32%);
+      };
+      @include media($tablet-and-up) {
+        @include flex-basis(24%);
+      };
+      @include flex-grow(1);
+
       &.loggable-link {
         @include bitter-button;
         @include compact-button;
         border-radius: 0;
+        @include media($mobile) {
+          font-size: $small-font-size;
+        }
       }
-
-      @include flex-basis(24%);
-      @include flex-grow(1);
     }
   }
 

@@ -6,6 +6,7 @@
     %link{:href => "https://fonts.googleapis.com/css?family=Raleway|Droid+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
   %body
     %header.navigation{role: 'banner'}
       = render partial: '/layouts/navbar'

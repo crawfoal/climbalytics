@@ -17,3 +17,7 @@
   border-top: 0;
   outline: none;
 }
+
+@mixin page-gutters($side-gutter-size, $top-to-side-ratio: 2 / 3) {
+  margin: $top-to-side-ratio * $side-gutter-size $side-gutter-size;
+}

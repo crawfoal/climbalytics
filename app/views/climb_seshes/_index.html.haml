@@ -1,0 +1,14 @@
+%table#climb_seshes_index_table
+  %thead
+    %tr
+      %th.high-hold High hold
+      %th.note Note
+      %th.delete
+  %tbody
+    - climb_seshes.each do |climb_sesh|
+      %tr
+        %td.high-hold= climb_sesh.high_hold
+        %td.note= climb_sesh.note
+        %td.delete
+          = link_to climb_sesh, remote: true, method: :delete, data: { confirm: 'Are you sure?' } do
+            %i.fa.fa-remove

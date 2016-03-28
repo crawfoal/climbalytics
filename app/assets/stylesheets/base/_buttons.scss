@@ -2,12 +2,12 @@
   padding: $tiny-spacing $small-spacing;
 }
 
-@mixin bitter-button {
+@mixin bitter-button($color: $action-color, $text-color: #fff) {
   appearance: none;
-  background-color: $action-color;
+  background-color: $color;
   border: 0;
   border-radius: $base-border-radius;
-  color: #fff;
+  color: $text-color;
   cursor: pointer;
   display: inline-block;
   font-family: $base-font-family;
@@ -26,8 +26,8 @@
 
   &:hover,
   &:focus {
-    background-color: shade($action-color, 20%);
-    color: #fff;
+    background-color: shade($color, 20%);
+    color: $text-color;
   }
 
   &:disabled {
@@ -35,7 +35,7 @@
     opacity: 0.5;
 
     &:hover {
-      background-color: $action-color;
+      background-color: $color;
     }
   }
 }

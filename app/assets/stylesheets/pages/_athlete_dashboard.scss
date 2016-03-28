@@ -113,9 +113,6 @@ main[data-controller="athlete_dashboards"][data-action="show"] {
   }
 
   section.climb-picker {
-    input#athlete_climb_log_setter_climb_log_id {
-      display: none;
-    }
     select#athlete_climb_log_climb_attributes_gym_section_id {
       width: 100%;
       margin-bottom: $tiny-spacing;

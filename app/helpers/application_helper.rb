@@ -22,4 +22,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def dashboard_path
+    try("#{current_user.current_role}_dashboard_path")
+  end
 end

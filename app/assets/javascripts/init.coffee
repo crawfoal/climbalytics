@@ -2,8 +2,7 @@
 window.Climbalytics ||= {}
 
 Climbalytics.init = ->
-  # Initialize Bootstrap tooltips:
-  $('[data-toggle="tooltip"]').tooltip()
+  console.log('')
 
 $(document).on 'page:change', ->
   Climbalytics.init()

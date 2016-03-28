@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resource :nearby_gyms, only: [:show]
 
-  resources :route_pickers, only: [:show]
+  resources :climb_pickers, only: [:show]
 
   resource :flash, only: [:show]
 

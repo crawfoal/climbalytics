@@ -23,21 +23,29 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+#-------------------------------------------------------------------------------
 # Gems that I've added
 gem 'carrierwave'
+
 gem 'devise'
 gem 'rolify'
-gem 'bootstrap-sass'
-gem 'autoprefixer-rails'
 gem 'pundit'
-gem 'mini_magick'
-gem 'cocoon'
+
 gem 'geocoder'
-gem 'resque', require: "resque/server"
+
+gem 'haml'
+# gem 'autoprefixer-rails'
+gem 'cocoon'
 gem 'js-routes'
+gem 'mini_magick'
 gem 'inline_svg'
 gem 'font-awesome-sass'
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
+
 gem 'rails-observers'
+#-------------------------------------------------------------------------------
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

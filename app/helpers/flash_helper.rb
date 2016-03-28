@@ -12,6 +12,6 @@ module FlashHelper
     flash_array.join('').html_safe
   end
   def types_to_styles
-    {alert: :danger, notice: :success, warning: :warning}
+    {alert: :error, notice: :success, warning: :alert}
   end
 end

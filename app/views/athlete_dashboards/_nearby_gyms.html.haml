@@ -1,0 +1,10 @@
+%h3 Near you
+- if current_user.current_location
+  %button#refresh-my-location{data: {behavior: 'locate-user'}}
+    %i.fa.fa-refresh
+  - gyms_near(current_user).each do |gym|
+    %button.gym-link{data: {'gym-id': "#{gym.id}"}}
+      = gym.name
+- else
+  %button#find-me{data: {behavior: 'locate-user'}}
+    Find me

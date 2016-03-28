@@ -2,7 +2,7 @@
 class Climbalytics.NearbyGyms
   constructor: (@button) ->
     @refreshIcon = @button.find('.fa-refresh')
-    @enclosingElement = $('.gym-picker .section-body .nearby-gyms')
+    @enclosingElement = $('.gym-picker .nearby-gyms')
     @geolocator = new Climbalytics.Geolocator(@reloadPartial, @removeLoadingStyles)
 
   isLoading: =>
@@ -12,14 +12,14 @@ class Climbalytics.NearbyGyms
       return false
 
   applyLoadingStyles: =>
-    @button.addClass('disabled')
+    @button.prop('disabled', true)
     if @refreshIcon.length == 0
       @button.append('<i class="fa fa-refresh fa-lg fa-spin pull-right"></i>')
     else
       @refreshIcon.addClass('fa-spin')
 
   removeLoadingStyles: =>
-    @button.removeClass('disabled')
+    @button.prop('disabled', false)
     @refreshIcon.removeClass('fa-spin')
 
   reloadPartial: =>

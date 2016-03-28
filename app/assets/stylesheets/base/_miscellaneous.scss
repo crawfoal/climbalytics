@@ -1,0 +1,19 @@
+@mixin solid-background($color) {
+  background-color: $color;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+}
+
+@mixin solid-background-with-subtle-shaddow($color) {
+  background-color: $color;
+  box-shadow: inset 0px 0px 1px 2px darken($color, 10%);
+}
+
+@mixin grid-item-border($size, $color) {
+  border-bottom: $size solid $color;
+  border-left: ($size / 2) solid $color;
+  border-right: ($size / 2) solid $color;
+  border-top: 0;
+  outline: none;
+}

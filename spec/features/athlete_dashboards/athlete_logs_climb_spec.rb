@@ -60,7 +60,7 @@ feature 'Athlete logs a climb' do
   context 'from the dashboard', js: true do
 
     scenario 'for a nearby gym' do
-      skip 'need to work out geolocation stubbing...' # it works sometimes... especially when this spec is simpler
+      # skip 'need to work out geolocation stubbing...' # it works sometimes... especially when this spec is simpler
 
       setup_gym_and_climb_data
       capybara_login(user)
@@ -68,7 +68,7 @@ feature 'Athlete logs a climb' do
       click_on_log_a_climb
 
       click_on 'find-me'
-      expect(page).to have_link 'refresh-my-location', wait: 3
+      expect(page).to have_button 'refresh-my-location', wait: 3
 
       within '.nearby-gyms' do
         click_on 'Wild Walls'
@@ -93,9 +93,7 @@ feature 'Athlete logs a climb' do
         scenario 'log is successfully created' do
           select_existing_climb
           expect_form_to_appear
-
           check_field_presets_for_climb
-
           save_and_expect_success
         end
       end

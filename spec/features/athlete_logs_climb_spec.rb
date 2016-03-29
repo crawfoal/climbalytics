@@ -26,7 +26,7 @@ end
 
 def check_field_presets_for_climb
   expect_gym_section_to_be_set
-  expect(page).to have_checked_field climb.type
+  expect(find('label.active')).to have_content climb.type
   expect(page).to have_select "athlete_climb_log[climb_attributes][grade]", selected: climb.grade
 end
 
@@ -36,6 +36,7 @@ def click_on_log_a_climb
 end
 
 def click_on_first_gym
+  expect(page).to have_css '.gym-link'
   within '.recent-gyms' do
     first('.gym-link').click
   end

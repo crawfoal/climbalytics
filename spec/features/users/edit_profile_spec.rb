@@ -8,7 +8,7 @@ feature 'User edits profile:' do
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.account.password
     click_on 'Log in'
-    click_on 'Edit profile'
+    click_on 'Edit Profile'
   end
   scenario 'name can be changed' do
     fill_in 'First', with: 'first'

@@ -12,4 +12,8 @@ $(document).on 'page:change', ->
   showGradeChoices checkedClimbTypeLabel.find('input').val()
 
   $('.climb-type').on 'click', 'label', ->
-    showGradeChoices $(this).find('input').val()
+    climbTypeGroup = $(this).closest('.climb-type')
+    climbTypeGroup.find('label').removeClass('active')
+    inputElement = $(this).find('input')
+    $(this).addClass('active')
+    showGradeChoices inputElement.val()

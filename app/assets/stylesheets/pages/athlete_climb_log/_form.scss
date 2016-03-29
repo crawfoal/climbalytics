@@ -22,11 +22,11 @@ form[id*="athlete_climb_log"] {
       float: left;
       margin-bottom: 0;
     }
-    input:not(checked) + span {
+    label:not(.active) > span {
       @include bitter-button($base-background-color, $base-font-color);
       border-right: $base-border;
     }
-    input:checked + span {
+    label.active > span {
       @include bitter-button;
     }
     label:first-child span {

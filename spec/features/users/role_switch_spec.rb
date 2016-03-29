@@ -9,11 +9,9 @@ feature 'User Roles:' do
     fill_in 'Password', with: @user.user_account.password
     click_on 'Log in'
     expect(@user.current_role).to eq 'athlete'
-    click_on "Logged in as #{@user.address_me_as}"
-    select 'setter', from: 'user_current_role'
+    click_on 'Change Roles'
+    click_on 'setter'
+    expect(current_path).to include setter_dashboard_path
     expect(@user.reload.current_role).to eq 'setter'
-    click_on "Logged in as #{@user.address_me_as}"
-    expect(page).to have_select('user_current_role', selected: 'setter')
-    expect(page).to have_content 'Create a...'
   end
 end

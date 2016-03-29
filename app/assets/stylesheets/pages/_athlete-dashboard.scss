@@ -134,5 +134,8 @@ main[data-controller="athlete_dashboards"][data-action="show"] {
       width: 100%;
       margin-bottom: $tiny-spacing;
     }
+    input[value="New climb"] {
+      margin-top: $tiny-spacing;
+    }
   }
 }

@@ -30,16 +30,28 @@ $success-color: #e6efc2 !default;
 
 .flash-alert {
   @include flash($alert-color);
+  #{$all-buttons}.close {
+    @include compact-bitter-button(darken($alert-color, 15%));
+  }
 }
 
 .flash-error {
   @include flash($error-color);
+  #{$all-buttons}.close {
+    @include compact-bitter-button(darken($error-color, 15%));
+  }
 }
 
 .flash-notice {
   @include flash($notice-color);
+  #{$all-buttons}.close {
+    @include compact-bitter-button(darken($notice-color, 15%));
+  }
 }
 
 .flash-success {
   @include flash($success-color);
+  #{$all-buttons}.close {
+    @include compact-bitter-button(darken($success-color, 15%));
+  }
 }

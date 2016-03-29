@@ -40,6 +40,11 @@
   }
 }
 
+@mixin compact-bitter-button($color: $action-color) {
+  @include bitter-button($color);
+  @include compact-button;
+}
+
 #{$all-buttons} {
   @include bitter-button;
 

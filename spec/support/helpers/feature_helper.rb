@@ -12,7 +12,7 @@ module FeatureHelper
 
   def capybara_login(user)
     visit root_path
-    within '.signin-fields' do
+    within '.signin' do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.account.password
       click_on 'Log in'

@@ -1,0 +1,10 @@
+main[data-action="show"][data-controller="home"] {
+  article.signup, article.signin {
+    margin-bottom: $base-spacing;
+
+    @include span-columns(6);
+    @include media($mobile) {
+      @include span-columns(12);
+    };
+  }
+}

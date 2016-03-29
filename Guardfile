@@ -85,8 +85,14 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 
   # Capybara features specs
-  watch(rails.view_dirs)     { |m| rspec.spec.("features/#{m[1]}") }
-  watch(rails.layouts)       { |m| rspec.spec.("features/#{m[1]}") }
+  watch(rails.view_dirs)     { |m| "#{rspec.spec_dir}/features/#{m[1]}" }
+  watch(rails.layouts)       { |m| "#{rspec.spec_dir}/features" }
+  watch(%r(^app/assets/javascripts/(.+)/.+\.(coffee|js)$)) do |m|
+    "#{rspec.spec_dir}/features/#{m[1]}"
+  end
+  watch(%r(^app/assets/javascripts/[^\/]+\.(coffee|js)$)) do |m|
+    "#{rspec.spec_dir}/features"
+  end
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})

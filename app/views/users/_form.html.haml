@@ -1,0 +1,29 @@
+= form_for setup_user(current_user), url: user_path do |user_form|
+  = render partial: "shared/error_messages", locals: {target: current_user}
+  %section.account-information
+    %h3 Account Information
+    %section.roles
+      %hgroup
+        %h4 Roles
+        %i.fa.fa-toggle-down.fa-lg
+      %p
+        - if current_user.roles.empty?
+          %p
+            To start using the site, you need to select one or more roles. This will you give you access to the corresponding features. You will be able to switch roles at any time via a dropdown in the navigation bar.
+        - Role.defined_roles.each do |role|
+          = user_form.label role do
+            = check_box_tag 'user[_roles][]', role, current_user.has_role?(role)
+            = role
+        %i.fa.fa-toggle-up.fa-lg
+  %section.personal-details
+    %h3 Personal Details
+    %section.name{data: {'name-short-format': current_user.name.short_format}}
+      %hgroup
+        %h4 Name
+        %i.fa.fa-toggle-down.fa-lg
+      %p
+        = user_form.fields_for :name do |name_form|
+          = render partial: "users/names/fields", locals: {form: name_form}
+        %i.fa.fa-toggle-up.fa-lg
+  .actions
+    = user_form.submit "Update"

@@ -1,0 +1,53 @@
+main[data-action="edit"][data-controller="users"] {
+
+  form {
+    @include outer-container;
+  }
+
+  section.account-information, section.personal-details {
+    margin-bottom: $base-spacing;
+
+    @include span-columns(6);
+    @include media($mobile) {
+      @include span-columns(12)
+    };
+  }
+
+  section.personal-details {
+    @include omega;
+  }
+
+  section.roles, section.name {
+    background: $light-gray;
+    padding: $small-spacing $base-spacing;
+
+    hgroup {
+      padding: $tiny-spacing 0;
+      @include display(flex);
+      @include justify-content(space-between);
+      @include align-items(center);
+
+      h4 {
+        display: inline;
+        margin: 0;
+      }
+    }
+
+    i.fa-toggle-down, i.fa-toggle-up {
+      float: right;
+
+      @include icon-button;
+    }
+
+    i.fa-toggle-down {
+      display: none;
+    }
+
+    > p {
+      border-top: $base-border-width solid $light-border-color;
+      padding-top: $small-spacing;
+
+      @include clearfix;
+    }
+  }
+}

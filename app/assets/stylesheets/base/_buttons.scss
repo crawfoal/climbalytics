@@ -26,7 +26,7 @@
 
   &:hover,
   &:focus {
-    background-color: shade($color, 20%);
+    background-color: $action-color-hover;
     color: $text-color;
   }
 
@@ -50,5 +50,15 @@
 
   &.close {
     @include compact-button;
+  }
+}
+
+@mixin icon-button($color: $action-color) {
+  color: $color;
+  cursor: pointer;
+
+  &:hover,
+  &:focus, {
+    color: shade($color, 20%);
   }
 }

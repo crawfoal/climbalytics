@@ -15,8 +15,6 @@ feature 'User signs up for an account' do
     end
 
     it { should have_content 'Welcome! You have signed up successfully.' }
-    it { should have_css '.roles .collapse.in' }
-    it { should have_css '.name .collapse.in' }
 
     context 'and the user selects and submits a role' do
       before :each do

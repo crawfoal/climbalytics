@@ -69,8 +69,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'rspec-retry'
-  gem 'chromedriver-helper'
 
   gem 'guard-rspec'
 

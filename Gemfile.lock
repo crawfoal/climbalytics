@@ -37,8 +37,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    archive-zip (0.7.0)
-      io-like (~> 0.3.0)
     arel (6.0.3)
     awesome_print (1.6.1)
     bcrypt (3.1.11)
@@ -68,9 +66,6 @@ GEM
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.2.0)
-    chromedriver-helper (1.0.0)
-      archive-zip (~> 0.7.0)
-      nokogiri (~> 1.6)
     cocoon (1.2.9)
     codeclimate-test-reporter (0.5.0)
       simplecov (>= 0.7.1, < 1.0.0)
@@ -132,7 +127,6 @@ GEM
       activesupport (>= 4.0.4)
       loofah (>= 2.0)
       nokogiri (~> 1.6)
-    io-like (0.3.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -241,8 +235,6 @@ GEM
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
-    rspec-retry (0.4.5)
-      rspec-core
     rspec-support (3.4.1)
     ruby-graphviz (1.2.2)
     rubyzip (1.2.0)
@@ -308,7 +300,6 @@ DEPENDENCIES
   byebug
   capybara
   carrierwave
-  chromedriver-helper
   cocoon
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
@@ -335,7 +326,6 @@ DEPENDENCIES
   rails-observers
   rolify
   rspec-rails
-  rspec-retry
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selenium-webdriver

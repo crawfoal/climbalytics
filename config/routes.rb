@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :user_accounts
-  resources :gyms
+  resources :gyms, except: :destroy
   root 'home#show', via: [:get]
 
   resource :user, only: [:edit, :update]

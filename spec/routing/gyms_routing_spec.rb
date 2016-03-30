@@ -31,9 +31,5 @@ RSpec.describe GymsController, type: :routing do
       expect(:patch => "/gyms/1").to route_to("gyms#update", :id => "1")
     end
 
-    it "routes to #destroy" do
-      expect(:delete => "/gyms/1").to route_to("gyms#destroy", :id => "1")
-    end
-
   end
 end

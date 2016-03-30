@@ -1,6 +1,6 @@
 module Sometimes
 
-  def sometimes(numerator, denominator)
+  def self.sometimes(numerator, denominator)
     do_it_this_time = rand(denominator) < numerator
     if block_given?
       yield if do_it_this_time
@@ -20,7 +20,7 @@ module Sometimes
     four_fifths: [4,5]
   }
 
-  def method_missing(sym, *args, &block)
+  def self.method_missing(sym, *args, &block)
     fraction_in_words, anchor, extra = sym.to_s.partition('_of_the_time')
     if extra.blank? and anchor == '_of_the_time' and not fraction_in_words.blank?
       sometimes(*WordsToFractionPieces[fraction_in_words.to_sym], &block)

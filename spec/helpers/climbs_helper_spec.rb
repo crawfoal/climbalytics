@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe ClimbsHelper do
-  include ClimbsHelper
   include Rails.application.routes.url_helpers
 
   describe '#path_to_edit_loggable_for' do

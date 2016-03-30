@@ -1,25 +1,11 @@
 class AthleteClimbLogsController < ApplicationController
-  before_action :set_athlete_climb_log, only: [:show, :edit, :update, :destroy]
-
-  # GET /athlete_climb_logs
-  # GET /athlete_climb_logs.json
-  def index
-    if current_user.athlete_story
-      @athlete_climb_logs = AthleteClimbLog.where athlete_story: current_user.athlete_story
-    end
-  end
-
-  # GET /athlete_climb_logs/1
-  # GET /athlete_climb_logs/1.json
-  def show
-    authorize @athlete_climb_log
-  end
+  before_action :set_athlete_climb_log, only: [:edit, :update]
 
   # GET /athlete_climb_logs/new
   # POST /athlete_climb_log/new
   def new
     authorize AthleteClimbLog
-    @athlete_climb_log = AthleteClimbLog.new(form_new_presets)
+    @athlete_climb_log = AthleteClimbLog.new(params_for_new)
     @athlete_climb_log.build_climb unless @athlete_climb_log.climb.present?
   end
 
@@ -29,45 +15,24 @@ class AthleteClimbLogsController < ApplicationController
   end
 
   # POST /athlete_climb_logs
-  # POST /athlete_climb_logs.json
   def create
     authorize AthleteClimbLog, :new?
     @athlete_climb_log = current_user.athlete_story.athlete_climb_logs.build(athlete_climb_log_params)
     authorize @athlete_climb_log
-    respond_to do |format|
-      if @athlete_climb_log.save
-        format.html { redirect_to @athlete_climb_log, notice: 'Athlete climb log was successfully created.' }
-        format.json { render :show, status: :created, location: @athlete_climb_log }
-      else
-        format.html { render :new }
-        format.json { render json: @athlete_climb_log.errors, status: :unprocessable_entity }
-      end
+    if @athlete_climb_log.save
+      redirect_to root_path, notice: 'Athlete climb log was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /athlete_climb_logs/1
-  # PATCH/PUT /athlete_climb_logs/1.json
   def update
     authorize @athlete_climb_log
-    respond_to do |format|
-      if @athlete_climb_log.update(athlete_climb_log_params)
-        format.html { redirect_to @athlete_climb_log, notice: 'Athlete climb log was successfully updated.' }
-        format.json { render :show, status: :ok, location: @athlete_climb_log }
-      else
-        format.html { render :edit }
-        format.json { render json: @athlete_climb_log.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /athlete_climb_logs/1
-  # DELETE /athlete_climb_logs/1.json
-  def destroy
-    authorize @athlete_climb_log
-    @athlete_climb_log.destroy
-    respond_to do |format|
-      format.html { redirect_to athlete_climb_logs_url, notice: 'Athlete climb log was successfully destroyed.' }
-      format.json { head :no_content }
+    if @athlete_climb_log.update(athlete_climb_log_params)
+      redirect_to root_path, notice: 'Athlete climb log was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -116,8 +81,7 @@ class AthleteClimbLogsController < ApplicationController
       {setter_climb_log_id: athlete_climb_log_params[:setter_climb_log_id], climb_attributes: slog.climb.value_attributes}
     end
 
-    # Don't want to require that anything is passed in (obviously GET requests to #new won't pass anything), but still want to filter stuff out, so we need a separate function than the standard one above.
-    def form_new_presets
+    def params_for_new
       return nil unless presets_given?
 
       if slog_specified?

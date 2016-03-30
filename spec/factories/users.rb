@@ -4,6 +4,7 @@ FactoryGirl.define do
 
     transient do
       roles []
+      gym nil
     end
 
     trait :with_name do
@@ -30,7 +31,12 @@ FactoryGirl.define do
 
       after(:create) do |user, evaluator|
         if evaluator.athlete_climb_logs_count > 0
-          create_list(evaluator.athlete_climb_log_factory, evaluator.athlete_climb_logs_count, athlete_story: user.athlete_story)
+          create_list(
+            evaluator.athlete_climb_log_factory,
+            evaluator.athlete_climb_logs_count,
+            gym: evaluator.gym,
+            athlete_story: user.athlete_story
+          )
         end
       end
     end
@@ -44,7 +50,12 @@ FactoryGirl.define do
 
       after(:create) do |user, evaluator|
         if evaluator.setter_climb_logs_count > 0
-          create_list(evaluator.setter_climb_log_factory, evaluator.setter_climb_logs_count, setter_story: user.setter_story)
+          create_list(
+            evaluator.setter_climb_log_factory,
+            evaluator.setter_climb_logs_count,
+            gym: evaluator.gym,
+            setter_story: user.setter_story
+          )
         end
       end
     end

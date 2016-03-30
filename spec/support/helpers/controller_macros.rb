@@ -9,3 +9,9 @@ module ControllerMacros
     let(:current_user) {user}
   end
 end
+
+RSpec.configure do |config|
+  config.extend ControllerMacros, type: :helper
+  config.extend ControllerMacros, type: :controller
+  config.extend ControllerMacros, type: :feature
+end

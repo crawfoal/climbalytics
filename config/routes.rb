@@ -12,8 +12,6 @@ Rails.application.routes.draw do
 
   resources :climbs, only: [:index]
 
-  resources :climb_seshes, only: [:new, :create, :edit, :update, :destroy]
-
   resource :athlete_dashboard, only: [:show]
 
   resource :setter_dashboard, only: [:show]

@@ -11,6 +11,9 @@ module FlashHelper
     end
     flash_array.join('').html_safe
   end
+
+  private
+
   def types_to_styles
     {alert: :error, notice: :success, warning: :alert}
   end

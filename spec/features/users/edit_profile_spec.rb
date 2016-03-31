@@ -17,10 +17,7 @@ end
 feature 'User edits profile:' do
   let(:user) { create :user }
   before :each do
-    visit new_user_account_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.account.password
-    click_on 'Log in'
+    capybara_login user
     click_on 'Edit Profile'
   end
   scenario 'name can be changed' do

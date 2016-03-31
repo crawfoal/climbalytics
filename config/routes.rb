@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
   # most common routes
-  devise_for :user_accounts
   root 'home#show', via: [:get]
   resource :athlete_dashboard, only: [:show]
   resource :setter_dashboard, only: [:show]
   post 'athlete_climb_logs/new', to: 'athlete_climb_logs#new', as: ''
+  devise_for :user_accounts, skip: :all
+  devise_scope :user_account do
+    post 'sign_in', to: 'devise/sessions#create'
+    delete 'sign_out', to: 'devise/sessions#destroy'
+    post 'user_accounts', to: 'devise/registrations#create'
+  end
+
 
   # all other resources alphabetically
   resources :athlete_climb_logs, only: [:new, :edit, :create, :update]

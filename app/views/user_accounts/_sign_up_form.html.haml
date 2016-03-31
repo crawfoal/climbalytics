@@ -1,4 +1,4 @@
-= form_for :user_account, url: user_account_registration_path do |f|
+= form_for :user_account, url: user_accounts_path do |f|
   = render partial: "shared/error_messages", locals: {target: @user_account}
   %section.signup-fields
     = f.label :email

@@ -16,7 +16,7 @@ shared_examples_for 'a controller that requires user authentication for resource
         else
           method(http_method).call(action, id: resource.id)
         end
-        expect(response).to redirect_to new_user_account_session_path
+        expect(response).to redirect_to root_path
       end
     end
   end

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'shared_examples/index_request'
 
 describe ClimbsController do
   login_user

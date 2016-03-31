@@ -1,0 +1,26 @@
+= form_for @athlete_climb_log do |f|
+  = render partial: "shared/error_messages", locals: {target: @athlete_climb_log}
+  = f.number_field :setter_climb_log_id, min: 1, step: 1
+  %section.log-details
+    %h2
+      Log Details
+    = f.label :project do
+      = f.check_box :project
+      Project
+    = f.label :quality_rating
+    = f.number_field :quality_rating, min: 1, max: 5, step: 1
+    = f.label :note
+    = f.text_area :note, rows: '5'
+  %section.climb-details
+    %h2
+      Climb Details
+    = f.fields_for :climb do |ff|
+      = render partial: 'climbs/form', locals: { climb_form: ff, climb: @athlete_climb_log.climb }
+  %section.climb-seshes
+    %h2
+      Seshes
+    = render partial: 'climb_seshes/index', locals: {climb_seshes: @athlete_climb_log.climb_seshes}
+    = link_to_add_association f, :climb_seshes, 'data-association-insertion-node': '#climb_seshes_index_table tbody', 'data-association-insertion-method': 'append', partial: 'shared/climb_sesh_fields' do
+      %i.fa.fa-plus
+  .actions
+    = f.submit 'Save'

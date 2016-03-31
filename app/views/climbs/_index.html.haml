@@ -1,0 +1,7 @@
+- climbs.each do |climb|
+  - next unless (url = path_to_athlete_climb_log_for(climb))
+  = link_to (climb.grade or '?'), url, class: 'loggable-link', data: {'slog-id': climb.loggable_id}
+
+-# It would be nice to find a better way to do this... the goal is to get four buttons per row in the flex box (three on small devices), have each of them grow so that they take up the whole line, but only have those on the last grow as much as the others grow. So e.g. if the last line only has one button, it should only take up (about) 1/4 of the row. I can't just set the flex-basis to 25% because of the margins on the buttons. I chose 4 per row only because it seems to work well with the current font size. Extra elements (those beyond what is needed to complete the row) will just collapse.
+- 3.times do
+  %a.spacer

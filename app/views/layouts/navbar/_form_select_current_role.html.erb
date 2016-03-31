@@ -1,3 +1,0 @@
-<%= form_for(setup_user(current_user), as: :user, url: users_role_path(current_user), html: {method: :put, class: 'navbar-form'}) do |form| %>
-  <%= form.collection_select(:current_role, current_user.roles, :name, :name, {}, {class: 'form-control', onchange: 'this.form.submit()'}) %>
-<% end %>

@@ -1,0 +1,28 @@
+%header.navigation{:role => "banner"}
+
+  .navigation-wrapper
+
+    %a.logo{:href => root_path}
+      %i.fa.fa-line-chart.fa-2x
+
+    %a#js-mobile-menu.navigation-menu-button{:href => "javascript:void(0)"} MENU
+
+    %nav{:role => "navigation"}
+      %ul#js-navigation-menu.navigation-menu.show
+        - if user_signed_in?
+          - if dashboard_path_for(current_user)
+            %li.nav-link
+              = link_to 'Dashboard', dashboard_path_for(current_user)
+          - if current_user.roles.count > 1
+            %li.nav-link.change-roles
+              = link_to 'Change Roles', 'javascript:void(0)'
+              %ul.roles
+                - current_user.roles.each do |role|
+                  %li
+                    = link_to role.name, 'javascript:void(0)'
+              = form_for current_user, as: :user, url: current_role_path, method: :put do |form|
+                = form.collection_select(:current_role, current_user.roles, :name, :name)
+          %li.nav-link
+            = link_to 'Edit Profile', edit_user_path
+          %li.nav-link
+            = link_to 'Logout', sign_out_path, method: :delete

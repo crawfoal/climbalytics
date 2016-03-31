@@ -1,0 +1,141 @@
+main[data-controller="athlete_dashboards"][data-action="show"] {
+  $grid-items-background: $base-background-color;
+  $grid-item-colors:
+    desaturate($action-color, 30%),
+    #3581A5,
+    #5FBEBE,
+    #98C79A,
+    #A7A891,
+    #BDCC97,
+    #979EA0;
+  $grid-item-border-size: 9px;
+  $grid-item-columns-laptop: 4;
+  $grid-item-columns-tablet: 6;
+  $grid-item-columns-mobile: 12;
+  $grid-item-color: white;
+  $grid-item-height: 14em;
+
+  @include clearfix;
+
+  article {
+    @include transition (all 0.2s ease-in-out);
+    @include grid-item-border($grid-item-border-size, $grid-items-background);
+    float: left;
+    min-height: $grid-item-height;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+
+    @include media($laptop-and-up) {
+      @include grid-item-columns($grid-item-columns-laptop);
+    }
+    @include media($tablet) {
+      @include grid-item-columns($grid-item-columns-tablet);
+    }
+    @include media($mobile) {
+      @include grid-item-columns($grid-item-columns-mobile);
+    }
+
+    @for $i from 1 through length($grid-item-colors) { // assign colors from $grid-item-colors list
+      &:nth-child(#{$i}) {
+        $background-from-list: nth($grid-item-colors, $i);
+        @include solid-background-with-subtle-shaddow($background-from-list);
+
+        .start:focus,
+        .start:hover,
+        section.nearby-gyms,
+        section.recent-gyms {
+          @include solid-background(darken($background-from-list, 10%));
+        }
+      }
+    }
+
+    h1 {
+      color: $grid-item-color;
+      margin: 0;
+    }
+
+    h2 {
+      color: $grid-item-color;
+      border-bottom: $base-border-width solid $grid-item-color;
+    }
+
+    > section {
+      display: none;
+      padding: 2em;
+      height: 100%;
+    }
+
+    section.start {
+      cursor: pointer;
+      height: $grid-item-height;
+
+      @include display(flex);
+      @include justify-content(center);
+      @include align-items(center);
+    }
+  }
+
+  i.fa-pencil {
+    display: block;
+    margin: 0 auto $tiny-spacing;
+  }
+
+  button.gym-link {
+    display: block;
+    width: 100%;
+    margin-top: $small-spacing;
+    font-size: $small-font-size;
+  }
+
+  button#refresh-my-location {
+    border-radius: 0 0 0 $base-border-radius;
+    padding: $tiny-spacing;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .climb-links {
+    @include display(flex);
+    @include flex-wrap(wrap);
+
+    a {
+      margin: 1px;
+
+      @include media($mobile) {
+        @include flex-basis(32%);
+      };
+      @include media($tablet-and-up) {
+        @include flex-basis(24%);
+      };
+      @include flex-grow(1);
+
+      &.loggable-link {
+        @include bitter-button;
+        @include compact-button;
+        border-radius: 0;
+        @include media($mobile) {
+          font-size: $small-font-size;
+        }
+      }
+    }
+  }
+
+  section.nearby-gyms,
+  section.recent-gyms {
+    padding: $small-spacing;
+    position: relative;
+    margin: $small-spacing;
+  }
+
+  section.climb-picker {
+    select#athlete_climb_log_climb_attributes_gym_section_id {
+      width: 100%;
+      margin-bottom: $tiny-spacing;
+    }
+    input[value="New climb"] {
+      margin-top: $tiny-spacing;
+    }
+  }
+}

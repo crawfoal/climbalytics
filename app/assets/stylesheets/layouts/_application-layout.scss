@@ -1,0 +1,9 @@
+main {
+  @include media($mobile) {
+    @include page-gutters($small-page-gutter, 1);
+
+  };
+  @include media($tablet-and-up) {
+    @include page-gutters($base-page-gutter);
+  };
+}

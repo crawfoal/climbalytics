@@ -1,12 +1,16 @@
 class User < ActiveRecord::Base
 
+  belongs_to :user_account
+  delegate :email, to: :user_account
+  alias_method :account, :user_account
+
   # ----------------------------------------------------------------------------
   # Rolify
   # ----------------------------------------------------------------------------
   rolify after_add: :rolify_after_add
   def rolify_after_add(role)
     self.update(current_role: role.name) if self.current_role.blank?
-    self.send_if_defined "create_#{role.name}_story"
+    self.try "create_#{role.name}_story"
   end
 
   # For an explaination, see
@@ -23,14 +27,6 @@ class User < ActiveRecord::Base
   alias grant add_role # otherwise grant refers to the old one
 
   # ----------------------------------------------------------------------------
-  # Devise
-  # ----------------------------------------------------------------------------
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  # ----------------------------------------------------------------------------
   # Name
   # ----------------------------------------------------------------------------
   has_one :name, dependent: :destroy
@@ -38,25 +34,33 @@ class User < ActiveRecord::Base
 
   class Name < ActiveRecord::Base
     belongs_to :user
+
+    def short_format
+      first unless first.blank?
+    end
+
+    validates_length_of :first, :last, maximum: 255
   end
 
   def address_me_as
-    if name
-      name.first.blank? ? email : name.first
-    else
-      email
-    end
+    name.try(:short_format) || email
   end
-
-  # ----------------------------------------------------------------------------
-  # Address
-  # ----------------------------------------------------------------------------
-  has_one :address, as: :addressable, dependent: :destroy
-  accepts_nested_attributes_for :address
 
   # ----------------------------------------------------------------------------
   # Setter Story
   # ----------------------------------------------------------------------------
   has_one :setter_story
 
+  # ----------------------------------------------------------------------------
+  # Athlete Story
+  # ----------------------------------------------------------------------------
+  has_one :athlete_story
+
+  # ----------------------------------------------------------------------------
+  # Current Location
+  # ----------------------------------------------------------------------------
+  has_one :current_location, as: :locateable, class_name: 'Location', dependent: :destroy
+  accepts_nested_attributes_for :current_location
+
+  validates_length_of :current_role, maximum: 255
 end

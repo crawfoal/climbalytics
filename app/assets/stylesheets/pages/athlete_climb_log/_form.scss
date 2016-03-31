@@ -1,0 +1,99 @@
+form[id*="athlete_climb_log"] {
+  @include outer-container;
+  section {
+    margin-bottom: $base-spacing;
+  }
+  a.add_fields {
+    @include bitter-button;
+    @include compact-button;
+  }
+  .climb-type {
+    border: $base-border;
+    border-radius: $base-border-radius;
+    display: inline-block;
+    margin-bottom: $small-spacing;
+
+    @include clearfix;
+    input {
+      display: none;
+    }
+    label {
+      display: inline-block;
+      float: left;
+      margin-bottom: 0;
+    }
+    label:not(.active) > span {
+      @include bitter-button($base-background-color, $base-font-color);
+      border-right: $base-border;
+    }
+    label.active > span {
+      @include bitter-button;
+    }
+    label:first-child span {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    label:last-child span {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-right: none;
+    }
+  }
+}
+
+section {
+  &.log-details,
+  &.climb-details {
+    @include span-columns(6);
+  }
+  &.climb-details {
+    @include omega;
+  }
+  &.climb-seshes {
+    @include span-columns(8);
+    @include shift(2);
+  }
+}
+
+table[id*="climb_seshes"] {
+  table-layout: auto;
+
+  th {
+    padding: $tiny-spacing;
+
+    &.high-hold, &.delete {
+      width: 1%;
+      white-space: nowrap;
+    }
+  }
+
+  td {
+    border: none;
+    padding: $tiny-spacing;
+    vertical-align: top;
+
+    &.high-hold,
+    &.delete {
+      text-align: right;
+    }
+
+    &.delete {
+      vertical-align: middle;
+      a {
+        @include bitter-button;
+        @include compact-button;
+      }
+    }
+  }
+  input, textarea {
+    margin: 0;
+    width: 100%;
+    display: table-cell;
+  }
+}
+
+.actions {
+  @include span-columns(12);
+  @include omega;
+  text-align: center;
+}

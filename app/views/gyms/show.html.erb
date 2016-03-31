@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h1><%= @gym.name %></h1>
+</div>
+
+<section class="gym-details">
+  <section class="business-details">
+    <%= render partial: 'addresses/show', locals: {address: @gym.location.address} %>
+  </section>
+
+  <section class="setting-details">
+    <section class="topo">
+      <%= image_tag @gym.topo_url.to_s %>
+    </section>
+    <section class="sections">
+      <div class="sections-list">
+        <div class="section-header">
+          <h2 class="section-title">Wall Sections</h2>
+        </div>
+        <ul>
+          <%= render @gym.gym_sections %>
+        </ul>
+      </div>
+    </section>
+  </section>
+</section>

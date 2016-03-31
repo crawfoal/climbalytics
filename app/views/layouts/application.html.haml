@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title Climbalytics
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    %link{:href => "https://fonts.googleapis.com/css?family=Raleway|Droid+Sans:400,700", :rel => "stylesheet", :type => "text/css"}/
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+  %body
+    %header.navigation{role: 'banner'}
+      = render partial: '/layouts/navbar'
+    = render_flash
+    %main{data: {action: controller.action_name, controller: scoped_controller_name}}
+      = yield

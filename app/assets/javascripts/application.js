@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap-sprockets
+//= require cocoon
+//= require js-routes
+//= require init
+//= require utility_functions
 //= require_tree .

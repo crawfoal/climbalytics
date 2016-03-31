@@ -1,0 +1,64 @@
+@mixin compact-button {
+  padding: $tiny-spacing $small-spacing;
+}
+
+@mixin bitter-button($color: $action-color, $text-color: #fff) {
+  appearance: none;
+  background-color: $color;
+  border: 0;
+  border-radius: $base-border-radius;
+  color: $text-color;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 600;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: $small-spacing $base-spacing;
+  text-decoration: none;
+  transition: background-color $base-duration $base-timing;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    background-color: shade($color, 20%);
+    color: $text-color;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      background-color: $color;
+    }
+  }
+}
+
+@mixin compact-bitter-button($color: $action-color) {
+  @include bitter-button($color);
+  @include compact-button;
+}
+
+#{$all-buttons} {
+  @include bitter-button;
+
+  &.close {
+    @include compact-button;
+  }
+}
+
+@mixin icon-button($color: $action-color) {
+  color: $color;
+  cursor: pointer;
+
+  &:hover,
+  &:focus, {
+    color: shade($color, 20%);
+  }
+}

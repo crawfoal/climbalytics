@@ -1,0 +1,7 @@
+%section.nearby-gyms
+  = render partial: 'athlete_dashboards/nearby_gyms'
+%section.recent-gyms
+  %h3 Recent choices
+  - current_user.athlete_story.recent_gyms.each do |gym|
+    %button.gym-link{data: {'gym-id': "#{gym.id}"}}
+      = gym.name

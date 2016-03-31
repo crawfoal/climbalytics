@@ -1,0 +1,25 @@
+@import "neat-helpers"; // or "../neat/neat-helpers" when not in Rails
+
+// Neat Overrides
+// $column: 78px;
+// $gutter: 24px;
+// $grid-columns: 12;
+// $max-width: 1200px;
+
+// Neat Breakpoints
+$mobile-lower-bound: 425px;
+$tablet-lower-bound: 768px;
+$laptop-lower-bound: 1024px;
+
+$mobile: (max-width $tablet-lower-bound - 1px);
+$tablet: (min-width $tablet-lower-bound) and (max-width $laptop-lower-bound - 1px);
+$tablet-and-up: min-width $tablet-lower-bound;
+$laptop-and-up: min-width $laptop-lower-bound;
+
+$mobile-grid: new-breakpoint($mobile 1);
+$tablet-grid: new-breakpoint($tablet 6);
+$laptop-and-up-grid: new-breakpoint($laptop-and-up 12);
+
+@mixin grid-item-columns($columns) {
+  width: (100% / 12) * $columns;
+}

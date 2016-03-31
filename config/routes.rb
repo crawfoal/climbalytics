@@ -1,76 +1,24 @@
 Rails.application.routes.draw do
-
-  root 'application#home'
-
-  devise_for :users, skip: :registrations
-  devise_scope :user do
-    resource :registration,
-      only: [:new, :create, :edit, :update],
-      path: 'users',
-      path_names: { new: 'sign_up' },
-      controller: 'users/registrations',
-                  as: :user_registration do
-                    get :cancel
-                  end
-      put 'users/role' => 'users/registrations#update_current_role'
+  # most common routes
+  root 'home#show', via: [:get]
+  resource :athlete_dashboard, only: [:show]
+  resource :setter_dashboard, only: [:show]
+  post 'athlete_climb_logs/new', to: 'athlete_climb_logs#new', as: ''
+  devise_for :user_accounts, skip: :all
+  devise_scope :user_account do
+    post 'sign_in', to: 'devise/sessions#create'
+    delete 'sign_out', to: 'devise/sessions#destroy'
+    post 'user_accounts', to: 'devise/registrations#create'
   end
 
-  resources :locations
 
-  resources :boulders
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  # all other resources alphabetically
+  resources :athlete_climb_logs, only: [:new, :edit, :create, :update]
+  resources :climbs, only: [:index]
+  resources :climb_pickers, only: [:show]
+  resource :current_role, only: [:update]
+  resource :flash, only: [:show]
+  resources :gyms, except: :destroy
+  resource :nearby_gyms, only: [:show]
+  resource :user, only: [:edit, :update]
 end

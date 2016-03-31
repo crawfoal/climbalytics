@@ -1,0 +1,19 @@
+- if (gym = climb.try(:gym))
+  = climb_form.collection_select :gym_section_id, gym.sections, :id, :name
+  = image_tag gym.topo_url.to_s
+= climb_form.label :name
+= climb_form.text_field :name
+= climb_form.label 'Climb type'
+.climb-type
+  = climb_form.label :type, value: 'Boulder' do
+    = climb_form.radio_button :type, :Boulder
+    %span Boulder
+  = climb_form.label :type, value: 'Route' do
+    = climb_form.radio_button :type, :Route
+    %span Route
+.grade
+  = climb_form.label :grade
+  = climb_form.select :grade, Route.grades.keys, { include_blank: true }, {id: 'route_grades'}
+  = climb_form.select :grade, Boulder.grades.keys, { include_blank: true }, {id: 'boulder_grades'}
+= climb_form.label :moves_count, 'Number of moves'
+= climb_form.number_field :moves_count, min: 1, step: 1

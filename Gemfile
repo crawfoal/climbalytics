@@ -23,13 +23,29 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+#-------------------------------------------------------------------------------
 # Gems that I've added
 gem 'carrierwave'
+
 gem 'devise'
 gem 'rolify'
-gem 'bootstrap-sass'
-gem 'autoprefixer-rails'
 gem 'pundit'
+
+gem 'geocoder'
+
+gem 'haml'
+# gem 'autoprefixer-rails'
+gem 'cocoon'
+gem 'js-routes'
+gem 'mini_magick'
+gem 'inline_svg'
+gem 'font-awesome-sass'
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
+
+gem 'rails-observers'
+#-------------------------------------------------------------------------------
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -40,16 +56,27 @@ gem 'pundit'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem "codeclimate-test-reporter", group: :test, require: nil
+
 group :development, :test do
+  gem 'awesome_print'
+  gem 'pry'
+
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'launchy'
+
+  gem 'guard-rspec'
+
   gem 'colorize'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
+  gem 'faker'
 end
 
 group :development do

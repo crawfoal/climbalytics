@@ -1,0 +1,8 @@
+%tr.nested-fields
+  %td.high-hold
+    = f.number_field :high_hold
+  %td.note
+    = f.text_area :note, rows: "1"
+  %td.delete
+    = link_to_remove_association f do
+      %i.fa.fa-remove

@@ -1,16 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe SetterStory, type: :model do
-  before :each do
-    define_roles(:setter)
-    @user = create(:setter_user)
-  end
+
+  let(:user) { create(:setter) }
+
   it 'is created for a user after a role of setter is added' do
-    expect(@user.setter_story).to be_persisted
+    expect(user.setter_story).to be_persisted
   end
-  it 'can create an associated boulder' do
-    boulder = @user.setter_story.boulders.create
-    expect(@user.setter_story.boulders.count).to be >= 1
-    expect(boulder).to be_persisted
+  it 'can create an associated setter_climb_log' do
+    expect { user.setter_story.setter_climb_logs.create(climb: create(:climb)) }.to change { user.setter_story.setter_climb_logs.count }.by(1)
   end
+
 end

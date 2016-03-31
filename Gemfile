@@ -77,6 +77,8 @@ group :development, :test do
   gem 'byebug'
 
   gem 'faker'
+
+  gem 'webmock'
 end
 
 group :development do

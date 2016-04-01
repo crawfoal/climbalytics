@@ -18,3 +18,6 @@
 
 # Ignore files created when testing photo uploads
 /public/uploads/**/*
+
+# Ignore simplecov's coverage files
+/coverage/**/*

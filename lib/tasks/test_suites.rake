@@ -12,8 +12,8 @@ Rake::Task['spec:tasks'].clear_actions
 namespace :spec do
   desc "(patterns from .rspec overriden)"
   RSpec::Core::RakeTask.new('features') do |task|
-    require "codeclimate-test-reporter"
-    CodeClimate::TestReporter.start
+    # require "codeclimate-test-reporter"
+    # CodeClimate::TestReporter.start
     task.exclude_pattern = ''
     task.pattern = 'spec/features/**/*_spec.rb'
   end

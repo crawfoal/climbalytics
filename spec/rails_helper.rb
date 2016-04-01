@@ -17,8 +17,6 @@ require_relative 'support/helpers/sometimes_stub.rb'
 
 ActiveRecord::Migration.maintain_test_schema!
 
-SimpleCov.merge_timeout 3600
-
 RSpec.configure do |config|
 
   config.use_transactional_fixtures = false

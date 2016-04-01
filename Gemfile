@@ -57,6 +57,7 @@ gem 'rails-observers'
 # gem 'capistrano-rails', group: :development
 
 group :test do
+  gem 'codeclimate-test-reporter', require: nil
   gem 'coveralls', require: false
 end
 

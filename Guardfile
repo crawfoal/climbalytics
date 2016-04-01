@@ -79,6 +79,9 @@ guard :rspec, cmd: "bundle exec rspec" do
   # Concerns
   watch(%r{^app/models/concerns/(.+)\.rb$}) { |m| rspec.spec.("concerns/#{m[1]}") }
 
+  # Lib Files
+  watch(%r{^lib/(.+)\.rb$}) { |m| rspec.spec.("lib/#{m[1]}") }
+
   # Rails config changes
   watch(rails.spec_helper)     { rspec.spec_dir }
   watch(rails.routes)          { "#{rspec.spec_dir}/routing" }

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'feature_suite_helper'
 
 feature 'User signs up for an account' do
   subject { page }

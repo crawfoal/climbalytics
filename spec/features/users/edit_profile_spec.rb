@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'feature_suite_helper'
 
 def expect_role_section_to_be_hidden
   expect(find('section.roles')).to_not have_selector 'input[type="checkbox"]'

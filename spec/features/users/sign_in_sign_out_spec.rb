@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'feature_suite_helper'
 
 feature 'Authentication:' do
   scenario '(new) user signs in and out' do

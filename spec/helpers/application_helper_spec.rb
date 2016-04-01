@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'main_suite_helper'
 
 describe ApplicationHelper do
   describe '#dashboard_path_for' do

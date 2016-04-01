@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'main_suite_helper'
 
 describe 'db:populate' do
   describe 'generated climb seshes' do

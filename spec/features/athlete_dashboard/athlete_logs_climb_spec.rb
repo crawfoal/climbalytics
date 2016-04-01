@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'feature_suite_helper'
 
 feature 'Athlete Dashboard:' do
   scenario 'athlete starts logging a climb', js: true do

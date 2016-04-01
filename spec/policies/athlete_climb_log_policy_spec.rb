@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'main_suite_helper'
 
 describe AthleteClimbLogPolicy do
   subject { AthleteClimbLogPolicy.new(user, athlete_climb_log) }

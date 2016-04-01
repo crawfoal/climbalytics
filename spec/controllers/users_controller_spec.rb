@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'main_suite_helper'
 
 RSpec.describe UsersController, type: :controller do
   context 'JSON format' do

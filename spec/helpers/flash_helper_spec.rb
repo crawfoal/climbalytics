@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'main_suite_helper'
 
 RSpec.describe FlashHelper do
   describe '#render_flash' do

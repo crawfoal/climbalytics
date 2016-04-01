@@ -1,4 +1,4 @@
-require "rails_helper"
+require "main_suite_helper"
 
 describe AthleteClimbLogsController do
   login_user(:athlete)

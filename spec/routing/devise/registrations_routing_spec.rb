@@ -1,4 +1,4 @@
-require "rails_helper"
+require "main_suite_helper"
 
 RSpec.describe Devise::RegistrationsController, 'routing' do
   it 'routes to #create' do

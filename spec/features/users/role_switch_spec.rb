@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'feature_suite_helper'
 
 feature 'User Roles:' do
   scenario 'user switches current role', js: true do

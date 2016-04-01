@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'task_suite_helper'
 require 'rake'
 
 describe 'db:populate', :transaction_group do

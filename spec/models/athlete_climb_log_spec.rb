@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'main_suite_helper'
 
 RSpec.describe AthleteClimbLog, type: :model do
   describe 'Validations' do

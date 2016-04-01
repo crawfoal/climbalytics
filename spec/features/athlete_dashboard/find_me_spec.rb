@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'feature_suite_helper'
 
 feature 'Athlete Dashboard:' do
   scenario 'new athelete triggers geolocation', js: true do

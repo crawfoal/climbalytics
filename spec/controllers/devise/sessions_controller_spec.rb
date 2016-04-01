@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'main_suite_helper'
 
 RSpec.describe Devise::SessionsController, '#create' do
   context 'with invalid credentials' do

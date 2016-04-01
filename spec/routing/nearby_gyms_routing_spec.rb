@@ -1,4 +1,4 @@
-require "rails_helper"
+require "main_suite_helper"
 
 RSpec.describe NearbyGymsController, 'routing' do
   it 'routes to #show' do

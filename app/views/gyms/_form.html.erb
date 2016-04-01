@@ -11,7 +11,7 @@
             </a>
           </h2>
         </div>
-        <div id="basic-info-collapse" class="panel-collapse collapse <%= 'in' if  expand_basic_info? %>" role="tabpanel">
+        <div id="basic-info-collapse" class="panel-collapse collapse" role="tabpanel">
           <div class="section-body">
             <div class="form-group">
               <%= f.label :name %><br>
@@ -48,7 +48,7 @@
             </a>
           </h2>
         </div>
-        <div id="gym-layout-collapse" class="panel-collapse collapse <%= 'in' if  expand_gym_layout? %>" role="tabpanel">
+        <div id="gym-layout-collapse" class="panel-collapse collapse" role="tabpanel">
           <div class="section-body">
             <div class="form-group">
               <%= image_tag @gym.topo_url.to_s %>
